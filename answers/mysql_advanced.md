@@ -40,10 +40,36 @@ By default, MySQL runs with **autocommit** mode enabled. This means that as soon
 2. Set autocommit to off: `SET autocommit = 0;`
 
 ## 5. Transaction Isolation Levels
-- **Read Uncommitted**: Can see data from other transactions that haven't been committed yet ("Dirty Reads").
-- **Read Committed**: Can only see committed data.
-- **Repeatable Read**: Ensures that if you read a row twice in the same transaction, you get the same data (default for InnoDB).
-- **Serializable**: Highest isolation level; transactions are executed as if they were sequential.
+Isolation levels define how transactions interact with each other and the trade-off between consistency and performance.
+
+- **Read Uncommitted**: The lowest isolation level. A transaction can read data that has been modified by another transaction but not yet committed. This leads to **Dirty Reads**.
+- **Read Committed**: Ensures that a transaction can only read data that has been committed. This prevents dirty reads, but still allows **Non-Repeatable Reads** (if data changes between two reads in the same transaction).
+- **Repeatable Read**: Guarantees that if a transaction reads a row once, it will see the same data if it reads it again, even if another transaction commits changes in between. This is the **default for InnoDB**. It prevents dirty and non-repeatable reads.
+- **Serializable**: The highest isolation level. It forces transactions to run in a way that is equivalent to serial (one after another) execution. It prevents all the above issues, including **Phantom Reads**, but significantly impacts performance due to heavy locking.
+
+For a deeper understanding of isolation levels, check this article: [Understanding Database Isolation Levels](https://hosseinnejati.medium.com/understanding-database-isolation-levels-from-my-perspective-27f261eeb976)
+
+### 5.1. Practical Examples of Isolation Levels
+
+#### 1. Dirty Read (Read Uncommitted)
+*   **Scenario**: Transaction A updates a user's balance from $100 to $200. Transaction B reads the balance as $200. Transaction A then encounters an error and rolls back the change.
+*   **Problem**: Transaction B now has "dirty" data ($200) that was never actually committed to the database.
+*   **Solution**: Use **Read Committed** or higher.
+
+#### 2. Non-Repeatable Read (Read Committed)
+*   **Scenario**: Transaction A reads a product's price as $50. Transaction B then updates the price to $60 and commits. Transaction A reads the same product's price again and sees $60.
+*   **Problem**: Within the same transaction, two identical queries returned different results.
+*   **Solution**: Use **Repeatable Read** or higher.
+
+#### 3. Phantom Read (Repeatable Read)
+*   **Scenario**: Transaction A queries all active users (finds 10). Transaction B inserts a new active user and commits. Transaction A queries active users again and finds 11.
+*   **Problem**: A "phantom" row appeared that wasn't there during the first read.
+*   **Solution**: Use **Serializable** (or rely on InnoDB's Next-Key Locking in Repeatable Read which handles many phantom read cases).
+
+#### 4. When to use each?
+*   **Read Committed**: The most common choice for most applications (default in PostgreSQL/Oracle). It offers a good balance between performance and consistency by preventing dirty reads.
+*   **Repeatable Read**: The default for MySQL (InnoDB). Best when you need a consistent view of the data throughout a transaction (e.g., generating a complex report).
+*   **Serializable**: Use only when absolute data integrity is required and concurrent access to the same rows is low (e.g., critical financial transfers).
 
 ## 6. Locking and Concurrency
 - **Pessimistic Locking**: Assumes a conflict will occur and locks the row/table before modifying it (`SELECT ... FOR UPDATE`).
