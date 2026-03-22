@@ -1,0 +1,12 @@
+[submodule "src/interview_questions_and_answers"]
+	path = src/interview_questions_and_answers
+	url = https://github.com/glaphire/interview_questions_and_answers.git
+[submodule "src/PHP-LARAVEL-Interview-questions"]
+	path = src/PHP-LARAVEL-Interview-questions
+	url = https://github.com/Sabbir-Hossain12/PHP-LARAVEL-Interview-questions.git
+[submodule "src/php-interview-questions"]
+	path = src/php-interview-questions
+	url = https://github.com/Devinterview-io/php-interview-questions.git
+[submodule "src/zsoro-php-interview-questions"]
+	path = src/zsoro-php-interview-questions
+	url = https://github.com/zsoro2/php-interview-questions.git
