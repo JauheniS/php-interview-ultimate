@@ -1,6 +1,14 @@
+---
+title: "Symfony Advanced Concepts"
+slug: "/answers/symfony_advanced"
+---
+
 # Symfony Advanced Concepts
 
 ## Symfony Kernel Events Lifecycle
+
+![Symfony Request Lifecycle](./images/symfony_request_lifecycle.png)
+
 The `HttpKernel` component dispatches several events during a request-response lifecycle:
 1. `kernel.request`: Before any controller execution.
 2. `kernel.controller`: After the controller has been found but before execution.

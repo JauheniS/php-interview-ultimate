@@ -1,3 +1,8 @@
+---
+title: "`$this` vs `self` vs `static` vs `parent`"
+slug: "/answers/this_self_static"
+---
+
 # `$this` vs `self` vs `static` vs `parent`
 
 ## `$this`

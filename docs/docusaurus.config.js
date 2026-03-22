@@ -62,10 +62,14 @@ const config = {
         title: 'PHP Interview Questions',
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            to: '/',
             position: 'left',
             label: 'Questions',
+          },
+          {
+            to: '/answers',
+            position: 'left',
+            label: 'Answers',
           },
           {
             href: 'https://github.com/yauheni/php-questions',

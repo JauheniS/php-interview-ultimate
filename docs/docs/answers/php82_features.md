@@ -1,3 +1,8 @@
+---
+title: "PHP 8.2 New Features"
+slug: "/answers/php82_features"
+---
+
 # PHP 8.2 New Features
 
 [Official Documentation: PHP 8.2 Release](https://www.php.net/releases/8.2/en.php)

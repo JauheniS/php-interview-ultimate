@@ -1,3 +1,8 @@
+---
+title: "Advanced MySQL Concepts"
+slug: "/answers/mysql_advanced"
+---
+
 # Advanced MySQL Concepts
 
 ## 1. Storage Engines: InnoDB vs MyISAM

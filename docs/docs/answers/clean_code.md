@@ -1,3 +1,8 @@
+---
+title: "Clean Code & Programming Best Practices"
+slug: "/answers/clean_code"
+---
+
 # Clean Code & Programming Best Practices
 
 "Clean Code" by Robert C. Martin provides principles and practices for writing readable, maintainable software.

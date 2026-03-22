@@ -1,3 +1,8 @@
+---
+title: "Advanced Testing & Debugging"
+slug: "/answers/testing_debugging_advanced"
+---
+
 # Advanced Testing & Debugging
 
 ## Testing Concepts

@@ -40,21 +40,31 @@ The repository is organized into subdirectories under `src/`, each representing 
 ## Development
 
 ### Frontend Development (Docusaurus)
-To run the frontend locally:
+To run the frontend locally from the root:
+1. `npm run install:docs`
+2. `npm run dev`
+
+Alternatively, from the `docs` directory:
 1. `cd docs`
 2. `npm install`
-3. `npm start`
+3. `npm start` or `npm run dev`
 
 To lint and format the codebase:
-- `npm run lint` (runs ESLint and Markdownlint)
-- `npm run format` (runs Prettier)
+From the root: `npm run lint` or `npm run format`
+From the `docs` directory: `npm run lint` or `npm run format`
 
 ### Docker
 Alternatively, you can build and run the frontend using Docker:
 ```bash
 docker compose up --build
 ```
-The documentation will be available at `http://localhost:8080`.
+The documentation will be available at `http://localhost:8888` (served via Nginx) or `http://localhost:3333` (served via Node).
+
+To run the frontend in **development mode** with hot-reloading:
+```bash
+docker compose run --service-ports node npm run dev
+```
+The documentation will be available at `http://localhost:3333`.
 
 ## Key Topics Covered
 - **Core PHP**: Data types, generators, magic constants, PHP features (8.0+), and more.

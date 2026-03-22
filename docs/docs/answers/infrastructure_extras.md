@@ -1,3 +1,8 @@
+---
+title: "Infrastructure & Tools (RabbitMQ, Redis, Docker)"
+slug: "/answers/infrastructure_extras"
+---
+
 # Infrastructure & Tools (RabbitMQ, Redis, Docker)
 
 ## RabbitMQ & AMQP

@@ -1,3 +1,8 @@
+---
+title: "Doctrine ORM & Symfony Database Layer"
+slug: "/answers/doctrine"
+---
+
 # Doctrine ORM & Symfony Database Layer
 
 Doctrine is a set of PHP libraries focused on database storage and object mapping (ORM).

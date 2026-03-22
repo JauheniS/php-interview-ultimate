@@ -1,0 +1,172 @@
+---
+title: "4. MySQL & Databases"
+sidebar_label: "4. MySQL & Databases"
+---
+
+# 4. MySQL & Databases
+
+### How to connect to a MySQL database using PHP?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** You can use the `mysqli` extension or `PDO` (PHP Data Objects). 
+```php
+// PDO Example
+$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
+```
+
+---
+
+### What is the difference between `mysqli` and `PDO`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `mysqli` is specific to MySQL, while `PDO` supports multiple database systems (PostgreSQL, SQLite, etc.).
+- `PDO` supports named placeholders in prepared statements.
+
+---
+
+### What is the difference between `WHERE` and `HAVING`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** `WHERE` filters rows *before* aggregation, while `HAVING` filters *after* aggregation (usually with `GROUP BY`).
+
+---
+
+### What is a Primary Key?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** A primary key is a column (or a set of columns) that uniquely identifies each record in a table. It cannot be null.
+
+---
+
+### What is the difference between `CHAR` and `VARCHAR`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** `CHAR` is fixed-length (padded with spaces), while `VARCHAR` is variable-length (uses only the necessary space plus 1-2 bytes for length).
+
+---
+
+### What is the default port for MySQL?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 3306.
+
+---
+
+### What is the difference between `CHAR_LENGTH` and `LENGTH`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** `CHAR_LENGTH` counts the number of characters, while `LENGTH` counts the number of bytes.
+
+---
+
+### What do `%` and `_` represent in a `LIKE` statement?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `%` matches any sequence of characters (zero or more).
+- `_` matches exactly one character.
+
+---
+
+### What is a Transaction?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** A sequence of database operations that are treated as a single unit of work. They must follow the ACID properties.
+
+---
+
+### What are the main storage engines in MySQL?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** 
+- **InnoDB:** Supports transactions, row-level locking, and foreign keys (Default).
+- **MyISAM:** Does not support transactions, uses table-level locking, faster for read-heavy operations.
+- **MEMORY:** Stores data in RAM for very fast access, but data is lost if the server restarts.
+
+---
+
+### What is a View?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** A virtual table based on the result-set of an SQL query. It does not store data itself.
+
+---
+
+### What is a Trigger?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** A database object that automatically executes in response to certain events (INSERT, UPDATE, DELETE) on a particular table.
+
+---
+
+### What is InnoDB?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** A storage engine for MySQL that supports transactions, foreign keys, and row-level locking. It is the default engine.
+
+---
+
+### What is an Index and why is it used?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** An index is a data structure (like a B-tree) used to quickly locate records in a table. It improves query speed but can slow down inserts/updates.
+
+---
+
+### What is the difference between `UNION` and `UNION ALL`?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** `UNION` removes duplicate rows from the result set, while `UNION ALL` includes all rows, including duplicates.
+
+---
+
+### What is Sharding and Partitioning?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:** 
+- **Partitioning:** Splitting a large table into smaller, more manageable pieces within the same database server.
+- **Sharding:** Distributing data across multiple independent database servers (horizontal scaling).
+
+---
+
+### What are ACID properties?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:** 
+- **Atomicity:** All-or-nothing (everything succeeds or fails).
+- **Consistency:** Transactions must transition the database from one valid state to another.
+- **Isolation:** Transactions occur independently of each other.
+- **Durability:** Committed data is permanently saved, even in a system crash.
+
+---
+
+### What is a Clustered Index vs a Non-Clustered Index?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:** 
+- **Clustered Index:** Determines the physical order of data in the table. There can only be one per table (usually the primary key).
+- **Non-Clustered Index:** A separate structure that contains the indexed values and pointers to the data rows.
+
+---
+
+---
+

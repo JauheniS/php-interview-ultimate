@@ -1,0 +1,283 @@
+---
+title: "1. PHP Basics & Language Features"
+sidebar_label: "1. PHP Basics & Language Features"
+---
+
+# 1. PHP Basics & Language Features
+
+### What does PHP stand for and what is its main purpose?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** PHP originally stood for "Personal Home Page," but it now stands for "PHP: Hypertext Preprocessor." It is a server-side scripting language designed for web development. Its main purpose is to generate dynamic web content, handle form data, interact with databases, manage sessions, and more.
+
+---
+
+### Is PHP a case-sensitive language?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** Yes, PHP is case-sensitive for variable names. However, function names, class names, and built-in constructs (like `echo`, `if`, etc.) are case-insensitive.
+
+---
+
+### What are the rules for naming a PHP variable?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- Must start with a `$` sign.
+- Followed by a letter or underscore.
+- Can only contain letters, numbers, and underscores (A-z, 0-9, and _).
+- Cannot start with a number.
+- Variable names are case-sensitive.
+
+---
+
+### What are the data types in PHP?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- **Scalar:** `int`, `float`, `string`, `bool`.
+- **Compound:** `array`, `object`, `callable`, `iterable`.
+- **Special:** `resource`, `null`.
+[Detailed Data Types Guide](../answers/data_types.md)
+
+---
+
+### What is the difference between `empty()`, `is_null()`, and `isset()`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `empty()`: Returns true if the variable is an empty string, 0, false, null, or an empty array.
+- `is_null()`: Returns true only if the variable is null.
+- `isset()`: Returns true if the variable is set and is not null.
+
+---
+
+### What is the difference between `echo` and `print`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `echo` is a language construct, while `print` is a function (though it behaves like a construct).
+- `echo` is slightly faster and can take multiple parameters.
+- `print` always returns 1, so it can be used in expressions.
+
+---
+
+### What are `include()`, `require()`, `include_once()`, and `require_once()`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `include()`: Includes a file. If it fails, it emits a warning and continues.
+- `require()`: Includes a file. If it fails, it emits a fatal error and stops execution.
+- `*_once()`: Similar to their counterparts, but ensure the file is only included once.
+
+---
+
+### What are the different types of arrays in PHP?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- **Indexed arrays:** Arrays with a numeric index.
+- **Associative arrays:** Arrays with named keys.
+- **Multidimensional arrays:** Arrays containing one or more arrays.
+
+---
+
+### What is the difference between single-quoted and double-quoted strings?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- **Single-quoted:** Literals. Variables and most escape sequences are not interpreted.
+- **Double-quoted:** Variables are interpolated, and escape sequences (like `\n`, `\t`) are interpreted.
+
+---
+
+### What is the difference between `$message` and `$$message`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** `$message` is a regular variable. `$$message` is a "variable variable," which uses the value of `$message` as the name of another variable.
+
+---
+
+### What is meant by "escaping to PHP"?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** It refers to embedding PHP code within HTML using tags like `<?php ... ?>`.
+
+---
+
+### What are the rules to determine the "truth" of any value (truthiness)?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** In PHP, values are "truthy" unless they are: `null`, `false`, `0`, `0.0`, `""` (empty string), `"0"`, or `[]` (empty array).
+
+---
+
+### What is the difference between constants and variables?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** Constants are defined using `define()` or `const` and cannot be changed or undefined once set. Variables can change their value at any time.
+
+---
+
+### Name some built-in constants in PHP.
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** `PHP_VERSION`, `PHP_OS`, `DEFAULT_INCLUDE_PATH`, `DIRECTORY_SEPARATOR`, `E_ERROR`, `E_WARNING`.
+
+---
+
+### What is the use of `explode()` and `implode()`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `explode()`: Splits a string into an array by a delimiter.
+- `implode()`: Joins array elements into a string using a delimiter.
+
+---
+
+### What is the difference between `unset()` and `unlink()`?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** 
+- `unset()`: Destroys a variable or an element in an array.
+- `unlink()`: Deletes a file from the server.
+
+---
+
+### What are Magic Constants in PHP?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** Magic constants are predefined constants that change depending on where they are used.
+- `__LINE__`, `__FILE__`, `__DIR__`, `__FUNCTION__`, `__CLASS__`, `__TRAIT__`, `__METHOD__`, `__NAMESPACE__`, `ClassName::class`.
+
+---
+
+### What are Generators?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** Generators provide an easy way to implement simple iterators using the `yield` keyword, allowing you to iterate through data without building an array in memory.
+[Generators and yield](../answers/generators.md)
+
+---
+
+### What is the difference between a closure and an anonymous function?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** An anonymous function is a function without a name. A closure is an anonymous function that can "close over" variables from its parent scope using the `use` keyword.
+
+---
+
+### What is Type Hinting?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** Type hinting allows you to specify the expected data type for function arguments and return values. This helps catch errors and improves code readability.
+
+---
+
+### What is Garbage Collection in PHP?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable.
+
+---
+
+### What is OPCache?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** OPCache is a caching engine for PHP that stores precompiled script bytecode in shared memory, eliminating the need for PHP to load and parse scripts on each request.
+
+---
+
+### How does Error Handling work in PHP?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** PHP uses several mechanisms:
+- **Error Reporting:** Configured via `error_reporting()` and `display_errors` in `php.ini`.
+- **Try-Catch Blocks:** For handling `Exceptions` and `Errors` (since PHP 7).
+- **Custom Error Handlers:** Using `set_error_handler()` and `set_exception_handler()`.
+
+**Common Error Types:**
+- `E_ERROR`: Fatal run-time errors. Execution of the script is halted.
+- `E_WARNING`: Run-time warnings (non-fatal errors).
+- `E_NOTICE`: Run-time notices.
+- `E_PARSE`: Compile-time parse errors.
+- `E_DEPRECATED`: Warnings about code that will not work in future versions.
+
+---
+
+### What is the lifecycle of a PHP request?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** 
+1. **Request:** The web server (e.g., Nginx/Apache) receives an HTTP request.
+2. **Handover:** The server identifies it as a PHP file and passes it to the PHP processor (like PHP-FPM) via CGI/FastCGI.
+3. **Initialization:** PHP starts up, loads its configuration (`php.ini`), and initializes loaded extensions.
+4. **Parsing & Compilation:** PHP parses the script and compiles it into opcodes (often cached by Opcache).
+5. **Execution:** The Zend Engine executes the opcodes.
+6. **Output:** The script generates an HTTP response (headers and body).
+7. **Shutdown:** PHP cleans up resources, shuts down extensions, and the process may stay alive (in FPM) to handle the next request.
+
+---
+
+### What are Superglobals in PHP?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** Predefined variables that are always available in all scopes throughout a script.
+- `$_GET`: Data passed via URL query parameters.
+- `$_POST`: Data passed via HTTP POST method (form data).
+- `$_FILES`: Data about uploaded files.
+- `$_COOKIE`: Data stored in cookies.
+- `$_SESSION`: Data stored in the session.
+- `$_SERVER`: Information about headers, paths, and script locations.
+- `$_ENV`: Environment variables.
+- `$_REQUEST`: Contains contents of `$_GET`, `$_POST`, and `$_COOKIE`.
+- `$GLOBALS`: References all variables available in global scope.
+
+---
+
+### How do Sessions and Cookies work in PHP?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Answer:** 
+- **Cookies:** Stored on the client's browser. Used to store small amounts of data (max 4KB) that are sent back to the server with every request. Set using `setcookie()`.
+- **Sessions:** Stored on the server. A unique session ID is generated for each user and typically stored in a cookie on the client side. This ID is used to retrieve session data from the server. Started using `session_start()`. Sessions are more secure for sensitive data.
+
+---
+
+### What are the risks of using PHP as a long-lived process (daemon)?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:** Memory leaks and global state contamination are the biggest risks, as variables and objects persist between requests.
+[Running PHP as a Daemon](../answers/php_advanced_extras.md)
+
+---
+
+---
+

@@ -1,3 +1,8 @@
+---
+title: "Architecture & Highload: Scalability, Microservices, and Performance"
+slug: "/answers/architecture_highload"
+---
+
 # Architecture & Highload: Scalability, Microservices, and Performance
 
 When applications grow, they face challenges related to performance, scalability, and maintainability.

@@ -1,3 +1,8 @@
+---
+title: "PHP Reflection and SPL"
+slug: "/answers/php_advanced_extras"
+---
+
 # PHP Reflection and SPL
 
 ## Reflection API

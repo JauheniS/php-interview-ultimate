@@ -41,18 +41,13 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Move sidebar to the right */
-@media (min-width: 997px) {
-  [class*='docPage_'] > main {
-    order: 1;
-  }
-  [class*='docPage_'] > aside {
-    order: 2;
-  }
-}
-
 /* Beautiful callouts */
 .admonition {
   border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Hide the main doc from the sidebar while keeping its context */
+.hidden-sidebar-doc {
+  display: none !important;
 }
