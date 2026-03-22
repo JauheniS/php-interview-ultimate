@@ -621,6 +621,10 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 **Answer:** MySQL is known for its speed and ease of use in web development, while PostgreSQL is an object-relational database known for its advanced features, strict SQL compliance, and better handling of complex queries and high-concurrency workloads.
 [MySQL vs PostgreSQL Comparison](answers/mysql_advanced.md#10-mysql-vs-postgresql)
 
+#### We have a filter with 3 columns from one table: `sku` (unique), `creation_date`, and an `integer_field` (values 1, 2, or 3). How would you index this for maximum performance?
+**Answer:** Create a **composite index** including all three fields. This is more performant than separate indexes because it allows MySQL to filter all three conditions in a single index scan. With separate indexes, the database would typically use only one and then perform a slower check for the remaining conditions.
+[Composite Index Strategy](answers/mysql_advanced.md#11-composite-index-strategy)
+
 ---
 
 ## 6. Laravel & Symfony
