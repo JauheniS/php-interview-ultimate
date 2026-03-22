@@ -117,7 +117,15 @@ This file contains a curated list of PHP interview questions and answers, merged
 **Answer:** Type hinting allows you to specify the expected data type for function arguments and return values. This helps catch errors and improves code readability.
 
 #### What is Garbage Collection in PHP?
-**Answer:** PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable.
+**Answer:** 
+PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable.
+
+- **Reference Counting:** Every `zval` (except simple types in PHP 7+) has a `refcount`. When it reaches zero, memory is freed immediately.
+- **What is a "Cycle"?** A cycle occurs when objects point to each other (circular references), preventing their `refcounts` from reaching zero even after being unset.
+- **How it cleans:** When the "root buffer" reaches its limit, the collector temporarily decrements internal refcounts. If a refcount hits zero, the object is marked as garbage and swept.
+- **Performance:** GC prevents memory leaks (crucial for daemons/workers) but adds CPU overhead during collection cycles.
+
+[Detailed Garbage Collection Guide](answers/garbage_collector.md)
 
 #### What is a zval and what is its basic structure? ⭐ **Important**
 **Answer:** A `zval` (Zend value) is the fundamental data structure used by the Zend Engine to represent any PHP variable. In PHP 5, it consists of:
@@ -632,8 +640,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 #### What are the pros and cons of Microservices?
 **Answer:** 
-- **Pros:** Scalability, technology independence, easier deployment of small parts.
-- **Cons:** Complexity of communication, data consistency issues, infrastructure overhead.
+- **Pros:** Independent scaling, speed and agility, technology independence, and fault isolation.
+- **Cons:** Management complexity, data consistency issues (distributed transactions), network latency, and complex monitoring.
 [Microservices Architecture](answers/architecture_highload.md)
 
 ---
@@ -746,6 +754,18 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 ## 13. Web & API
 
 ### Junior
+#### What is REST API?
+**Answer:** REST (Representational State Transfer) is an architectural style for designing networked applications. It relies on a stateless, client-server, cacheable communications protocol — and in virtually all cases, the HTTP protocol is used.
+[Read more: What is REST API?](https://www.ibm.com/think/topics/rest-apis)
+#### What are the main HTTP methods used in REST?
+**Answer:**
+- `GET`: Retrieve a resource.
+- `POST`: Create a new resource.
+- `PUT`: Update/replace an existing resource.
+- `PATCH`: Partially update an existing resource.
+- `DELETE`: Delete a resource.
+- `OPTIONS`: Describe the communication options for the target resource.
+- `HEAD`: Same as GET but returns only the headers (no body).
 #### What is the difference between GET and POST?
 **Answer:** 
 - `GET`: Data is sent in the URL. Used for retrieving data.
@@ -774,6 +794,11 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 **Answer:** 
 - **REST:** Resource-oriented, uses HTTP methods (GET, POST, etc.) and status codes.
 - **JSON-RPC:** Method-oriented, usually uses POST to a single endpoint with a JSON payload specifying the method and parameters.
+
+#### Can you implement your own HTTP method like POSTAWESOME instead of POST? Would it be in compliance with REST?
+**Answer:**
+Technically, yes, you can define and use custom HTTP methods. The HTTP protocol allows for extension, and most web servers and clients can be configured to handle them.
+However, it would **not** be fully in compliance with the **Uniform Interface** constraint of REST. REST emphasizes a standardized set of methods (the standard HTTP verbs) to ensure interoperability, predictability, and to leverage existing web infrastructure (like caches and proxies) that only understand standard methods. Using `POSTAWESOME` would break these benefits and make your API harder to consume.
 
 ---
 
