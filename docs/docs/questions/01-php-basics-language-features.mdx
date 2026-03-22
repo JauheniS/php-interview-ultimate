@@ -198,7 +198,25 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable.
+**Answer:** PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable. Reference counting handles immediate reclamation when a variable is no longer used, while the cycle collector identifies and removes circular references.
+[Detailed Garbage Collection Guide](../answers/garbage_collector.md)
+
+---
+
+### What is a zval and what is its basic structure?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+<span className="badge badge--danger margin-bottom--md">Important</span>
+
+**Answer:** 
+A `zval` (Zend value) is the fundamental data structure used by the Zend Engine to represent any PHP variable. In PHP 5, it consists of four main members:
+- **value:** A union that stores the actual data (e.g., integer, string pointer, etc.).
+- **refcount:** An unsigned integer that stores the number of symbols (variables) pointing to this `zval`.
+- **type:** An unsigned char that stores the variable's type (e.g., `IS_LONG`, `IS_STRING`).
+- **is_ref:** A boolean flag indicating if the `zval` is part of a reference set.
+
+*Note: In PHP 7+, the `zval` structure was significantly optimized to reduce memory usage and improve performance (e.g., by moving `refcount` and `is_ref` into the value itself for certain types and avoiding heap allocation for simple types).*
+[Detailed Zval Structure Guide](https://www.phpinternalsbook.com/php5/zvals/basic_structure.html)
 
 ---
 
