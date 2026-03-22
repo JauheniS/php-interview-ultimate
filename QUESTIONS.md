@@ -416,6 +416,21 @@ function sum(int|float $a, int|float $b): int|float {
 $country = $session?->user?->getAddress()?->country;
 ```
 
+#### What is the `#[Override]` attribute (introduced in PHP 8.3)?
+**Answer:** The `#[Override]` attribute ensures that a method with the same name exists in a parent class or interface. This helps catch errors during refactoring.
+```php
+class Child extends ParentClass {
+    #[Override]
+    public function existingMethod() {}
+}
+```
+
+#### What are the new `array_*()` functions (introduced in PHP 8.4)?
+**Answer:** PHP 8.4 introduced several useful array functions: `array_find()`, `array_find_key()`, `array_any()`, and `array_all()`.
+```php
+$firstEven = array_find([1, 2, 3, 4], fn($v) => $v % 2 === 0); // 2
+```
+
 ### Middle
 #### What are Enums (introduced in PHP 8.1)?
 **Answer:** Enumerations allow you to define a set of named constants, providing type safety for fixed sets of values.
@@ -434,6 +449,32 @@ class User {
 }
 ```
 
+#### What are Typed Class Constants (introduced in PHP 8.3)?
+**Answer:** Class constants can now have type declarations, similar to properties and parameters.
+```php
+class User {
+    const string ROLE = 'admin';
+}
+```
+
+#### What is Asymmetric Visibility (introduced in PHP 8.4)?
+**Answer:** Properties can now have different visibility for reading and writing.
+```php
+class User {
+    public private(set) string $name;
+}
+```
+
+#### What are Property Hooks (introduced in PHP 8.4)?
+**Answer:** Property hooks allow defining custom logic for getting and setting property values directly in the property declaration.
+```php
+class User {
+    public string $fullName {
+        get => "{$this->firstName} {$this->lastName}";
+    }
+}
+```
+
 ### Senior
 #### What are Readonly Classes (introduced in PHP 8.2)?
 **Answer:** Marking a class as `readonly` makes all its properties readonly and prevents dynamic properties.
@@ -442,6 +483,25 @@ readonly class Post {
     public function __construct(public string $title) {}
 }
 ```
+
+#### What is "Clone With" (introduced in PHP 8.5)?
+**Answer:** Allows modifying properties of a cloned object during the cloning process using object initializer syntax.
+```php
+$user2 = clone $user1 with { name: "New Name" };
+```
+
+#### What is the Pipe Operator (introduced in PHP 8.5)?
+**Answer:** The `|>` operator allows chaining function calls in a more readable way, passing the result of the left side as the first argument to the right side.
+```php
+$result = "  hello  " |> 'trim' |> 'strtoupper';
+```
+
+[PHP 8.0 Features](answers/php80_features.md)
+[PHP 8.1 Features](answers/php81_features.md)
+[PHP 8.2 Features](answers/php82_features.md)
+[PHP 8.3 Features](answers/php83_features.md)
+[PHP 8.4 Features](answers/php84_features.md)
+[PHP 8.5 Features](answers/php85_features.md)
 
 ---
 
