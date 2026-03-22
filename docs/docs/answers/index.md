@@ -30,6 +30,7 @@ This section contains detailed guides and explanations for various PHP-related t
 * [PHP 8.4 New Features](/answers/php84_features)
 * [PHP 8.5 New Features](/answers/php85_features)
 * [PHP Data Types](/answers/data_types)
+* [PHP Garbage Collection](/answers/garbage_collector)
 * [PHP Generators and `yield`](/answers/generators)
 * [PHP Reflection and SPL](/answers/php_advanced_extras)
 * [Software Design & Architecture Concepts](/answers/architecture_advanced)
