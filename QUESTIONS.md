@@ -597,6 +597,22 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 - **Clustered Index:** Determines the physical order of data in the table. There can only be one per table (usually the primary key).
 - **Non-Clustered Index:** A separate structure that contains the indexed values and pointers to the data rows.
 
+#### What isolation levels do you know?
+**Answer:** The standard isolation levels are Read Uncommitted, Read Committed, Repeatable Read, and Serializable. They define the trade-off between consistency and performance in concurrent transactions.
+[In-depth Database Isolation Levels Guide](answers/mysql_advanced.md#5-transaction-isolation-levels)
+
+#### What is the difference between Read Committed and Dirty Read?
+**Answer:** A Dirty Read occurs in Read Uncommitted where a transaction sees uncommitted data from another transaction. Read Committed prevents this by ensuring a transaction only sees data that has already been committed.
+[In-depth Database Isolation Levels Guide](answers/mysql_advanced.md#5-transaction-isolation-levels)
+
+#### Provide examples of transaction isolation levels and the issues they address.
+**Answer:**
+- **Read Uncommitted:** Reading a bank balance being updated but not yet committed (Dirty Read).
+- **Read Committed:** A report reading the same data twice and getting different results because another transaction committed an update in between (Non-Repeatable Read).
+- **Repeatable Read:** Ensuring a consistent snapshot of data throughout a long-running transaction, even if other transactions commit changes.
+- **Serializable:** Financial systems where absolute correctness is required, preventing all concurrency issues like Phantom Reads at the cost of performance.
+[In-depth Database Isolation Levels Guide](answers/mysql_advanced.md#51-practical-examples-of-isolation-levels)
+
 ---
 
 ## 6. Laravel & Symfony
