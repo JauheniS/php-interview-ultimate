@@ -72,6 +72,16 @@ const config = {
             label: 'Answers',
           },
           {
+            to: '/answers/php84_features',
+            position: 'left',
+            label: 'PHP 8.4 News',
+          },
+          {
+            to: '/answers/php85_features',
+            position: 'left',
+            label: 'PHP 8.5 News',
+          },
+          {
             href: 'https://github.com/yauheni/php-questions',
             label: 'GitHub',
             position: 'right',

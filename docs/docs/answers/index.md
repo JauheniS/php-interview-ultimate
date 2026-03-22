@@ -27,6 +27,8 @@ This section contains detailed guides and explanations for various PHP-related t
 * [PHP 8.1 New Features](/answers/php81_features)
 * [PHP 8.2 New Features](/answers/php82_features)
 * [PHP 8.3 New Features](/answers/php83_features)
+* [PHP 8.4 New Features](/answers/php84_features)
+* [PHP 8.5 New Features](/answers/php85_features)
 * [PHP Data Types](/answers/data_types)
 * [PHP Generators and `yield`](/answers/generators)
 * [PHP Reflection and SPL](/answers/php_advanced_extras)

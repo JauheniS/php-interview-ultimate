@@ -4,23 +4,23 @@ This file contains a curated list of PHP interview questions and answers, merged
 
 ## Table of Contents
 1. [PHP Basics & Language Features](#1-php-basics--language-features)
-2. [Object-Oriented Programming (OOP)](#2-object-oriented-programming-oop)
-3. [PHP 7/8+ New Features](#3-php-78-new-features)
-4. [MySQL & Databases](#4-mysql--databases)
-5. [Laravel & Symfony](#5-laravel--symfony)
-6. [Tools & Composer](#6-tools--composer)
-7. [Design Patterns & Architecture](#7-design-patterns--architecture)
-8. [Caching & Redis](#8-caching--redis)
-9. [Infrastructure, Docker & DevOps](#9-infrastructure-docker--devops)
-10. [Testing & Quality](#10-testing--quality)
-11. [Security](#11-security)
-12. [Web & API](#12-web--api)
-13. [Highload & Scalability](#13-highload--scalability)
-14. [Clean Code & Best Practices](#14-clean-code--best-practices)
-15. [Elasticsearch](#15-elasticsearch)
-16. [Tricky Questions](#16-tricky-questions)
-17. [Laravel Plugins](#17-laravel-plugins)
-
+2. [Design Patterns](#2-design-patterns)
+3. [Object-Oriented Programming (OOP)](#3-object-oriented-programming-oop)
+4. [PHP 7/8+ New Features](#4-php-78-new-features)
+5. [MySQL & Databases](#5-mysql--databases)
+6. [Laravel & Symfony](#6-laravel--symfony)
+7. [Tools & Composer](#7-tools--composer)
+8. [Software Architecture & Principles](#8-software-architecture--principles)
+9. [Caching & Redis](#9-caching--redis)
+10. [Infrastructure, Docker & DevOps](#10-infrastructure-docker--devops)
+11. [Testing & Quality](#11-testing--quality)
+12. [Security](#12-security)
+13. [Web & API](#13-web--api)
+14. [Highload & Scalability](#14-highload--scalability)
+15. [Clean Code & Best Practices](#15-clean-code--best-practices)
+16. [Elasticsearch](#16-elasticsearch)
+17. [Tricky Questions](#17-tricky-questions)
+18. [Laravel Plugins](#18-laravel-plugins)
 ---
 
 ## 1. PHP Basics & Language Features
@@ -119,6 +119,14 @@ This file contains a curated list of PHP interview questions and answers, merged
 #### What is Garbage Collection in PHP?
 **Answer:** PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable.
 
+#### What is a zval and what is its basic structure? ⭐ **Important**
+**Answer:** A `zval` (Zend value) is the fundamental data structure used by the Zend Engine to represent any PHP variable. In PHP 5, it consists of:
+- **value:** A union that stores the actual data.
+- **refcount:** Number of symbols pointing to this `zval`.
+- **type:** The variable's type.
+- **is_ref:** A boolean flag indicating if it is a reference.
+[Detailed Zval Structure Guide](https://www.phpinternalsbook.com/php5/zvals/basic_structure.html)
+
 #### What is OPCache?
 **Answer:** OPCache is a caching engine for PHP that stores precompiled script bytecode in shared memory, eliminating the need for PHP to load and parse scripts on each request.
 
@@ -135,7 +143,182 @@ This file contains a curated list of PHP interview questions and answers, merged
 
 ---
 
-## 2. Object-Oriented Programming (OOP)
+## 2. Design Patterns
+
+### Junior
+#### What are the main categories of Design Patterns?
+**Answer:** Design patterns are generally categorized into three groups:
+- **Creational Patterns:** Focus on object creation mechanisms.
+- **Structural Patterns:** Focus on how classes and objects are composed to form larger structures.
+- **Behavioral Patterns:** Focus on communication between objects.
+
+#### What is the Singleton Pattern?
+**Answer:** A pattern that ensures a class has only one instance and provides a global point of access to it. It is a Creational Pattern.
+
+### Middle
+#### What is the Factory Method Pattern?
+**Answer:** Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You avoid tight coupling between the creator and the concrete products., Single Responsibility Principle. You can move the product creation code into one place in the program, making the code easier to support., Open/Closed Principle. You can introduce new types of products into the program without breaking existing client code.
+- **Cons:** The code may become more complicated since you need to introduce a lot of new subclasses to implement the pattern. The best case scenario is when you’re introducing the pattern into an existing hierarchy of creator classes.
+
+#### What is the Abstract Factory Pattern?
+**Answer:** Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can be sure that the products you’re getting from a factory are compatible with each other., You avoid tight coupling between concrete products and client code., Single Responsibility Principle. You can extract the product creation code into one place, making the code easier to support., Open/Closed Principle. You can introduce new variants of products without breaking existing client code.
+- **Cons:** The code may become more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
+
+#### What is the Builder Pattern?
+**Answer:** Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can construct objects step-by-step, defer construction steps or run steps recursively., You can reuse the same construction code when building various representations of products., Single Responsibility Principle. You can isolate complex construction code from the business logic of the product.
+- **Cons:** The overall complexity of the code increases since the pattern requires creating multiple new classes.
+
+#### What is the Prototype Pattern?
+**Answer:** Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can clone objects without coupling to their concrete classes., You can get rid of repeated initialization code in favor of cloning pre-configured prototypes., You can produce complex objects more conveniently., You get an alternative to inheritance when dealing with configuration presets for complex objects.
+- **Cons:** Cloning complex objects that have circular references might be very tricky.
+
+#### What is the Adapter Pattern?
+**Answer:** Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Single Responsibility Principle. You can separate the interface or data conversion code from the primary business logic of the program., Open/Closed Principle. You can introduce new types of adapters into the program without breaking the existing client code, as long as they work with the adapters through the client interface.
+- **Cons:** The overall complexity of the code increases because you need to introduce a set of new interfaces and classes. Sometimes it’s simpler just to change the service class so that it fits with the rest of your code.
+
+#### What is the Bridge Pattern?
+**Answer:** Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can create platform-independent classes and apps., The client code works with high-level abstractions. It isn’t exposed to the platform details., Open/Closed Principle. You can introduce new abstractions and implementations independently from each other., Single Responsibility Principle. You can focus on high-level logic in the abstraction and on platform details in the implementation.
+- **Cons:** You might make the code more complicated by applying the pattern to a highly cohesive class.
+
+#### What is the Composite Pattern?
+**Answer:** Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can work with complex tree structures more conveniently: use polymorphism and recursion to your advantage., Open/Closed Principle. You can introduce new element types into the app without breaking the existing code, which now works with the object tree.
+- **Cons:** It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend.
+
+#### What is the Decorator Pattern?
+**Answer:** Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can extend an object’s behavior without making a new subclass., You can add or remove responsibilities from an object at runtime., You can combine several behaviors by wrapping an object into multiple decorators., Single Responsibility Principle. You can divide a monolithic class that implements many possible variants of behavior into several smaller classes.
+- **Cons:** It’s hard to remove a specific wrapper from the wrappers stack., It’s hard to implement a decorator in such a way that its behavior doesn’t depend on the order in the decorators stack., The initial configuration code of layers might look pretty ugly.
+
+#### What is the Facade Pattern?
+**Answer:** Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can isolate your code from the complexity of a subsystem.
+- **Cons:** A facade can become a god object coupled to all classes of an app.
+
+#### What is the Flyweight Pattern?
+**Answer:** Flyweight is a structural design pattern that lets you fit more objects into the available amount of RAM by sharing common parts of state between multiple objects instead of keeping all of the data in each object.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can save lots of RAM, assuming your program has tons of similar objects.
+- **Cons:** You might be exchanging RAM for CPU cycles when part of the state data needs to be recalculated every time someone calls a flyweight method., The code becomes much more complicated. New team members will always be wondering why the state of an entity was separated in such a way.
+
+#### What is the Proxy Pattern?
+**Answer:** Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can control the service object without clients knowing about it., You can manage the lifecycle of the service object when clients don’t care about it., The proxy works even if the service object isn’t ready or is not available., Open/Closed Principle. You can introduce new proxies without changing the service or clients.
+- **Cons:** The code may become more complicated since you need to introduce a lot of new classes., The response from the service might get delayed.
+
+#### What is the Chain of Responsibility Pattern?
+**Answer:** Chain of Responsibility is a behavioral design pattern that lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can control the order of request handling., Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform operations., Open/Closed Principle. You can introduce new handlers into the app without breaking the existing client code.
+- **Cons:** Some requests may end up unhandled.
+
+#### What is the Command Pattern?
+**Answer:** Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform these operations., Open/Closed Principle. You can introduce new commands into the app without breaking existing client code., You can implement undo/redo., You can implement deferred execution of operations., You can assemble a set of simple commands into a complex one.
+- **Cons:** The code may become more complicated since you’re introducing a whole new layer between senders and receivers.
+
+#### What is the Mediator Pattern?
+**Answer:** Mediator is a behavioral design pattern that lets you reduce chaotic dependencies between objects. The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Single Responsibility Principle. You can extract the communications between various components into a single place, making it easier to comprehend and maintain., Open/Closed Principle. You can introduce new mediators without having to change the actual components., You can reduce coupling between various components of a program., You can reuse individual components more easily.
+- **Cons:** Over time a mediator can evolve into a God Object.
+
+#### What is the Iterator Pattern?
+**Answer:** Iterator is a behavioral design pattern that lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.).
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Single Responsibility Principle. You can clean up the client code and the collections by extracting bulky traversal algorithms into separate classes., Open/Closed Principle. You can implement new types of collections and iterators and pass them to existing code without breaking anything., You can iterate over the same collection in parallel because each iterator object contains its own traversal state., For the same reason, you can delay a traversal and continue it when needed.
+- **Cons:** Applying the pattern can be an overkill if your app only works with simple collections., Using an iterator may be less efficient than going through elements of some specialized collections directly.
+
+#### What is the Memento Pattern?
+**Answer:** Memento is a behavioral design pattern that lets you save and restore the previous state of an object without revealing the details of its implementation.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can produce snapshots of the object’s state without violating its encapsulation., You can simplify the originator’s code by letting the caretaker maintain the history of the originator’s state.
+- **Cons:** The app might consume lots of RAM if clients create mementos too often., Caretakers should track the originator’s lifecycle to be able to destroy obsolete mementos., Most dynamic programming languages, such as PHP, Python and JavaScript, can’t guarantee that the state within the memento stays untouched.
+
+#### What is the Observer Pattern?
+**Answer:** Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Open/Closed Principle. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface)., You can establish relations between objects at runtime.
+- **Cons:** Subscribers are notified in random order.
+
+#### What is the State Pattern?
+**Answer:** State is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Single Responsibility Principle. Organize the code related to particular states into separate classes., Open/Closed Principle. Introduce new states without changing existing state classes or the context., Simplify the code of the context by eliminating bulky state machine conditionals.
+- **Cons:** Applying the pattern can be overkill if a state machine has only a few states or rarely changes.
+
+#### What is the Strategy Pattern?
+**Answer:** Strategy is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can swap algorithms used inside an object at runtime., You can isolate the implementation details of an algorithm from the code that uses it., You can replace inheritance with composition., Open/Closed Principle. You can introduce new strategies without having to change the context.
+- **Cons:** If you only have a couple of algorithms and they rarely change, there’s no real reason to overcomplicate the program with new classes and interfaces that come along with the pattern., Clients must be aware of the differences between strategies to be able to select a proper one., A lot of modern programming languages have functional type support that lets you implement different versions of an algorithm inside a set of anonymous functions. Then you could use these functions exactly as you’d have used the strategy objects, but without bloating your code with extra classes and interfaces.
+
+#### What is the Template Method Pattern?
+**Answer:** Template Method is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** You can let clients override only certain parts of a large algorithm, making them less affected by changes that happen to other parts of the algorithm., You can pull the duplicate code into a superclass.
+- **Cons:** Some clients may be limited by the provided skeleton of an algorithm., You might violate the Liskov Substitution Principle by suppressing a default step implementation via a subclass., Template methods tend to be harder to maintain the more steps they have.
+
+#### What is the Visitor Pattern?
+**Answer:** Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.
+
+**Common Usages / Pros & Cons:**
+- **Pros:** Open/Closed Principle. You can introduce a new behavior that can work with objects of different classes without changing these classes., Single Responsibility Principle. You can move multiple versions of the same behavior into the same class., A visitor object can accumulate some useful information while working with various objects. This might be handy when you want to traverse some complex object structure, such as an object tree, and apply the visitor to these objects.
+- **Cons:** You need to update all visitors each time a class gets added to or removed from the element hierarchy., Visitors might lack the necessary access to the private fields and methods of the elements that they’re supposed to work with.
+
+### Senior
+#### What is Dependency Injection?
+**Answer:** A design pattern where an object receives its dependencies from the outside rather than creating them itself. This promotes loose coupling and easier testing.
+
+#### What is the difference between the Factory Pattern and Dependency Injection?
+**Answer:** Factory pattern is about *creating* objects, while Dependency Injection is about *providing* already created dependencies to an object.
+
+#### What are the main design patterns used in Symfony and Doctrine?
+**Answer:**
+- **Symfony:** Front Controller, Dependency Injection, Event Dispatcher.
+- **Doctrine:** Data Mapper, Unit of Work, Repository.
+[Design Patterns in Symfony & Doctrine](answers/design_patterns.md)
+
+---
+
+## 3. Object-Oriented Programming (OOP)
 
 ### Junior
 #### What is a Class and an Object?
@@ -200,20 +383,15 @@ This file contains a curated list of PHP interview questions and answers, merged
 #### What are Magic Methods?
 **Answer:** Special methods that start with `__` and are triggered by specific events (e.g., `__get`, `__set`, `__call`, `__toString`, `__sleep`, `__wakeup`).
 
+
 ### Senior
-#### What is Dependency Injection?
-**Answer:** A design pattern where an object receives its dependencies from the outside rather than creating them itself. This promotes loose coupling and easier testing.
-
-#### What is the difference between the Factory Pattern and Dependency Injection?
-**Answer:** Factory pattern is about *creating* objects, while Dependency Injection is about *providing* already created dependencies to an object.
-
 #### What is Method Overloading in PHP?
 **Answer:** PHP does not support traditional method overloading (same name, different arguments). Instead, it uses magic methods like `__call()` to simulate it.
 [Method Overloading in PHP](answers/method_overloading.md)
 
 ---
 
-## 3. PHP 7/8+ New Features
+## 4. PHP 7/8+ New Features
 
 ### Junior
 #### What are Union Types (introduced in PHP 8.0)?
@@ -259,7 +437,7 @@ readonly class Post {
 
 ---
 
-## 4. MySQL & Databases
+## 5. MySQL & Databases
 
 ### Junior
 #### How to connect to a MySQL database using PHP?
@@ -339,7 +517,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 5. Laravel & Symfony
+## 6. Laravel & Symfony
 
 ### Junior
 #### What is the MVC architecture and how does Laravel implement it?
@@ -410,7 +588,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 6. Tools & Composer
+## 7. Tools & Composer
 
 ### Junior
 #### What is Composer?
@@ -427,11 +605,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 7. Design Patterns & Architecture
-
-### Junior
-#### What is the Singleton Pattern?
-**Answer:** A pattern that ensures a class has only one instance and provides a global point of access to it.
+## 8. Software Architecture & Principles
 
 ### Middle
 #### What are SOLID Principles?
@@ -443,12 +617,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 - **D:** Dependency Inversion
 [SOLID Principles Guide](answers/solid_principles.md)
 
-### Senior
-#### What are the main design patterns used in Symfony and Doctrine?
-**Answer:** 
-- **Symfony:** Front Controller, Dependency Injection, Event Dispatcher.
-- **Doctrine:** Data Mapper, Unit of Work, Repository.
-[Design Patterns in Symfony & Doctrine](answers/design_patterns.md)
 
 #### What are Anemic and Rich models?
 **Answer:** 
@@ -470,7 +638,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 8. Caching & Redis
+## 9. Caching & Redis
 
 ### Junior
 #### What is Caching?
@@ -485,7 +653,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 9. Infrastructure, Docker & DevOps
+## 10. Infrastructure, Docker & DevOps
 
 ### Junior
 #### What is Docker?
@@ -518,7 +686,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 10. Testing & Quality
+## 11. Testing & Quality
 
 ### Junior
 #### What is Unit Testing?
@@ -545,7 +713,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 11. Security
+## 12. Security
 
 ### Junior
 #### What is the difference between Hashing and Encryption?
@@ -575,7 +743,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 12. Web & API
+## 13. Web & API
 
 ### Junior
 #### What is the difference between GET and POST?
@@ -609,7 +777,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 13. Highload & Scalability
+## 14. Highload & Scalability
 
 ### Middle
 #### What is Load Balancing?
@@ -631,7 +799,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 14. Clean Code & Best Practices
+## 15. Clean Code & Best Practices
 
 ### Junior
 #### What are DRY and KISS?
@@ -652,7 +820,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 15. Elasticsearch
+## 16. Elasticsearch
 
 ### Middle
 #### What is Elasticsearch and its main features?
@@ -667,7 +835,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 16. Tricky Questions
+## 17. Tricky Questions
 
 ### Junior
 #### What is the difference between `==` and `===`?
@@ -704,7 +872,7 @@ echo $a;
 
 ---
 
-## 17. Laravel Plugins
+## 18. Laravel Plugins
 
 ### Junior
 #### What are some of the most popular official Laravel plugins?
