@@ -1,0 +1,58 @@
+/**
+ * Any CSS included here will be global.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ifm-color-primary: #3578e5;
+  --ifm-color-primary-dark: #306cd0;
+  --ifm-color-primary-darker: #2d66c4;
+  --ifm-color-primary-darkest: #2554a1;
+  --ifm-color-primary-light: #538fec;
+  --ifm-color-primary-lighter: #629af0;
+  --ifm-color-primary-lightest: #8eb5f5;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability */
+.markdown h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary);
+}
+
+.markdown h2 {
+  border-bottom: 2px solid var(--ifm-color-primary-lightest);
+  padding-bottom: 0.5rem;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4e8ef7;
+  --ifm-color-primary-dark: #327af5;
+  --ifm-color-primary-darker: #2571f4;
+  --ifm-color-primary-darkest: #0b59e3;
+  --ifm-color-primary-light: #6aa2f9;
+  --ifm-color-primary-lighter: #79acfa;
+  --ifm-color-primary-lightest: #a5c6fc;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Move sidebar to the right */
+@media (min-width: 997px) {
+  [class*='docPage_'] > main {
+    order: 1;
+  }
+  [class*='docPage_'] > aside {
+    order: 2;
+  }
+}
+
+/* Beautiful callouts */
+.admonition {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}

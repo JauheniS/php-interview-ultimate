@@ -1,0 +1,18 @@
+---
+title: "40. What are Union Types (introduced in PHP 8.0)?"
+---
+
+# 40. What are Union Types (introduced in PHP 8.0)?
+
+**Answer:** Union types allow you to specify multiple types for a parameter, property, or return value, instead of just one.
+```php
+function sum(int|float $a, int|float $b): int|float {
+    return $a + $b;
+}
+```
+
+---
+
+:::info
+Category: PHP 7/8+ New Features | Level: Junior
+:::

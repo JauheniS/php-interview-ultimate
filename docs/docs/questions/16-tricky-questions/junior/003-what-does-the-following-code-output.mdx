@@ -1,0 +1,21 @@
+---
+title: "130. What does the following code output?"
+---
+
+# 130. What does the following code output?
+
+```php
+function foo(&$var) {
+    $var++;
+}
+$a = 5;
+foo($a);
+echo $a;
+```
+**Answer:** `6`. The `&` operator passes the variable by reference, so the modification inside the function affects the original variable.
+
+---
+
+:::info
+Category: Tricky Questions | Level: Junior
+:::

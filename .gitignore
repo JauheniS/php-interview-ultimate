@@ -1,4 +1,20 @@
 .idea
-.git
 .vscode
 .cursor
+.DS_Store
+
+# Node.js
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Docusaurus
+docs/build
+docs/.docusaurus
+docs/.env
+docs/.env.local
+docs/.env.development.local
+docs/.env.test.local
+docs/.env.production.local

@@ -1,0 +1,38 @@
+{
+  "name": "php-interview-questions-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && markdownlint-cli2 \"docs/**/*.md\" \"docs/**/*.mdx\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,json}\" \"docs/**/*.{md,mdx}\""
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.1.1",
+    "@docusaurus/preset-classic": "^3.1.1",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "@babel/core": "^7.23.9",
+    "@babel/eslint-parser": "^7.23.10",
+    "@babel/preset-react": "^7.23.3",
+    "markdownlint-cli2": "^0.12.1"
+  }
+}

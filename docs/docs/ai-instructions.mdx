@@ -1,0 +1,69 @@
+# AI Instructions for Repository Updates
+
+This document provides instructions for AI agents (and human contributors) on how to manage and update the questions in this repository.
+
+## Project Structure
+
+- `docs/docs/questions/`: Contains all modular questions.
+  - Subdirectories are named as `{Category_ID}-{Category_Slug}`.
+  - Inside each category, there are level subdirectories: `junior`, `middle`, `senior`, `expert`.
+  - Individual questions are stored as `00X-{slug}.mdx`.
+- `docs/docs/answers/`: Contains detailed long-form answers and guides.
+- `QUESTIONS.md`: The legacy source file (keep it in sync if needed, but the primary source of truth for the frontend is `docs/docs/questions/`).
+
+## How to add a new question
+
+1. **Identify the Category**: Choose the appropriate category in `docs/docs/questions/`.
+2. **Choose the Level**: Place the new file in the correct level folder.
+3. **Naming Convention**: Use the next available three-digit number followed by a slug. e.g., `015-new-feature.mdx`.
+4. **File Content**:
+   - Use the frontmatter to define the title (including the global question number).
+   - Use a level-1 heading for the question title.
+   - Use the `:::info` callout at the bottom to specify Category and Level.
+
+### Example Template:
+```mdx
+---
+title: "145. What is [Topic]?"
+---
+
+# 145. What is [Topic]?
+
+[Answer goes here]
+
+---
+
+:::info
+Category: [Category Name] | Level: [Level]
+:::
+```
+
+## How to update existing questions
+
+1. Locate the file in `docs/docs/questions/`.
+2. Apply the changes directly to the `.mdx` file.
+3. If the answer refers to a detailed guide, ensure the link points to `../answers/guide-name.md`.
+
+## Development and Building
+
+To ensure the frontend is correct, follow these steps:
+
+### Linting and Formatting
+Before submitting any changes, run the linter and formatter:
+```bash
+cd docs
+npm run format
+npm run lint
+```
+This will check for code style issues, broken React/JSX, and common Markdown errors.
+
+### Docker Build
+To test the build locally using Docker:
+```bash
+docker compose up --build
+```
+This will build the Docusaurus site and serve it on `http://localhost:8080`.
+
+## Automation
+
+If you need to re-generate the structure from `QUESTIONS.md`, use the `extract_questions.py` script in the root directory. However, manual updates to modular files are preferred for fine-tuning.

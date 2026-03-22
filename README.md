@@ -1,6 +1,16 @@
 # PHP Interview Questions - Ultimate Answer Repository
 
+[![Docs](https://img.shields.io/badge/docs-modern-blue.svg)](docs/)
+
 This repository is a curated collection of PHP interview questions and answers, gathered from various high-quality sources. It aims to be the ultimate resource for developers preparing for PHP-related interviews.
+
+## 🚀 Modern Frontend
+
+Check out the new **[Modular Interview Questions Documentation](docs/)**!
+- **Modularized**: Each question is an independent module.
+- **Categorized**: Junior, Middle, Senior, and Expert levels.
+- **Themed**: Beautiful, readable UI with Tailwind CSS.
+- **Searchable**: Easy navigation through topics.
 
 ## Table of Contents
 - [About](#about)
@@ -26,6 +36,25 @@ The repository is organized into subdirectories under `src/`, each representing 
 - `src/PHP-LARAVEL-Interview-questions/`: PHP and Laravel specific questions by Sabbir Hossain.
 - `src/php-interview-questions/`: A collection of questions from Devinterview.io.
 - `src/zsoro-php-interview-questions/`: PHP interview questions by zsoro.
+
+## Development
+
+### Frontend Development (Docusaurus)
+To run the frontend locally:
+1. `cd docs`
+2. `npm install`
+3. `npm start`
+
+To lint and format the codebase:
+- `npm run lint` (runs ESLint and Markdownlint)
+- `npm run format` (runs Prettier)
+
+### Docker
+Alternatively, you can build and run the frontend using Docker:
+```bash
+docker compose up --build
+```
+The documentation will be available at `http://localhost:8080`.
 
 ## Key Topics Covered
 - **Core PHP**: Data types, generators, magic constants, PHP features (8.0+), and more.
