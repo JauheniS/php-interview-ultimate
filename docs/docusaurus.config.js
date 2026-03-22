@@ -9,7 +9,7 @@ const config = {
   tagline: 'Ultimate Answer Repository',
   favicon: 'img/favicon.ico',
 
-  url: 'https://php-questions.docs',
+  url: 'https://php-interview-ultimate.docs',
   baseUrl: '/',
 
   onBrokenLinks: 'throw',
@@ -31,7 +31,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/yauheni/php-questions/edit/main/docs/',
+          editUrl: 'https://github.com/JauheniS/php-interview-ultimate/edit/main/docs/',
           path: 'docs',
           routeBasePath: '/',
         },
@@ -82,7 +82,7 @@ const config = {
             label: 'PHP 8.5 News',
           },
           {
-            href: 'https://github.com/yauheni/php-questions',
+            href: 'https://github.com/JauheniS/php-interview-ultimate',
             label: 'GitHub',
             position: 'right',
           },

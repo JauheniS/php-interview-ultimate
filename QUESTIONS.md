@@ -544,6 +544,27 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 #### What is a Transaction?
 **Answer:** A sequence of database operations that are treated as a single unit of work. They must follow the ACID properties.
 
+#### What are the ACID properties?
+**Answer:** 
+- **Atomicity:** All-or-nothing. Ensures that all operations within a transaction are completed; if any fails, the entire transaction is rolled back.
+- **Consistency:** Ensures that a transaction transforms the database from one valid state to another, maintaining all predefined rules.
+- **Isolation:** Prevents concurrent transactions from interfering with each other.
+- **Durability:** Once a transaction is committed, its changes are permanent, even in the case of a system failure.
+
+#### What are the main Transaction Control commands?
+**Answer:**
+- `START TRANSACTION` (or `BEGIN`): Starts a new transaction.
+- `COMMIT`: Saves changes permanently.
+- `ROLLBACK`: Undoes changes since the start of the transaction.
+- `SAVEPOINT`: Sets a point within a transaction to which you can later roll back.
+- `ROLLBACK TO SAVEPOINT`: Reverts changes only up to the specified savepoint.
+
+#### What is Autocommit in MySQL?
+**Answer:** A setting where every individual SQL statement is treated as a transaction and is automatically committed immediately after execution. It can be disabled using `SET autocommit = 0`.
+
+#### What is a Deadlock?
+**Answer:** A situation where two or more transactions are waiting for each other to release locks, creating a cycle of dependencies that prevents any of them from proceeding. MySQL typically detects this and rolls back one of the transactions.
+
 #### What are the main storage engines in MySQL?
 **Answer:** 
 - **InnoDB:** Supports transactions, row-level locking, and foreign keys (Default).
@@ -570,13 +591,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 **Answer:** 
 - **Partitioning:** Splitting a large table into smaller, more manageable pieces within the same database server.
 - **Sharding:** Distributing data across multiple independent database servers (horizontal scaling).
-
-#### What are ACID properties?
-**Answer:** 
-- **Atomicity:** All-or-nothing (everything succeeds or fails).
-- **Consistency:** Transactions must transition the database from one valid state to another.
-- **Isolation:** Transactions occur independently of each other.
-- **Durability:** Committed data is permanently saved, even in a system crash.
 
 #### What is a Clustered Index vs a Non-Clustered Index?
 **Answer:** 
