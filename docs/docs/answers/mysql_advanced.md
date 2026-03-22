@@ -116,3 +116,26 @@ MySQL is a Relational Database Management System (RDBMS), while PostgreSQL is an
 - **Concurrency**: PostgreSQL uses Multi-Version Concurrency Control (MVCC) which allows for better write performance in some scenarios as readers don't block writers and vice-versa. MySQL's InnoDB also uses MVCC but behaves differently in some high-concurrency cases.
 - **Data Types**: PostgreSQL supports a wider range of advanced data types natively, including JSONB (indexed JSON), Arrays, Geometric types, and custom types.
 - **Extensibility**: PostgreSQL is highly extensible, allowing developers to create custom functions, types, and even index types without modifying the core.
+
+## 11. Composite Index Strategy
+When filtering by multiple columns (e.g., `sku`, `creation_date`, and a low-cardinality `status` field), a **composite index** (an index on multiple columns) is usually the most performant choice.
+
+### Why a Composite Index is better than Separate Indexes:
+1.  **One Index per Query**: By default, MySQL typically uses only one index per table for a query. If you have separate indexes on `sku`, `creation_date`, and `status`, MySQL must choose the most "selective" one, filter the results, and then scan those results for the other two conditions.
+2.  **Index Merge Overhead**: While MySQL can sometimes use "Index Merge" to combine multiple indexes, this is significantly less efficient than a single composite index scan, as it involves intersecting or unioning sets of row pointers.
+3.  **Left-to-Right Prefix Rule**: A composite index on `(sku, creation_date, status)` can also be used for queries that filter only by `sku` or by `sku` and `creation_date`. It cannot, however, be used for queries filtering only by `status`.
+4.  **Selectivity and Order**:
+    *   **High Selectivity First**: Usually, you put the most selective column (like `sku`) first. If a column is unique, the index becomes extremely fast for point lookups.
+    *   **Range Queries Last**: Columns used for range filters (like `creation_date` with `>` or `BETWEEN`) should generally come after columns used for exact matches (`=`).
+5.  **Covering Index**: If your `SELECT` statement only asks for these three columns (or a subset of them), MySQL can return the data directly from the index B-tree without ever touching the actual table rows (data pages). This is called a "Covering Index" and it's extremely fast.
+
+### Why it's performant even if only `creation_date` is used:
+Even if the query doesn't filter by the leading column of the composite index, it can still be performant for two main reasons:
+
+1.  **Index Skip Scan (MySQL 8.0.13+)**: If the leading column (e.g., the `integer_field` with values 1, 2, 3) has **low cardinality**, MySQL can "skip" through the index. It essentially performs a range scan for each distinct value of the prefix column. If we order our index as `(integer_field, creation_date, sku)`, a query filtering only by `creation_date` will be very fast because MySQL only needs to perform 3 sub-scans.
+2.  **Full Index Scan vs. Full Table Scan**: If the query is "covered" by the index (meaning all selected columns are in the index), MySQL can scan the entire index instead of the table. Since the index is much smaller and more likely to be cached in memory (the `innodb_buffer_pool`), a full scan of the index is significantly faster than a full scan of the entire table data.
+
+### Comparison with No Index:
+- **No Index**: Requires a **Full Table Scan**, reading every single row from disk. For a table with millions of rows, this is catastrophically slow.
+- **Separate Indexes**: Better than no index, but still requires reading more data from the table than necessary.
+- **Composite Index**: Minimizes I/O by narrowing down the result set to the exact rows needed within the index structure itself.
