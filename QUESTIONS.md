@@ -21,6 +21,7 @@ This file contains a curated list of PHP interview questions and answers, merged
 16. [Elasticsearch](#16-elasticsearch)
 17. [Tricky Questions](#17-tricky-questions)
 18. [Laravel Plugins](#18-laravel-plugins)
+19. [Long-Running (RoadRunner)](#19-long-running-roadrunner)
 ---
 
 ## 1. PHP Basics & Language Features
@@ -1004,6 +1005,7 @@ echo $a;
 ### Junior
 #### What are some of the most popular official Laravel plugins?
 **Answer:** Laravel provides an extensive ecosystem of official packages to extend its functionality. Some of the most widely used ones include:
+[Detailed Laravel Plugins Guide](answers/laravel_plugins.md)
 - **Laravel Horizon:** A beautiful dashboard and code-driven configuration for Redis-powered queues.
 - **Laravel Breeze:** A minimal, simple implementation of all of Laravel's authentication features.
 - **Laravel Sanctum:** Provides a featherweight authentication system for APIs and SPAs.
@@ -1054,3 +1056,72 @@ Below is a list of prominent Laravel packages and plugins, their short descripti
 | **Envoy** | Simple task runner for remote servers. | 5.1 | [Link](https://laravel.com/docs/11.x/envoy) | [Link](https://laravel.com/docs/12.x/envoy) | [Link](https://laravel.com/docs/13.x/envoy) |
 | **Prompts** | Beautiful, user-friendly forms for CLI applications. | 10.x | [Link](https://laravel.com/docs/11.x/prompts) | [Link](https://laravel.com/docs/12.x/prompts) | [Link](https://laravel.com/docs/13.x/prompts) |
 | **Echo** | Real-time event broadcasting client. | 5.3 | [Link](https://laravel.com/docs/11.x/broadcasting) | [Link](https://laravel.com/docs/12.x/broadcasting) | [Link](https://laravel.com/docs/13.x/broadcasting) |
+
+---
+
+## 19. Long-Running (RoadRunner)
+
+### Middle
+#### What is RoadRunner and how does it work?
+**Answer:** RoadRunner is a high-performance PHP application server, load-balancer, and process manager written in Go. It works as a persistent process that manages a pool of PHP workers. When a request comes in, RoadRunner passes it to an available PHP worker via a high-performance binary protocol (Goridge). The PHP worker stays alive after the request is finished, eliminating the overhead of re-initializing the PHP engine and your application framework (bootstrapping) for every request.
+[Detailed RoadRunner Guide](answers/roadrunner.md)
+![How it works](https://docs.roadrunner.dev/images/rr-scheme.png)
+
+#### What is a PHP Worker in the context of RoadRunner?
+**Answer:** A PHP worker is a script that runs in a continuous loop. It uses the `Spiral\RoadRunner\Worker` class to wait for requests from the RoadRunner server, process them (often via PSR-7), and send back responses. Workers can communicate with the server via standard pipes (default), TCP, or Unix sockets. Since RoadRunner 2.0, any warnings or output to `STDOUT` are automatically forwarded to `STDERR` to prevent protocol corruption.
+
+#### How does RoadRunner manage the Pool of workers?
+**Answer:** RoadRunner maintains a pool of PHP workers and can dynamically scale them. It uses a supervision strategy to restart workers based on various limits defined in `.rr.yaml`:
+- `max_jobs`: Number of requests a worker can handle before being retired.
+- `max_memory`: Memory limit per worker.
+- `ttl`: Maximum lifetime for a worker.
+- `idle_ttl`: Maximum duration a worker can spend in idle mode.
+For local development, `pool.debug = true` can be used to allocate a worker only when a request arrives, simplifying debugging.
+
+#### What should a developer keep in mind when writing code for a long-running PHP environment?
+**Answer:** 
+- **Memory Leaks:** Any leaked memory will accumulate over time; use `supervisor.max_worker_memory` as a safeguard.
+- **State Persistence:** Static variables and global state persist between requests, which can lead to data leaks or unexpected behavior if not reset.
+- **Resource Management:** Database connections and file handles should be re-validated or properly closed, as they might time out or stay open across many requests.
+- **Error Handling:** Uncaught exceptions might crash the worker; they should be caught and reported back to RoadRunner via `$worker->error()`.
+
+#### What is the Key-Value (KV) plugin in RoadRunner?
+**Answer:** The KV plugin provides a unified interface to interact with various storage backends for simple key-value storage. It offloads caching or state management from PHP to the Go server. Supported drivers include:
+- `redis` (distributed)
+- `memcached` (distributed)
+- `boltdb` (file-based)
+- `memory` (fast, local to the RR instance)
+
+#### How do Queues and Jobs work in RoadRunner?
+**Answer:** RoadRunner acts as a job consumer and manager, receiving jobs from various brokers and pushing them to PHP workers. This centralizes job management without needing separate CLI processes. Supported drivers/brokers include:
+- `amqp`, `beanstalk`, `redis`, `sqs`, `nats`, `boltdb`, and `memory`.
+![Queues](https://docs.roadrunner.dev/images/jobs-scheme.png)
+
+#### How does RoadRunner handle HTTP requests and headers?
+**Answer:** RoadRunner's HTTP plugin acts as a fast web server that converts incoming requests into PSR-7 compatible objects for PHP workers. It supports Gzip compression, custom headers, and middleware at the Go level. It can also handle response streaming, allowing PHP to send large payloads to the client incrementally.
+
+### Senior
+#### What is the Centrifuge plugin in RoadRunner?
+**Answer:** The Centrifuge plugin integrates RoadRunner with Centrifugo or its Go-based equivalent, enabling real-time messaging (WebSockets, SockJS) in PHP applications. RoadRunner handles thousands of persistent connections in Go, while the PHP workers only handle business logic and events.
+
+#### What is the purpose of the Service plugin?
+**Answer:** The Service plugin allows RoadRunner to run and monitor any binary or script as a sub-process (sidecar). It ensures the process is always running, automatically restarting it if it fails. This is ideal for background tasks like consumers, metrics exporters, or proxy servers.
+
+#### How does the Locks plugin work?
+**Answer:** The Locks plugin provides a distributed locking mechanism. It allows PHP workers to synchronize access to shared resources across multiple workers or even multiple RoadRunner instances using backends like Redis or local memory.
+
+#### What are the best practices for running RoadRunner in Production?
+**Answer:**
+- **Process Supervision:** Use `systemd` or `supervisord` to keep the main RoadRunner process running.
+- **Worker Limits:** Always set `max_jobs` or `max_memory` to prevent memory bloat.
+- **Health Monitoring:** Use the `status` plugin for health and readiness checks.
+- **OS Configuration:** Increase the number of allowed file descriptors (`ulimit -n`).
+- **Logs:** Configure structured logging (JSON) for easier ingestion by log management tools.
+
+#### What is Response Streaming and Health Checks in RoadRunner?
+**Answer:**
+- **Response Streaming:** Allows PHP to stream data to the client incrementally, reducing memory usage for large file downloads or real-time data feeds.
+- **Health Checks:** The `status` plugin provides `/health` (is the server alive?) and `/ready` (is there at least one free worker?) endpoints. These are essential for Kubernetes liveness/readiness probes or load balancer health checks.
+
+#### How does RoadRunner integrate with Temporal?
+**Answer:** RoadRunner can serve as a worker for Temporal, an orchestration engine for complex, stateful, and long-running workflows. PHP developers can write workflow and activity logic in PHP, while RoadRunner handles the communication with the Temporal server via the Goridge protocol.
