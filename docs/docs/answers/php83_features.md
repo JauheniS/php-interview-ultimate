@@ -1,3 +1,8 @@
+---
+title: "PHP 8.3 New Features"
+slug: "/answers/php83_features"
+---
+
 # PHP 8.3 New Features
 
 [Official Documentation: PHP 8.3 Release](https://www.php.net/releases/8.3/en.php)

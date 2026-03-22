@@ -1,3 +1,8 @@
+---
+title: "Git: Merge vs Rebase vs Pull vs Fetch"
+slug: "/answers/git"
+---
+
 # Git: Merge vs Rebase vs Pull vs Fetch
 
 ## 1. `git fetch` vs `git pull`

@@ -1,3 +1,8 @@
+---
+title: "PHP Data Types"
+slug: "/answers/data_types"
+---
+
 # PHP Data Types
 
 PHP supports ten primitive types.

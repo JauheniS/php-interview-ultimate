@@ -1,0 +1,14 @@
+{
+  "name": "php-questions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:docs": "npm install --prefix docs",
+    "dev": "npm run dev --prefix docs",
+    "start": "npm start --prefix docs",
+    "build": "npm run build --prefix docs",
+    "serve": "npm run serve --prefix docs",
+    "lint": "npm run lint --prefix docs",
+    "format": "npm run format --prefix docs"
+  }
+}

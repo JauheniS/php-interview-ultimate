@@ -1,3 +1,8 @@
+---
+title: "Method Overloading in PHP"
+slug: "/answers/method_overloading"
+---
+
 # Method Overloading in PHP
 
 In traditional object-oriented languages (like Java or C++), method overloading allows you to define multiple methods with the same name but different parameters. 

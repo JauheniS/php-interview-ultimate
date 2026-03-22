@@ -1,3 +1,8 @@
+---
+title: "Interface vs Abstract Class"
+slug: "/answers/interface_vs_abstract"
+---
+
 # Interface vs Abstract Class
 
 ## Interface

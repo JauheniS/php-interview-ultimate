@@ -1,3 +1,8 @@
+---
+title: "Laravel Service Container"
+slug: "/answers/laravel_service_container"
+---
+
 # Laravel Service Container
 
 The Service Container is a powerful tool for managing class dependencies and performing dependency injection. It is the heart of any Laravel application.

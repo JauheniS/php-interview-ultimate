@@ -1,3 +1,8 @@
+---
+title: "PHP Generators and `yield`"
+slug: "/answers/generators"
+---
+
 # PHP Generators and `yield`
 
 Generators provide an easy way to implement simple iterators without the overhead or complexity of implementing a class that implements the `Iterator` interface.

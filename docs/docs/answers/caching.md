@@ -1,3 +1,8 @@
+---
+title: "Caching: Redis vs Memcached in PHP"
+slug: "/answers/caching"
+---
+
 # Caching: Redis vs Memcached in PHP
 
 Caching is a technique used to store data in high-speed storage (usually RAM) to reduce the time it takes to access that data in the future.

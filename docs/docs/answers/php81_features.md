@@ -1,3 +1,8 @@
+---
+title: "PHP 8.1 New Features"
+slug: "/answers/php81_features"
+---
+
 # PHP 8.1 New Features
 
 [Official Documentation: PHP 8.1 Release](https://www.php.net/releases/8.1/en.php)

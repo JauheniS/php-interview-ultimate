@@ -1,3 +1,8 @@
+---
+title: "Software Design & Architecture Concepts"
+slug: "/answers/architecture_advanced"
+---
+
 # Software Design & Architecture Concepts
 
 ## Object-Oriented Programming (OOP) Fundamentals

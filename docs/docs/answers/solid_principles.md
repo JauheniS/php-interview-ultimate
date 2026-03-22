@@ -1,3 +1,8 @@
+---
+title: SOLID Principles in PHP
+slug: /answers/solid_principles
+---
+
 # SOLID Principles in PHP
 
 SOLID is an acronym for five design principles intended to make software designs more understandable, flexible, and maintainable.

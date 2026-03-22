@@ -1,3 +1,8 @@
+---
+title: "Web & Security Concepts"
+slug: "/answers/web_security"
+---
+
 # Web & Security Concepts
 
 ## REST API vs JSON-RPC

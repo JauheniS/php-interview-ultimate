@@ -1,3 +1,8 @@
+---
+title: "Elasticsearch Concepts"
+slug: "/answers/elasticsearch"
+---
+
 # Elasticsearch Concepts
 
 ## Main Features
