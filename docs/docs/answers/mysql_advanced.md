@@ -98,3 +98,21 @@ For a deeper understanding of isolation levels, check this article: [Understandi
 - **Slow Query Log**: Identify queries that take a long time to execute.
 - **Query Caching**: (Deprecated in 5.7, removed in 8.0). Use application-level caching (Redis/Memcached) instead.
 - **Connection Pooling**: Reusing database connections to reduce overhead.
+
+## 9. MariaDB vs MySQL
+MariaDB is a fork of MySQL created by the original developers in 2009 after Oracle's acquisition of MySQL.
+
+- **Open Source Philosophy**: MariaDB is fully open-source (GPL) and promises to stay that way. MySQL has a dual-licensing model: a Community (GPL) version and a commercial Enterprise edition.
+- **Performance**: MariaDB often introduces performance optimizations earlier, such as improved thread pooling (in the community version) and advanced query optimization.
+- **Storage Engines**: MariaDB supports more storage engines out of the box (e.g., Aria, MyRocks, ColumnStore, Cassandra).
+- **Features**: MariaDB has added features like Window Functions (before MySQL), Dynamic Columns, and Roles earlier than MySQL.
+- **Compatibility**: MariaDB is designed to be a "drop-in replacement" for MySQL. For example, the `mysql` command works with MariaDB, and data files are often compatible between versions (though this has become harder with MySQL 8.0 and MariaDB 10.x).
+
+## 10. MySQL vs PostgreSQL
+MySQL is a Relational Database Management System (RDBMS), while PostgreSQL is an Object-Relational Database Management System (ORDBMS).
+
+- **SQL Compliance**: PostgreSQL strictly adheres to SQL standards. MySQL has historically been less strict, though newer versions (8.0+) have significantly improved compliance.
+- **Complexity**: PostgreSQL is better for complex queries, advanced indexing (GIN, GiST, BRIN), and massive datasets. MySQL is often favored for simpler, read-heavy web applications due to its historical speed and ease of setup.
+- **Concurrency**: PostgreSQL uses Multi-Version Concurrency Control (MVCC) which allows for better write performance in some scenarios as readers don't block writers and vice-versa. MySQL's InnoDB also uses MVCC but behaves differently in some high-concurrency cases.
+- **Data Types**: PostgreSQL supports a wider range of advanced data types natively, including JSONB (indexed JSON), Arrays, Geometric types, and custom types.
+- **Extensibility**: PostgreSQL is highly extensible, allowing developers to create custom functions, types, and even index types without modifying the core.

@@ -586,6 +586,10 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 #### What is the difference between `UNION` and `UNION ALL`?
 **Answer:** `UNION` removes duplicate rows from the result set, while `UNION ALL` includes all rows, including duplicates.
 
+#### What is the difference between MariaDB and MySQL?
+**Answer:** MariaDB is an open-source fork of MySQL created by the original developers after Oracle's acquisition of MySQL. While it maintains high compatibility, MariaDB offers more storage engines, performance improvements, and remains fully open-source (GPL), whereas MySQL has both a community and an enterprise version.
+[MariaDB vs MySQL Comparison](answers/mysql_advanced.md#9-mariadb-vs-mysql)
+
 ### Senior
 #### What is Sharding and Partitioning?
 **Answer:** 
@@ -612,6 +616,10 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 - **Repeatable Read:** Ensuring a consistent snapshot of data throughout a long-running transaction, even if other transactions commit changes.
 - **Serializable:** Financial systems where absolute correctness is required, preventing all concurrency issues like Phantom Reads at the cost of performance.
 [In-depth Database Isolation Levels Guide](answers/mysql_advanced.md#51-practical-examples-of-isolation-levels)
+
+#### What is the difference between MySQL and PostgreSQL?
+**Answer:** MySQL is known for its speed and ease of use in web development, while PostgreSQL is an object-relational database known for its advanced features, strict SQL compliance, and better handling of complex queries and high-concurrency workloads.
+[MySQL vs PostgreSQL Comparison](answers/mysql_advanced.md#10-mysql-vs-postgresql)
 
 ---
 
