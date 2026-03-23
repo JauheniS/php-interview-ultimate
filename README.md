@@ -29,6 +29,11 @@ The content in this repository is sourced from the following GitHub projects:
 - [Devinterview-io/php-interview-questions](https://github.com/Devinterview-io/php-interview-questions)
 - [zsoro2/php-interview-questions](https://github.com/zsoro2/php-interview-questions)
 
+## Source Projects and learning Web sites
+The content that was used to learn Design Patterns, Refactoring principles:
+- [Refactoring Guru](https://refactoring.guru/)
+- [Backend Roadmap](https://roadmap.sh/backend)
+
 ## Project Structure
 The repository is organized into subdirectories under `src/`, each representing a source repository:
 
