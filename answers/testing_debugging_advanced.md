@@ -1,9 +1,20 @@
 # Advanced Testing & Debugging
 
 ## Testing Concepts
+- **Importance of Testing**: Ensures code reliability, prevents regressions, documents behavior, and aids in better architectural design.
+- **Unit Tests**: Testing individual components in isolation. Standard tool: **PHPUnit**.
+- **Integration Tests**: Testing how different modules work together.
+- **Feature Tests**: Testing full user stories or API endpoints from start to finish.
 - **TDD (Test-Driven Development)**: Red-Green-Refactor cycle. Tests are written *before* the code.
 - **BDD (Behavior-Driven Development)**: Focuses on the behavior of the application from the user's perspective (often using "Given, When, Then" syntax).
 - **Mutational Testing**: Changing parts of the code (mutations) to see if tests fail. If they don't, it means the test suite is weak. Tools: **Infection** for PHP.
+
+## Code Coverage & Static Analysis
+- **Code Coverage**: Metric measuring the percentage of code executed by tests.
+  - **Measurement**: Tracked using drivers like **Xdebug** or **PCOV**.
+  - **Methods**: Line Coverage, Branch Coverage, Path Coverage.
+- **Static Analysis**: Analyzing code without execution to find bugs and style issues.
+  - **Tools**: **PHPStan**, **Psalm**, **PHP_CodeSniffer (PHPCS)**.
 
 ## Advanced Mocking (PHPUnit)
 - **Mocks vs Stubs**: Stubs return fixed values; Mocks expect certain interactions.
