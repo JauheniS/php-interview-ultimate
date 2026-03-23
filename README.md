@@ -4,7 +4,11 @@
 
 This repository is a curated collection of PHP interview questions and answers, gathered from various high-quality sources. It aims to be the ultimate resource for developers preparing for PHP-related interviews.
 
-## 🚀 Modern Frontend
+## 🚀 Ready to get started? Visit the [Front-end Documentation](https://jauhenis.com/)
+- A non-commercial website with a collection of PHP interview questions and answers from this repository.
+- Open-source and free to use.
+
+## Modern Frontend
 
 Check out the new **[Modular Interview Questions Documentation](docs/)**!
 - **Modularized**: Each question is an independent module.
