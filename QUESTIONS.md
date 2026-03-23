@@ -153,6 +153,7 @@ PHP uses a reference counting mechanism and a cyclic garbage collector to automa
 ---
 
 ## 2. Design Patterns
+Design patterns are strictly related to [Clean Code & Best Practices](#15-clean-code--best-practices).
 
 ### Junior
 #### What are the main categories of Design Patterns?
@@ -800,16 +801,37 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 ## 11. Testing & Quality
 
 ### Junior
-#### What is Unit Testing?
-**Answer:** A type of software testing where individual units or components of a software are tested. In PHP, PHPUnit is the standard tool.
+#### Why is it important to write tests?
+**Answer:** Tests ensure that the code works as expected, prevent regressions (bugs introduced after changes), document the behavior of the code, and make refactoring safer. They also help in designing better architecture by encouraging modularity.
 
-#### What is Code Coverage?
-**Answer:** A metric that measures the percentage of code lines executed by your test suite.
+#### What is a Unit Tests?
+**Answer:** A type of software testing where individual units or components of a software are tested in isolation. In PHP, PHPUnit is the standard tool.
+
+#### What kind of Unit Tests frameworks did you use?
+**Answer:** The primary framework for PHP is **PHPUnit**. I've also used **Pest**, which is built on top of PHPUnit and offers a more expressive, functional syntax.
+
+#### What is static analyzer tools?
+**Answer:** Static analysis tools analyze code without executing it. They help in finding potential bugs, security vulnerabilities, code style violations, and other issues early in the development process.
+
+#### How the Tests Coverage is measured?
+**Answer:** Test coverage (or Code Coverage) is a metric that measures the percentage of code lines executed by your test suite. It is measured by tracking which parts of the code are hit during test execution, typically using tools like **Xdebug** or **PCOV**.
+
+### Middle
+#### What static analyzer tools did you use?
+**Answer:** I have used **PHPStan** for finding bugs and improving code quality, **Psalm** for advanced static analysis (especially for large codebases), and **PHP_CodeSniffer (PHPCS)** for maintaining code style consistency.
+
+#### What is the difference between unit, integration and feature tests?
+**Answer:** 
+- **Unit tests:** Test isolated components (e.g., a single method) in isolation from dependencies (often using mocks).
+- **Integration tests:** Test interaction between multiple components (e.g., how a service interacts with a repository or a database).
+- **Feature tests:** Test a full user story or an API endpoint from start to finish, often involving multiple layers of the application.
+
+#### What method of unit tests cover measure did you use?
+**Answer:** Commonly used methods include **Line Coverage** (percentage of executed lines), **Branch Coverage** (checking all paths through conditions), and **Path Coverage**. PHPUnit usually reports line coverage using drivers like Xdebug or PCOV.
 
 #### What is Integration Testing?
 **Answer:** Testing how different modules or components of your application work together as a group.
 
-### Middle
 #### What is Mocking?
 **Answer:** Creating a fake version of an object that simulates the behavior of the real object, used to isolate the unit of code being tested.
 
@@ -943,6 +965,15 @@ However, it would **not** be fully in compliance with the **Uniform Interface** 
 **Answer:** A principle that suggests achieving polymorphic behavior and code reuse by composing objects with other objects that implement the desired functionality, rather than inheriting from a base or parent class.
 
 ### Senior
+#### Imagine, that you have an old class in monolith, this class has many methods and is needing change, how would you refactor?
+**Answer:** 
+1. **Understand & Test:** Write tests for the existing functionality to ensure no regressions are introduced during refactoring.
+2. **Identify Responsibilities:** Identify the core responsibilities of the class and extract them into smaller, single-purpose classes (SRP).
+3. **Decouple:** Use Dependency Injection to decouple the class from its dependencies, making it more testable.
+4. **Incremental Refactoring:** Refactor in small, incremental steps, running tests after each change.
+5. **Apply Design Patterns:** Use patterns like Strategy, Factory, or Service objects to handle complex logic or multiple conditional paths.
+[Detailed Design Patterns Guide](answers/design_patterns.md)
+
 #### What is the Law of Demeter?
 **Answer:** A design guideline that says a module should not know about the innards of the objects it manipulates. "Don't talk to strangers."
 

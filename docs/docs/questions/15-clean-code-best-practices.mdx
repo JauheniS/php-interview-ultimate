@@ -31,6 +31,20 @@ sidebar_label: "15. Clean Code & Best Practices"
 
 ---
 
+### Imagine, that you have an old class in monolith, this class has many methods and is needing change, how would you refactor?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:** 
+1. **Understand & Test:** Write tests for the existing functionality to ensure no regressions are introduced during refactoring.
+2. **Identify Responsibilities:** Identify the core responsibilities of the class and extract them into smaller, single-purpose classes (SRP).
+3. **Decouple:** Use Dependency Injection to decouple the class from its dependencies, making it more testable.
+4. **Incremental Refactoring:** Refactor in small, incremental steps, running tests after each change.
+5. **Apply Design Patterns:** Use patterns like Strategy, Factory, or Service objects to handle complex logic or multiple conditional paths.
+[Detailed Design Patterns Guide](../answers/design_patterns.md)
+
+---
+
 ### What is the Law of Demeter?
 
 <span className="badge badge--warning margin-bottom--md">Senior</span>

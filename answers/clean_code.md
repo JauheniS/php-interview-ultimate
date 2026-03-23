@@ -32,3 +32,12 @@
 - **Early Return**: Instead of deep `if-else` nesting, return early.
 - **Composition over Inheritance**: Prefer building objects from other objects rather than deep inheritance chains.
 - **Boy Scout Rule**: Always leave the code cleaner than you found it.
+
+## 6. Refactoring Legacy Code (Monolith)
+- **Strategy**: 
+  1. Write tests for existing functionality (ensure no regressions).
+  2. Identify and extract responsibilities into smaller classes (SRP).
+  3. Decouple components using Dependency Injection.
+  4. Refactor incrementally, running tests at each step.
+  5. Apply design patterns like Strategy, Factory, or Service objects to simplify logic.
+  [Detailed Design Patterns Guide](design_patterns.md)
