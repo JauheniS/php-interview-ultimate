@@ -172,6 +172,11 @@ $app->main('Windows');
 
 **Note:** What's the difference between abstract factory and a factory pattern?
 
+**Answer:**
+- **Factory Method** defines an interface for creating *one* product, but subclasses decide which class to instantiate.
+- **Abstract Factory** provides an interface for creating *families* of related or dependent objects.
+- **Factory Method** relies on inheritance (it's implemented in subclasses), while **Abstract Factory** relies on object composition (the factory is an object passed to the client).
+
 **Example:**
 ```php
 <?php
