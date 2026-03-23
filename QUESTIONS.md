@@ -148,7 +148,7 @@ PHP uses a reference counting mechanism and a cyclic garbage collector to automa
 ### Senior
 #### What are the risks of using PHP as a long-lived process (daemon)?
 **Answer:** Memory leaks and global state contamination are the biggest risks, as variables and objects persist between requests.
-[Running PHP as a Daemon](answers/php_advanced_extras.md)
+[Running PHP as a Daemon](answers/php_advanced_extras/#php-as-a-daemon-swoole-roadrunner)
 
 ---
 
