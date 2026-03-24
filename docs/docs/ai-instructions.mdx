@@ -22,9 +22,10 @@ This document provides instructions for AI agents (and human contributors) on ho
    - Use the `:::info` callout at the bottom to specify Category and Level.
 
 ### Example Template:
+
 ```mdx
 ---
-title: "145. What is [Topic]?"
+title: '145. What is [Topic]?'
 ---
 
 # 145. What is [Topic]?
@@ -49,19 +50,25 @@ Category: [Category Name] | Level: [Level]
 To ensure the frontend is correct, follow these steps:
 
 ### Linting and Formatting
+
 Before submitting any changes, run the linter and formatter:
+
 ```bash
 cd docs
 npm run format
 npm run lint
 ```
+
 This will check for code style issues, broken React/JSX, and common Markdown errors.
 
 ### Docker Build
+
 To test the build locally using Docker:
+
 ```bash
 docker compose up --build
 ```
+
 This will build the Docusaurus site and serve it on `http://localhost:8080`.
 
 ## Automation

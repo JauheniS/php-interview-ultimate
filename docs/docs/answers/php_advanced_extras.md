@@ -1,14 +1,16 @@
 ---
-title: "PHP Reflection and SPL"
-slug: "/answers/php_advanced_extras"
+title: 'PHP Reflection and SPL'
+slug: '/answers/php_advanced_extras'
 ---
 
 # PHP Reflection and SPL
 
 ## Reflection API
+
 The PHP Reflection API allows you to inspect classes, interfaces, functions, methods, and extensions. It's essentially "reverse engineering" code from within PHP. It is widely used in dependency injection containers, ORMs (like Doctrine), and testing frameworks to understand classes and their properties without manually configuring them.
 
 ### Common Reflection Classes
+
 - `ReflectionClass`: Information about a class.
 - `ReflectionMethod`: Information about a class method.
 - `ReflectionProperty`: Information about a class property.
@@ -16,6 +18,7 @@ The PHP Reflection API allows you to inspect classes, interfaces, functions, met
 - `ReflectionParameter`: Information about a function/method parameter.
 
 ### Example: Getting Private Properties
+
 ```php
 class User {
     private string $name = "John Doe";
@@ -32,9 +35,11 @@ echo $property->getValue($user); // John Doe
 ---
 
 ## Standard PHP Library (SPL)
+
 The SPL is a collection of interfaces and classes that are designed to solve common problems. It provides a standard way to implement common patterns such as iterators, data structures, and observers.
 
 ### Main Components of SPL
+
 1. **Iterators**: Classes to iterate over objects, directories, files, or complex structures.
    - `ArrayIterator`, `DirectoryIterator`, `FilterIterator`, `RecursiveIteratorIterator`.
 2. **Data Structures**: Optimized classes for specific data storage.
@@ -43,19 +48,23 @@ The SPL is a collection of interfaces and classes that are designed to solve com
 4. **Interfaces**: `Countable` (allows `count()`), `Serializable`, `SplObserver`, `SplSubject`.
 
 ### Difference between SplFixedArray and Array
+
 A standard PHP `array` is actually an ordered map (hash table). `SplFixedArray` is a real C-style array with fixed size and integer indices, making it faster and more memory-efficient for large, numerically-indexed data sets.
 
 ---
 
 ## PHP as a Daemon (Swoole, Roadrunner)
+
 Modern PHP is no longer limited to the "request-response" lifecycle (where the script starts and dies for every request). Using tools like Swoole, Roadrunner, or Workerman, PHP can run as a long-lived process (daemon).
 
 ### Benefits
+
 - **Performance**: Bootstrapping (loading the framework, config, DIC) happens once at startup, not on every request.
 - **State persistence**: Database connections, caches, and objects can stay in memory between requests.
 - **Asynchronous tasks**: Built-in support for non-blocking I/O, timers, and background tasks.
 
 ### Risks and Challenges
+
 1. **Memory Leaks**: Since the process stays alive, any memory not properly cleared (e.g., static variables, global arrays) will accumulate, eventually crashing the process.
 2. **Global State**: Global variables or static properties carry over between requests, potentially causing "state contamination" (user A's data showing up for user B).
 3. **Zombies/Resources**: Open file handles or database connections might stay open too long or hang if not managed correctly.
@@ -65,13 +74,16 @@ Modern PHP is no longer limited to the "request-response" lifecycle (where the s
 ---
 
 ## Persistent Database Connections
+
 PHP provides a mechanism for persistent database connections (e.g., `PDO::ATTR_PERSISTENT => true`).
 
 ### Pros
+
 - Reduces the overhead of establishing a new TCP connection and handshake for every request.
 - Improves performance in high-concurrency environments.
 
 ### Cons
+
 - **Connection Exhaustion**: Since connections are not closed when the script ends, they stay in the connection pool. If not managed properly, you might exceed the database's `max_connections` limit.
 - **Stale State**: Temporary tables, session variables, or transaction states might persist to the next request using the same connection.
 - **Deadlocks**: Long-running transactions on persistent connections can cause issues if not carefully closed.

@@ -1,6 +1,6 @@
 ---
-title: "1. PHP Basics & Language Features"
-sidebar_label: "1. PHP Basics & Language Features"
+title: '1. PHP Basics & Language Features'
+sidebar_label: '1. PHP Basics & Language Features'
 ---
 
 # 1. PHP Basics & Language Features
@@ -25,10 +25,11 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - Must start with a `$` sign.
 - Followed by a letter or underscore.
-- Can only contain letters, numbers, and underscores (A-z, 0-9, and _).
+- Can only contain letters, numbers, and underscores (A-z, 0-9, and \_).
 - Cannot start with a number.
 - Variable names are case-sensitive.
 
@@ -38,11 +39,12 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - **Scalar:** `int`, `float`, `string`, `bool`.
 - **Compound:** `array`, `object`, `callable`, `iterable`.
 - **Special:** `resource`, `null`.
-[Detailed Data Types Guide](../answers/data_types.md)
+  [Detailed Data Types Guide](../answers/data_types.md)
 
 ---
 
@@ -50,7 +52,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `empty()`: Returns true if the variable is an empty string, 0, false, null, or an empty array.
 - `is_null()`: Returns true only if the variable is null.
 - `isset()`: Returns true if the variable is set and is not null.
@@ -61,7 +64,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `echo` is a language construct, while `print` is a function (though it behaves like a construct).
 - `echo` is slightly faster and can take multiple parameters.
 - `print` always returns 1, so it can be used in expressions.
@@ -72,7 +76,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `include()`: Includes a file. If it fails, it emits a warning and continues.
 - `require()`: Includes a file. If it fails, it emits a fatal error and stops execution.
 - `*_once()`: Similar to their counterparts, but ensure the file is only included once.
@@ -83,7 +88,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - **Indexed arrays:** Arrays with a numeric index.
 - **Associative arrays:** Arrays with named keys.
 - **Multidimensional arrays:** Arrays containing one or more arrays.
@@ -94,7 +100,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - **Single-quoted:** Literals. Variables and most escape sequences are not interpreted.
 - **Double-quoted:** Variables are interpolated, and escape sequences (like `\n`, `\t`) are interpreted.
 
@@ -144,7 +151,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `explode()`: Splits a string into an array by a delimiter.
 - `implode()`: Joins array elements into a string using a delimiter.
 
@@ -154,7 +162,8 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `unset()`: Destroys a variable or an element in an array.
 - `unlink()`: Deletes a file from the server.
 
@@ -165,6 +174,7 @@ sidebar_label: "1. PHP Basics & Language Features"
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** Magic constants are predefined constants that change depending on where they are used.
+
 - `__LINE__`, `__FILE__`, `__DIR__`, `__FUNCTION__`, `__CLASS__`, `__TRAIT__`, `__METHOD__`, `__NAMESPACE__`, `ClassName::class`.
 
 ---
@@ -198,7 +208,7 @@ sidebar_label: "1. PHP Basics & Language Features"
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** 
+**Answer:**
 PHP uses a reference counting mechanism and a cyclic garbage collector to automatically free memory occupied by objects and variables that are no longer reachable.
 
 - **Reference Counting:** Every `zval` (except simple types in PHP 7+) has a `refcount`. When it reaches zero, memory is freed immediately.
@@ -215,14 +225,15 @@ PHP uses a reference counting mechanism and a cyclic garbage collector to automa
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 <span className="badge badge--danger margin-bottom--md">Important</span>
 
-**Answer:** 
+**Answer:**
 A `zval` (Zend value) is the fundamental data structure used by the Zend Engine to represent any PHP variable. In PHP 5, it consists of four main members:
+
 - **value:** A union that stores the actual data (e.g., integer, string pointer, etc.).
 - **refcount:** An unsigned integer that stores the number of symbols (variables) pointing to this `zval`.
 - **type:** An unsigned char that stores the variable's type (e.g., `IS_LONG`, `IS_STRING`).
 - **is_ref:** A boolean flag indicating if the `zval` is part of a reference set.
 
-*Note: In PHP 7+, the `zval` structure was significantly optimized to reduce memory usage and improve performance (e.g., by moving `refcount` and `is_ref` into the value itself for certain types and avoiding heap allocation for simple types).*
+_Note: In PHP 7+, the `zval` structure was significantly optimized to reduce memory usage and improve performance (e.g., by moving `refcount` and `is_ref` into the value itself for certain types and avoiding heap allocation for simple types)._
 [Detailed Zval Structure Guide](https://www.phpinternalsbook.com/php5/zvals/basic_structure.html)
 
 ---
@@ -240,11 +251,13 @@ A `zval` (Zend value) is the fundamental data structure used by the Zend Engine 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** PHP uses several mechanisms:
+
 - **Error Reporting:** Configured via `error_reporting()` and `display_errors` in `php.ini`.
 - **Try-Catch Blocks:** For handling `Exceptions` and `Errors` (since PHP 7).
 - **Custom Error Handlers:** Using `set_error_handler()` and `set_exception_handler()`.
 
 **Common Error Types:**
+
 - `E_ERROR`: Fatal run-time errors. Execution of the script is halted.
 - `E_WARNING`: Run-time warnings (non-fatal errors).
 - `E_NOTICE`: Run-time notices.
@@ -257,7 +270,8 @@ A `zval` (Zend value) is the fundamental data structure used by the Zend Engine 
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** 
+**Answer:**
+
 1. **Request:** The web server (e.g., Nginx/Apache) receives an HTTP request.
 2. **Handover:** The server identifies it as a PHP file and passes it to the PHP processor (like PHP-FPM) via CGI/FastCGI.
 3. **Initialization:** PHP starts up, loads its configuration (`php.ini`), and initializes loaded extensions.
@@ -273,6 +287,7 @@ A `zval` (Zend value) is the fundamental data structure used by the Zend Engine 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** Predefined variables that are always available in all scopes throughout a script.
+
 - `$_GET`: Data passed via URL query parameters.
 - `$_POST`: Data passed via HTTP POST method (form data).
 - `$_FILES`: Data about uploaded files.
@@ -289,7 +304,8 @@ A `zval` (Zend value) is the fundamental data structure used by the Zend Engine 
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** 
+**Answer:**
+
 - **Cookies:** Stored on the client's browser. Used to store small amounts of data (max 4KB) that are sent back to the server with every request. Set using `setcookie()`.
 - **Sessions:** Stored on the server. A unique session ID is generated for each user and typically stored in a cookie on the client side. This ID is used to retrieve session data from the server. Started using `session_start()`. Sessions are more secure for sensitive data.
 
@@ -305,4 +321,3 @@ A `zval` (Zend value) is the fundamental data structure used by the Zend Engine 
 ---
 
 ---
-

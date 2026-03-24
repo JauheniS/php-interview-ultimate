@@ -1,6 +1,6 @@
 ---
-title: "Design Patterns in PHP"
-slug: "/answers/design_patterns"
+title: 'Design Patterns in PHP'
+slug: '/answers/design_patterns'
 ---
 
 # Design Patterns in PHP
@@ -10,7 +10,9 @@ Design patterns are typical solutions to common problems in software design. Eac
 ## Main Types of Design Patterns
 
 ### 1. Creational Patterns
+
 These patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
+
 - **Singleton**: Ensures that a class has only one instance, while providing a global access point to this instance.
 - **Factory Method**: Provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
 - **Abstract Factory**: Lets you produce families of related objects without specifying their concrete classes.
@@ -18,7 +20,9 @@ These patterns provide various object creation mechanisms, which increase flexib
 - **Prototype**: Lets you copy existing objects without making your code dependent on their classes.
 
 ### 2. Structural Patterns
+
 These patterns explain how to assemble objects and classes into larger structures while keeping these structures flexible and efficient.
+
 - **Adapter**: Allows objects with incompatible interfaces to collaborate.
 - **Bridge**: Lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
 - **Composite**: Lets you compose objects into tree structures and then work with these structures as if they were individual objects.
@@ -28,7 +32,9 @@ These patterns explain how to assemble objects and classes into larger structure
 - **Proxy**: Lets you provide a substitute or placeholder for another object.
 
 ### 3. Behavioral Patterns
+
 These patterns are concerned with algorithms and the assignment of responsibilities between objects.
+
 - **Chain of Responsibility**: Lets you pass requests along a chain of handlers.
 - **Command**: Turns a request into a stand-alone object that contains all information about the request.
 - **Iterator**: Lets you traverse elements of a collection without exposing its underlying representation.
