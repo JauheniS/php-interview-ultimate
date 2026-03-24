@@ -76,7 +76,7 @@ docker compose run --service-ports node npm run dev
 The documentation will be available at `http://localhost:3333`.
 
 ## Key Topics Covered
-- The documentation is now organized into 20 major categories, including:
+- The documentation is now organized into 21 major categories, including:
 - **Core PHP**: Data types, generators, magic constants, PHP features (8.0+), and more.
 - **Frameworks**: Laravel, Symfony, and Doctrine.
 - **Design Patterns & OOP**: SOLID principles, common design patterns, and OOP fundamentals.
@@ -85,3 +85,4 @@ The documentation will be available at `http://localhost:3333`.
 - **DevOps & Tools**: Docker, Git, and deployment strategies.
 - **Testing**: Unit, functional, and integration testing.
 - **Clean Code**: Robert C. Martin's Clean Code principles.
+- **Algorithms**: Basic and sorting algorithms in PHP.
