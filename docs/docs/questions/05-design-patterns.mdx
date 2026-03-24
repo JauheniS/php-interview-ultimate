@@ -168,11 +168,11 @@ $app->main('Windows');
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
+**Answer:** Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can be sure that the products you’re getting from a factory are compatible with each other., You avoid tight coupling between concrete products and client code., Single Responsibility Principle. You can extract the product creation code into one place, making the code easier to support., Open/Closed Principle. You can introduce new variants of products without breaking existing client code.
+- **Pros:** You can be sure that the products you’re getting from a factory are compatible with each other. You avoid tight coupling between concrete products and client code. Single Responsibility Principle. You can extract the product creation code into one place, making the code easier to support. Open/Closed Principle. You can introduce new variants of products without breaking existing client code.
 - **Cons:** The code may become more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
 
 **Note:** What's the difference between abstract factory and a factory pattern?
@@ -342,11 +342,11 @@ $configurator->main('Mac');
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+**Answer:** Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can construct objects step-by-step, defer construction steps or run steps recursively., You can reuse the same construction code when building various representations of products., Single Responsibility Principle. You can isolate complex construction code from the business logic of the product.
+- **Pros:** You can construct objects step-by-step, defer construction steps or run steps recursively. You can reuse the same construction code when building various representations of products. Single Responsibility Principle. You can isolate complex construction code from the business logic of the product.
 - **Cons:** The overall complexity of the code increases since the pattern requires creating multiple new classes.
 
 **Example:**
@@ -442,7 +442,7 @@ class CarBuilder implements Builder
     //
     // Usually, after returning the end result to the client, a
     // builder instance is expected to be ready to start
-    // producing another product. That's why it's a usual
+    // producing another product. That's why it's a common
     // practice to call the reset method at the end of the
     // `getProduct` method body. However, this behavior isn't
     // mandatory, and you can make your builder wait for an
@@ -550,8 +550,8 @@ class Application
         $director->constructSportsCar($manualBuilder);
 
         // The final product is often retrieved from a builder
-        // object since the director isn't aware of and not
-        // dependent on concrete builders and products.
+        // object since the director isn't aware of, and doesn't
+        // depend on, concrete builders and products.
         $manual = $manualBuilder->getProduct();
 
         var_dump($car, $manual->instructions);
@@ -568,11 +568,11 @@ $app->makeCar();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
+**Answer:** Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can clone objects without coupling to their concrete classes., You can get rid of repeated initialization code in favor of cloning pre-built prototypes., You can produce complex objects more conveniently., You get an alternative to inheritance when dealing with configuration presets for complex objects.
+- **Pros:** You can clone objects without coupling to their concrete classes. You can get rid of repeated initialization code in favor of cloning pre-built prototypes. You can produce complex objects more conveniently. You get an alternative to inheritance when dealing with configuration presets for complex objects.
 - **Cons:** Cloning complex objects that have circular references might be very tricky.
 
 **Example:**
@@ -707,11 +707,11 @@ $app->businessLogic();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
+**Answer:** Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Single Responsibility Principle. You can separate the interface or data conversion code from the primary business logic of the program., Open/Closed Principle. You can introduce new types of adapters into the program without breaking the existing client code, as long as they work with the adapters through the client interface.
+- **Pros:** Single Responsibility Principle. You can separate the interface or data conversion code from the primary business logic of the program. Open/Closed Principle. You can introduce new types of adapters into the program without breaking the existing client code, as long as they work with the adapters through the client interface.
 - **Cons:** The overall complexity of the code increases because you need to introduce a set of new interfaces and classes. Sometimes it’s simpler just to change the service class so that it matches the rest of your code.
 
 **Example:**
@@ -804,11 +804,11 @@ var_dump($hole->fits($largeSqPegAdapter)); // false
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
+**Answer:** Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can create platform-independent classes and apps., The client code works with high-level abstractions. It isn’t exposed to the platform details., Open/Closed Principle. You can introduce new abstractions and implementations independently from each other., Single Responsibility Principle. You can focus on high-level logic in the abstraction and on platform details in the implementation.
+- **Pros:** You can create platform-independent classes and apps. The client code works with high-level abstractions. It isn’t exposed to the platform details. Open/Closed Principle. You can introduce new abstractions and implementations independently from each other. Single Responsibility Principle. You can focus on high-level logic in the abstraction and on platform details in the implementation.
 - **Cons:** You might make the code more complicated by applying the pattern to a highly cohesive class.
 
 **Example:**
@@ -951,11 +951,11 @@ $advancedRemote->mute();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
+**Answer:** Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can work with complex tree structures more conveniently: use polymorphism and recursion to your advantage., Open/Closed Principle. You can introduce new element types into the app without breaking the existing code, which now works with the object tree.
+- **Pros:** You can work with complex tree structures more conveniently: use polymorphism and recursion to your advantage. Open/Closed Principle. You can introduce new element types into the app without breaking the existing code, which now works with the object tree.
 - **Cons:** It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend.
 
 **Example:**
@@ -1102,12 +1102,12 @@ $editor->groupSelected([new Dot(0, 0)]);
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+**Answer:** Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can extend an object’s behavior without making a new subclass., You can add or remove responsibilities from an object at runtime., You can combine several behaviors by wrapping an object into multiple decorators., Single Responsibility Principle. You can divide a monolithic class that implements many possible variants of behavior into several smaller classes.
-- **Cons:** It’s hard to remove a specific wrapper from the wrappers stack., It’s hard to implement a decorator in such a way that its behavior doesn’t depend on the order in the decorators stack., The initial configuration code of layers might look pretty ugly.
+- **Pros:** You can extend an object’s behavior without making a new subclass. You can add or remove responsibilities from an object at runtime. You can combine several behaviors by wrapping an object into multiple decorators. Single Responsibility Principle. You can divide a monolithic class that implements many possible variants of behavior into several smaller classes.
+- **Cons:** It’s hard to remove a specific wrapper from the wrappers stack. It’s hard to implement a decorator in such a way that its behavior doesn’t depend on the order in the decorators stack. The initial configuration code of layers might look pretty ugly.
 
 **Example:**
 
@@ -1282,7 +1282,7 @@ echo $configurator->configurationExample(true, true);
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.
+**Answer:** Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.
 
 **Common Usages / Pros & Cons:**
 
@@ -1400,12 +1400,12 @@ $app->main();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Flyweight is a structural design pattern that lets you fit more objects into the available amount of RAM by sharing common parts of state between multiple objects instead of keeping all of the data in each object.
+**Answer:** Flyweight is a structural design pattern that lets you fit more objects into the available amount of RAM by sharing common parts of state between multiple objects instead of keeping all of the data in each object.
 
 **Common Usages / Pros & Cons:**
 
 - **Pros:** You can save lots of RAM, assuming your program has tons of similar objects.
-- **Cons:** You might be trading RAM over CPU cycles when some of the context data needs to be recalculated each time somebody calls a flyweight method., The code becomes much more complicated. New team members will always be wondering why the state of an entity was separated in such a way.
+- **Cons:** You might be trading RAM over CPU cycles when some of the context data needs to be recalculated each time somebody calls a flyweight method. The code becomes much more complicated. New team members will always be wondering why the state of an entity was separated in such a way.
 
 **Example:**
 
@@ -1507,12 +1507,12 @@ $forest->draw('MainCanvas');
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object.
+**Answer:** Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can control the service object without clients knowing about it., You can manage the lifecycle of the service object when clients don’t care about it., The proxy works even if the service object isn’t ready or is not available., Open/Closed Principle. You can introduce new proxies without changing the service or clients.
-- **Cons:** The code may become more complicated since you need to introduce a lot of new classes., The response from the service might get delayed.
+- **Pros:** You can control the service object without clients knowing about it. You can manage the lifecycle of the service object when clients don’t care about it. The proxy works even if the service object isn’t ready or is not available. Open/Closed Principle. You can introduce new proxies without changing the service or clients.
+- **Cons:** The code may become more complicated since you need to introduce a lot of new classes. The response from the service might get delayed.
 
 **Example:**
 
@@ -1660,11 +1660,11 @@ $app->init();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Chain of Responsibility is a behavioral design pattern that lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
+**Answer:** Chain of Responsibility is a behavioral design pattern that lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can control the order of request handling., Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform operations., Open/Closed Principle. You can introduce new handlers into the app without breaking the existing client code.
+- **Pros:** You can control the order of request handling. Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform operations. Open/Closed Principle. You can introduce new handlers into the app without breaking the existing client code.
 - **Cons:** Some requests may end up unhandled.
 
 **Example:**
@@ -1822,11 +1822,11 @@ $app->onF1KeyPress();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.
+**Answer:** Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform these operations., Open/Closed Principle. You can introduce new commands into the app without breaking existing client code., You can implement undo/redo., You can implement deferred execution of operations., You can assemble a set of simple commands into a complex one.
+- **Pros:** Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform these operations. Open/Closed Principle. You can introduce new commands into the app without breaking existing client code. You can implement undo/redo. You can implement deferred execution of operations. You can assemble a set of simple commands into a complex one.
 - **Cons:** The code may become more complicated since you’re introducing a whole new layer between senders and receivers.
 
 **Example:**
@@ -2035,11 +2035,11 @@ $app->createUI();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Mediator is a behavioral design pattern that lets you reduce chaotic dependencies between objects. The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
+**Answer:** Mediator is a behavioral design pattern that lets you reduce chaotic dependencies between objects. The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Single Responsibility Principle. You can extract the communications between various components into a single place, making it easier to comprehend and maintain., Open/Closed Principle. You can introduce new mediators without having to change the actual components., You can reduce coupling between various components of a program., You can reuse individual components more easily.
+- **Pros:** Single Responsibility Principle. You can extract the communications between various components into a single place, making it easier to comprehend and maintain. Open/Closed Principle. You can introduce new mediators without having to change the actual components. You can reduce coupling between various components of a program. You can reuse individual components more easily.
 - **Cons:** Over time a mediator can evolve into a God Object.
 
 **Example:**
@@ -2185,12 +2185,12 @@ $dialog->demo();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Iterator is a behavioral design pattern that lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.).
+**Answer:** Iterator is a behavioral design pattern that lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.).
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Single Responsibility Principle. You can clean up the client code and the collections by extracting bulky traversal algorithms into separate classes., Open/Closed Principle. You can implement new types of collections and iterators and pass them to existing code without breaking anything., You can iterate over the same collection in parallel because each iterator object contains its own iteration state., For the same reason, you can delay an iteration and continue it when needed.
-- **Cons:** Applying the pattern can be an overkill if your app only works with simple collections., Using an iterator may be less efficient than going through elements of some specialized collections directly.
+- **Pros:** Single Responsibility Principle. You can clean up the client code and the collections by extracting bulky traversal algorithms into separate classes. Open/Closed Principle. You can implement new types of collections and iterators and pass them to existing code without breaking anything. You can iterate over the same collection in parallel because each iterator object contains its own iteration state. For the same reason, you can delay an iteration and continue it when needed.
+- **Cons:** Applying the pattern can be an overkill if your app only works with simple collections. Using an iterator may be less efficient than going through elements of some specialized collections directly.
 
 **Example:**
 
@@ -2401,12 +2401,12 @@ $app->sendSpamToCoworkers($profile);
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Memento is a behavioral design pattern that lets you save and restore the previous state of an object without revealing the details of its implementation.
+**Answer:** Memento is a behavioral design pattern that lets you save and restore the previous state of an object without revealing the details of its implementation.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can produce snapshots of the object’s state without violating its encapsulation., You can simplify the originator’s code by letting the caretaker maintain the history of the originator’s state.
-- **Cons:** The app might consume lots of RAM if clients create mementos too often., Caretakers should track the originator’s lifecycle to be able to destroy obsolete mementos., Most dynamic programming languages, such as PHP, Python and JavaScript, can’t guarantee that the state within the memento stays untouched.
+- **Pros:** You can produce snapshots of the object’s state without violating its encapsulation. You can simplify the originator’s code by letting the caretaker maintain the history of the originator’s state.
+- **Cons:** The app might consume lots of RAM if clients create mementos too often. Caretakers should track the originator’s lifecycle to be able to destroy obsolete mementos. Most dynamic programming languages, such as PHP, Python and JavaScript, can’t guarantee that the state within the memento stays untouched.
 
 **Example:**
 
@@ -2522,11 +2522,11 @@ echo $editor->dumpState();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+**Answer:** Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Open/Closed Principle. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface)., You can establish relations between objects at runtime.
+- **Pros:** Open/Closed Principle. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface). You can establish relations between objects at runtime.
 - **Cons:** Subscribers are notified in random order.
 
 **Example:**
@@ -2753,11 +2753,11 @@ $user->register();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** State is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
+**Answer:** State is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Single Responsibility Principle. Organize the code related to particular states into separate classes., Open/Closed Principle. Introduce new states without changing existing state classes or the context., Simplify the code of the context by eliminating bulky state machine conditionals.
+- **Pros:** Single Responsibility Principle. Organize the code related to particular states into separate classes. Open/Closed Principle. Introduce new states without changing existing state classes or the context. Simplify the code of the context by eliminating bulky state machine conditionals.
 - **Cons:** Applying the pattern can be overkill if a state machine has only a few states or rarely changes.
 
 **Example:**
@@ -2949,12 +2949,12 @@ $player->clickLock();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Strategy is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+**Answer:** Strategy is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can swap algorithms used inside an object at runtime., You can isolate the implementation details of an algorithm from the code that uses it., You can replace inheritance with composition., Open/Closed Principle. You can introduce new strategies without having to change the context.
-- **Cons:** If you only have a couple of algorithms and they rarely change, there’s no real reason to overcomplicate the program with new classes and interfaces that come along with the pattern., Clients must be aware of the differences between strategies to be able to select a proper one., A lot of modern programming languages have functional type support that lets you implement different versions of an algorithm inside a set of anonymous functions. Then you could use these functions exactly as you’d have used the strategy objects, but without bloating your code with extra classes and interfaces.
+- **Pros:** You can swap algorithms used inside an object at runtime. You can isolate the implementation details of an algorithm from the code that uses it. You can replace inheritance with composition. Open/Closed Principle. You can introduce new strategies without having to change the context.
+- **Cons:** If you only have a couple of algorithms and they rarely change, there’s no real reason to overcomplicate the program with new classes and interfaces that come along with the pattern. Clients must be aware of the differences between strategies to be able to select a proper one. A lot of modern programming languages have functional type support that lets you implement different versions of an algorithm inside a set of anonymous functions. Then you could use these functions exactly as you’d have used the strategy objects, but without bloating your code with extra classes and interfaces.
 
 **Example:**
 
@@ -3059,12 +3059,12 @@ $app->main(10, 5, 'multiplication');
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Template Method is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
+**Answer:** Template Method is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** You can let clients override only certain parts of a large algorithm, making them less affected by changes that happen to other parts of the algorithm., You can pull the duplicate code into a superclass.
-- **Cons:** Some clients may be limited by the provided skeleton of an algorithm., You might violate the Liskov Substitution Principle by suppressing a default step implementation via a subclass., Template methods tend to be harder to maintain the more steps they have.
+- **Pros:** You can let clients override only certain parts of a large algorithm, making them less affected by changes that happen to other parts of the algorithm. You can pull the duplicate code into a superclass.
+- **Cons:** Some clients may be limited by the provided skeleton of an algorithm. You might violate the Liskov Substitution Principle by suppressing a default step implementation via a subclass. Template methods tend to be harder to maintain the more steps they have.
 
 **Example:**
 
@@ -3191,12 +3191,12 @@ $orcs->turn();
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.
+**Answer:** Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.
 
 **Common Usages / Pros & Cons:**
 
-- **Pros:** Open/Closed Principle. You can introduce a new behavior that can work with objects of different classes without changing these classes., Single Responsibility Principle. You can move multiple versions of the same behavior into the same class., A visitor object can accumulate some useful information while working with various objects. This might be handy when you want to traverse some complex object structure, such as an object tree, and apply the visitor to each object of this structure.
-- **Cons:** You need to update all visitors each time a class gets added to or removed from the element hierarchy., Visitors might lack the necessary access to the private fields and methods of the elements that they’re supposed to work with.
+- **Pros:** Open/Closed Principle. You can introduce a new behavior that can work with objects of different classes without changing these classes. Single Responsibility Principle. You can move multiple versions of the same behavior into the same class. A visitor object can accumulate some useful information while working with various objects. This might be handy when you want to traverse some complex object structure, such as an object tree, and apply the visitor to each object of this structure.
+- **Cons:** You need to update all visitors each time a class gets added to or removed from the element hierarchy. Visitors might lack the necessary access to the private fields and methods of the elements that they’re supposed to work with.
 
 **Example:**
 
