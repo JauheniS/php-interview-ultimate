@@ -69,39 +69,29 @@ Yes, PHP is a case-sensitive language, meaning that it distinguishes between upp
 In PHP, variables can be categorized into different types based on their data types or what they store. The main types of PHP variables are:
 
 1. **Scalar Variables**:
-
-
-    - *Integer*: Stores whole numbers, e.g., `$num = 42`.
-    - *Float (or Double)*: Stores floating-point numbers (numbers with decimal points), e.g., `$pi = 3.14`.
-    - *String*: Stores text or characters, e.g., `$name = "John"`.
-    - *Boolean*: Stores either `true` or `false`, e.g., `$is_active = true`.
+   - _Integer_: Stores whole numbers, e.g., `$num = 42`.
+   - _Float (or Double)_: Stores floating-point numbers (numbers with decimal points), e.g., `$pi = 3.14`.
+   - _String_: Stores text or characters, e.g., `$name = "John"`.
+   - _Boolean_: Stores either `true` or `false`, e.g., `$is_active = true`.
 
 2. **Compound Variables**:
-
-
-    - *Array*: Stores multiple values in an ordered list, e.g., `$fruits = array("apple", "banana", "cherry")`.
-    - *Object*: Stores instances of user-defined classes, e.g., `$car = new Car()`.
+   - _Array_: Stores multiple values in an ordered list, e.g., `$fruits = array("apple", "banana", "cherry")`.
+   - _Object_: Stores instances of user-defined classes, e.g., `$car = new Car()`.
 
 3. **Special Variables**:
-
-
-    - *Resource*: A special type used to hold references to external resources like database connections, file handles, etc.
-    - *NULL*: Represents a variable with no value or an undefined value, e.g., `$empty_var = null`.
+   - _Resource_: A special type used to hold references to external resources like database connections, file handles, etc.
+   - _NULL_: Represents a variable with no value or an undefined value, e.g., `$empty_var = null`.
 
 4. **Superglobals**:
-
-
-    - Variables that are predefined in PHP and are accessible from any part of the script. These include `$_GET`, `$_POST`, `$_REQUEST`, `$_SESSION`, `$_COOKIE`, `$_SERVER`, `$_ENV`, and more. They are used to handle HTTP requests, manage sessions, and access server-related information.
+   - Variables that are predefined in PHP and are accessible from any part of the script. These include `$_GET`, `$_POST`, `$_REQUEST`, `$_SESSION`, `$_COOKIE`, `$_SERVER`, `$_ENV`, and more. They are used to handle HTTP requests, manage sessions, and access server-related information.
 
 5. **Variables with Special Prefixes**:
-
-
-    - These variables have special meanings:
-      - `$GLOBALS`: A superglobal that allows access to variables in the global scope.
-      - `$_SESSION`: A superglobal used for session variables.
-      - `$_POST` and `$_GET`: Superglobals for handling form data sent via HTTP POST and GET methods.
-      - `$_COOKIE`: A superglobal for handling cookies.
-      - `$_SERVER`: A superglobal containing server-related information.
+   - These variables have special meanings:
+     - `$GLOBALS`: A superglobal that allows access to variables in the global scope.
+     - `$_SESSION`: A superglobal used for session variables.
+     - `$_POST` and `$_GET`: Superglobals for handling form data sent via HTTP POST and GET methods.
+     - `$_COOKIE`: A superglobal for handling cookies.
+     - `$_SERVER`: A superglobal containing server-related information.
 
 These are the main types of PHP variables. Each type serves a specific purpose and is used in different situations within PHP scripts.
 
