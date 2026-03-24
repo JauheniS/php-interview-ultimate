@@ -22,7 +22,7 @@ This file contains a curated list of PHP interview questions and answers, merged
 17. [Tricky Questions](#17-tricky-questions)
 18. [Laravel Plugins](#18-laravel-plugins)
 19. [Long-Running (RoadRunner)](#19-long-running-roadrunner)
-20. [PSR Standards](#20-psr-standards)
+20. [PSR & PER Standards](#20-psr--per-standards)
 ---
 
 ## 1. PHP Basics & Language Features
@@ -1235,7 +1235,7 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 
 ---
 
-## 20. PSR Standards
+## 20. PSR & PER Standards
 
 ### Junior
 #### What PSR documentation is covering Basic Coding Standards?
@@ -1251,7 +1251,7 @@ PSR-1 aims to ensure a high degree of technical interoperability between shared 
 
 #### What PSR documentation is covering Extended Coding Standards?
 **Answer: PSR-12**
-PSR-12 is an extension of PSR-2 (which it superseded) and provides a more comprehensive set of coding style rules.
+PSR-12 is an extension of PSR-2 (which it superseded) and provides a more comprehensive set of coding style rules. **Note:** It has been superseded by the living [PER Coding Style](#20-psr--per-standards) standard.
 - Indentation must be 4 spaces, no tabs.
 - Line length soft limit is 80 characters, hard limit 120.
 - Braces for classes and methods must go on a new line.
@@ -1301,10 +1301,18 @@ PSR-14 defines a common interface for dispatching events and listening for them.
 PSR-17 defines interfaces for factories that create PSR-7 compatible HTTP objects.
 - Since PSR-7 objects are immutable, factories provide a standard way to create new instances (Requests, Responses, Streams, etc.) without depending on a specific implementation.
 
+#### [IMPORTANT] What is PER Coding Style and why is it important?
+**Answer: PER Coding Style**
+The **PHP Evolved Recommendation (PER)** for Coding Style is the modern successor to PSR-12. Unlike PSRs, which are static once accepted, PERs are "living documents" that can be updated to reflect new PHP features and evolving best practices.
+- **Successor to PSR-12:** It expands and replaces PSR-12 while still requiring adherence to PSR-1 (Basic Coding Standards).
+- **Living Standard:** It is updated to include rules for new PHP syntax such as constructor property promotion, enums, readonly properties, and more.
+- **Goal:** To provide a comprehensive, evolving set of coding style rules that keep pace with the language's development, ensuring consistent code across the PHP ecosystem.
+
 #### Summary of other PSR Standards
 **What PSR documentation covers [Standard]?**
 - **PSR-0: Autoloading Standard** - Deprecated in favor of PSR-4.
 - **PSR-2: Coding Style Guide** - Deprecated in favor of PSR-12.
+- **PSR-12: Extended Coding Style** - Superseded by [PER Coding Style](https://www.php-fig.org/per/coding-style/).
 - **PSR-5: PHPDoc Standard (Draft)** - Standard for docblocks.
 - **PSR-6: Caching Interface** - Common interface for caching libraries.
 - **PSR-13: Hypermedia Links** - Interface for hypermedia links.
