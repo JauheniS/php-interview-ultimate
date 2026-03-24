@@ -34,6 +34,7 @@ This section contains detailed guides and explanations for various PHP-related t
 * [PHP Garbage Collection](garbage_collector.md)
 * [PHP Generators and `yield`](generators.md)
 * [PHP Reflection and SPL](php_advanced_extras.md)
+* [OpCache and JIT Compilation](opcache_jit.md)
 * [RoadRunner: High-Performance PHP](roadrunner.md)
 * [Software Design & Architecture Concepts](architecture_advanced.md)
 * [SOLID Principles in PHP](solid_principles.md)

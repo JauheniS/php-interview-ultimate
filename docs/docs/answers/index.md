@@ -34,6 +34,7 @@ This section contains detailed guides and explanations for various PHP-related t
 - [PHP Garbage Collection](/answers/garbage_collector)
 - [PHP Generators and `yield`](/answers/generators)
 - [PHP Reflection and SPL](/answers/php_advanced_extras)
+- [OpCache and JIT Compilation](/answers/opcache_jit)
 - [RoadRunner: High-Performance PHP](/answers/roadrunner)
 - [Software Design & Architecture Concepts](/answers/architecture_advanced)
 - [SOLID Principles in PHP](/answers/solid_principles)
