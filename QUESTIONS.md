@@ -152,6 +152,16 @@ PHP uses a reference counting mechanism and a cyclic garbage collector to automa
 **Answer:** Memory leaks and global state contamination are the biggest risks, as variables and objects persist between requests.
 [Running PHP as a Daemon](answers/php_advanced_extras/#php-as-a-daemon-swoole-roadrunner)
 
+#### How does the Opcache work?
+**Answer:** OpCache improves performance by storing precompiled bytecode in shared memory, avoiding the need for PHP to load, parse, and compile scripts on every request.
+
+#### How does the opcache work since 8.0 and new JIT?
+**Answer:** OpCache with JIT (since 8.0) identifies "hot" code and compiles it into native machine code, allowing the CPU to execute it directly, bypassing the Zend VM interpreter loop.
+
+#### What do you know about JIT?
+**Answer:** JIT (Just-In-Time) is highly effective for CPU-intensive tasks but typically offers minimal benefits for standard I/O-bound web applications. It allows PHP to be used for more than just web development (e.g., machine learning, image processing).
+[Detailed OpCache and JIT Guide](answers/opcache_jit.md)
+
 #### Why does `var_dump(0.1 + 0.2 == 0.3)` return `bool(false)`?
 **Answer:**
 This occurs because floating-point numbers in PHP (and most other languages) follow the **IEEE 754** standard, which represents them in binary. Many decimal fractions, such as `0.1` and `0.2`, cannot be represented exactly as finite binary fractions.

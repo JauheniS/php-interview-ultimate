@@ -320,6 +320,38 @@ _Note: In PHP 7+, the `zval` structure was significantly optimized to reduce mem
 
 ---
 
+### How does the Opcache work?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+OpCache improves performance by storing precompiled bytecode in shared memory, avoiding the need for PHP to load, parse, and compile scripts on every request.
+
+---
+
+### How does the opcache work since 8.0 and new JIT?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+OpCache with JIT (since 8.0) takes it a step further by identifying "hot" code and compiling it into **native machine code**, which allows the CPU to execute it directly, bypassing the Zend VM's interpretation loop.
+
+![PHP JIT Chart](https://i.php.watch/static/p/34/php-jit-chart.svg#chart)
+
+---
+
+### What do you know about JIT?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+- **JIT (Just-In-Time)** is highly effective for CPU-intensive computational tasks (like math or image processing) but typically offers minimal benefits for standard web applications that are limited by I/O (database, filesystem).
+- It opens doors for PHP to be used in areas beyond web development, such as machine learning or long-running heavy-computation daemons.
+
+[Detailed OpCache and JIT Guide](../answers/opcache_jit.md)
+
+---
+
 ### Why does `var_dump(0.1 + 0.2 == 0.3)` return `bool(false)`?
 
 <span className="badge badge--warning margin-bottom--md">Senior</span>
