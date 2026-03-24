@@ -242,4 +242,97 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
+### You have this SQL query. Is something wrong about it and how would you improve it?
+
+`SELECT * FROM table ORDER BY id LIMIT :limit OFFSET :offset`
+
+- The `id` is Primary Key, AutoIncrement, and indexed.
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+
+Using `OFFSET` for pagination is inefficient for large datasets because MySQL must scan and discard all rows before the offset. For example, `OFFSET 1000000` requires reading 1 million rows before returning the requested ones, leading to high I/O and CPU usage.
+
+**Optimization (Cursor-based Pagination):**
+
+- **Initial Request:** `SELECT * FROM table ORDER BY id LIMIT :limit`
+- **Subsequent Requests:** Get the **last ID** from the current page (e.g., `:last_id`) and use it to skip previous rows:
+  `SELECT * FROM table WHERE id > :last_id ORDER BY id LIMIT :limit`
+
+This ensures the query remains fast regardless of the page number, as it uses the primary key index to jump directly to the starting point.
+
+---
+
+### You have these SQL queries, what indexes would you use?
+
+1. `SELECT * FROM transactions WHERE account_id = :account_id AND transaction_type = :transaction_type AND created_at BETWEEN :start AND :end`
+2. `SELECT * FROM transactions WHERE account_id = :account_id AND transaction_type = :transaction_type ORDER BY created_at`
+
+- `account_id`: bigint, ~100.000 variants
+- `transaction_type`: int, 15 variants
+- `created_at`: DATETIME, DEFAULT NOW()
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+
+Use a composite index: `idx (account_id, transaction_type)`.
+
+**Reasoning:**
+
+- It is better to filter first by `account_id` to minimize the scope significantly (high selectivity).
+- Then, filter by `transaction_type`.
+- In the second query, `created_at` is used for ordering. While adding it to the index could avoid a `filesort`, it might not always be beneficial to include it if it's not used to narrow down the data much in most queries, or if the filtered result set is small enough that a post-select order is efficient.
+
+---
+
+### You have this code, is there anything wrong about it?
+
+```php
+public function addBalance(float $sum, User $user) {
+    $balance = $this->repo->getUserBalance($user->getId());
+    $balance += $sum;
+    $this->repo->updateUserBalance($balance, $user->getId());
+}
+// In getUserBalance: SELECT balance FROM Users WHERE id = :id
+// In updateUserBalance: UPDATE Users SET balance = :balance WHERE id = :id
+```
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+
+This code is vulnerable to **race conditions** (Lost Updates). If two concurrent processes read the same balance before either updates it, one update will overwrite the other.
+
+**In-depth explanation:**
+
+- At the weakest isolation level (**Read Uncommitted**), a **Dirty Read** might occur (reading uncommitted data).
+- Even with default isolation levels, concurrent "read-modify-write" cycles lead to data loss.
+- **Solution:** Use **`SELECT ... FOR UPDATE`** in MySQL. This locks the specific row, forcing other transactions to wait until the lock is released (after the `UPDATE` is committed).
+
+**Correct Implementation:**
+
+```php
+$this->db->transaction(function() use ($sum, $user) {
+    // SELECT balance FROM Users WHERE id = :id FOR UPDATE
+    $balance = $this->repo->getUserBalanceForUpdate($user->getId());
+    $balance += $sum;
+    $this->repo->updateUserBalance($balance, $user->getId());
+});
+```
+
+---
+
+### Can you provide concrete SQL examples of how different isolation levels and locks behave in a concurrent environment?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+
+Understanding the exact behavior of isolation levels and locks is crucial for debugging race conditions. Detailed step-by-step scenarios (including T1/T2 timelines) for Dirty Reads, Non-Repeatable Reads, and Phantoms, as well as concrete examples of Exclusive (`FOR UPDATE`) vs. Shared (`LOCK IN SHARE MODE`) locks and Deadlocks, are provided in the guide.
+[Detailed MySQL Isolation and Locking Scenarios](/answers/mysql_advanced#52-detailed-isolation-level-scenarios)
+
+---
+
 ---
