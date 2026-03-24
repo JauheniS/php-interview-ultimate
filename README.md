@@ -19,6 +19,7 @@ Check out the new **[Modular Interview Questions Documentation](docs/)**!
 ## Table of Contents
 - [About](#about)
 - [Source Repositories](#source-repositories)
+- [Source Projects and Learning Web Sites](#source-projects-and-learning-web-sites)
 - [Project Structure](#project-structure)
 - [Key Topics Covered](#key-topics-covered)
 
@@ -33,10 +34,11 @@ The content in this repository is sourced from the following GitHub projects:
 - [Devinterview-io/php-interview-questions](https://github.com/Devinterview-io/php-interview-questions)
 - [zsoro2/php-interview-questions](https://github.com/zsoro2/php-interview-questions)
 
-## Source Projects and learning Web sites
+## Source Projects and Learning Web Sites
 The content that was used to learn Design Patterns, Refactoring principles:
 - [Refactoring Guru](https://refactoring.guru/)
 - [Backend Roadmap](https://roadmap.sh/backend)
+- Partially written and organized using [Gemini](https://gemini.google.com/), [Cursor](https://www.cursor.com/), and [JetBrains AI](https://www.jetbrains.com/ai/).
 
 ## Project Structure
 The repository is organized into subdirectories under `src/`, each representing a source repository:
