@@ -152,6 +152,17 @@ PHP uses a reference counting mechanism and a cyclic garbage collector to automa
 **Answer:** Memory leaks and global state contamination are the biggest risks, as variables and objects persist between requests.
 [Running PHP as a Daemon](answers/php_advanced_extras/#php-as-a-daemon-swoole-roadrunner)
 
+#### Why does `var_dump(0.1 + 0.2 == 0.3)` return `bool(false)`?
+**Answer:**
+This occurs because floating-point numbers in PHP (and most other languages) follow the **IEEE 754** standard, which represents them in binary. Many decimal fractions, such as `0.1` and `0.2`, cannot be represented exactly as finite binary fractions.
+- When you add `0.1 + 0.2`, the internal result is slightly different from exactly `0.3` (it's approximately `0.30000000000000004`).
+- **Comparison:** Never use `==` to compare floats. Instead, use a small epsilon: `abs(($a + $b) - $c) < 0.00001`.
+
+**Database and Financial precision:**
+- In databases, you must store these values as **`DECIMAL`** (or `NUMERIC`) instead of `float` or `double`.
+- **Reason:** `DECIMAL` stores numbers as fixed-point values (or strings internally), ensuring that calculations remain exact, which is critical for monetary values. Floating-point types are for approximate scientific values where speed is more important than absolute precision.
+[Detailed Data Types Guide](answers/data_types.md)
+
 ---
 
 ## 2. Object-Oriented Programming (OOP)
@@ -737,6 +748,68 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 #### We have a filter with 3 columns from one table: `sku` (unique), `creation_date`, and an `integer_field` (values 1, 2, or 3). How would you index this for maximum performance?
 **Answer:** Create a **composite index** including all three fields. For maximum performance, the order should be: **sku** (highest selectivity), then **integer_field** (exact matches), and finally **creation_date** (range filters). This order ensures that the most selective filter narrows down the results immediately, while the range filter comes last to allow the preceding parts of the index to be fully utilized.
 [Composite Index Strategy](answers/mysql_advanced.md#11-composite-index-strategy)
+
+#### You have this SQL query. Is something wrong about it and how would you improve it?
+`SELECT * FROM table ORDER BY id LIMIT :limit OFFSET :offset`
+- The `id` is Primary Key, AutoIncrement, and indexed.
+
+**Answer:**
+Using `OFFSET` for pagination is inefficient for large datasets because MySQL must scan and discard all rows before the offset. For example, `OFFSET 1000000` requires reading 1 million rows before returning the requested ones, leading to high I/O and CPU usage.
+
+**Optimization (Cursor-based Pagination):**
+- **Initial Request:** `SELECT * FROM table ORDER BY id LIMIT :limit`
+- **Subsequent Requests:** Get the **last ID** from the current page (e.g., `:last_id`) and use it to skip previous rows:
+  `SELECT * FROM table WHERE id > :last_id ORDER BY id LIMIT :limit`
+This ensures the query remains fast regardless of the page number, as it uses the primary key index to jump directly to the starting point.
+
+#### You have these SQL queries, what indexes would you use?
+1. `SELECT * FROM transactions WHERE account_id = :account_id AND transaction_type = :transaction_type AND created_at BETWEEN :start AND :end`
+2. `SELECT * FROM transactions WHERE account_id = :account_id AND transaction_type = :transaction_type ORDER BY created_at`
+- `account_id`: bigint, ~100.000 variants
+- `transaction_type`: int, 15 variants
+- `created_at`: DATETIME, DEFAULT NOW()
+
+**Answer:**
+Use a composite index: `idx (account_id, transaction_type)`.
+
+**Reasoning:**
+- It is better to filter first by `account_id` to minimize the scope significantly (high selectivity).
+- Then, filter by `transaction_type`.
+- In the second query, `created_at` is used for ordering. While adding it to the index could avoid a `filesort`, it might not always be beneficial to include it if it's not used to narrow down the data much in most queries, or if the filtered result set is small enough that a post-select order is efficient.
+
+#### You have this code, is there anything wrong about it?
+```php
+public function addBalance(float $sum, User $user) {
+    $balance = $this->repo->getUserBalance($user->getId());
+    $balance += $sum;
+    $this->repo->updateUserBalance($balance, $user->getId());
+}
+// In getUserBalance: SELECT balance FROM Users WHERE id = :id
+// In updateUserBalance: UPDATE Users SET balance = :balance WHERE id = :id
+```
+
+**Answer:**
+This code is vulnerable to **race conditions** (Lost Updates). If two concurrent processes read the same balance before either updates it, one update will overwrite the other.
+
+**In-depth explanation:**
+- At the weakest isolation level (**Read Uncommitted**), a **Dirty Read** might occur (reading uncommitted data).
+- Even with default isolation levels, concurrent "read-modify-write" cycles lead to data loss.
+- **Solution:** Use **`SELECT ... FOR UPDATE`** in MySQL. This locks the specific row, forcing other transactions to wait until the lock is released (after the `UPDATE` is committed).
+
+**Correct Implementation:**
+```php
+$this->db->transaction(function() use ($sum, $user) {
+    // SELECT balance FROM Users WHERE id = :id FOR UPDATE
+    $balance = $this->repo->getUserBalanceForUpdate($user->getId());
+    $balance += $sum;
+    $this->repo->updateUserBalance($balance, $user->getId());
+});
+```
+
+#### Can you provide concrete SQL examples of how different isolation levels and locks behave in a concurrent environment?
+**Answer:**
+Understanding the exact behavior of isolation levels and locks is crucial for debugging race conditions. Detailed step-by-step scenarios (including T1/T2 timelines) for Dirty Reads, Non-Repeatable Reads, and Phantoms, as well as concrete examples of Exclusive (`FOR UPDATE`) vs. Shared (`LOCK IN SHARE MODE`) locks and Deadlocks, are provided in the guide.
+[Detailed MySQL Isolation and Locking Scenarios](answers/mysql_advanced.md#52-detailed-isolation-level-scenarios)
 
 ---
 
