@@ -6,24 +6,25 @@ This file contains a curated list of PHP interview questions and answers, merged
 1. [PHP Basics & Language Features](#1-php-basics--language-features)
 2. [Object-Oriented Programming (OOP)](#2-object-oriented-programming-oop)
 3. [Software Architecture & Principles](#3-software-architecture--principles)
-4. [Design Patterns](#4-design-patterns)
-5. [PHP 7/8+ New Features](#5-php-78-new-features)
-6. [MySQL & Databases](#6-mysql--databases)
-7. [Laravel & Symfony](#7-laravel--symfony)
-8. [Tools & Composer](#8-tools--composer)
-9. [Caching & Redis](#9-caching--redis)
-10. [Infrastructure, Docker & DevOps](#10-infrastructure-docker--devops)
-11. [Testing & Quality](#11-testing--quality)
-12. [Security](#12-security)
-13. [Web & API](#13-web--api)
-14. [Highload & Scalability](#14-highload--scalability)
-15. [Clean Code & Best Practices](#15-clean-code--best-practices)
-16. [Elasticsearch](#16-elasticsearch)
-17. [Tricky Questions](#17-tricky-questions)
-18. [Laravel Plugins](#18-laravel-plugins)
-19. [Long-Running (RoadRunner)](#19-long-running-roadrunner)
-20. [PSR & PER Standards](#20-psr--per-standards)
-21. [Basic Algorithms](#21-basic-algorithms)
+4. [System Design Principles (Middle+)](#4-system-design-principles-middle)
+5. [Design Patterns](#5-design-patterns)
+6. [PHP 7/8+ New Features](#6-php-78-new-features)
+7. [MySQL & Databases](#7-mysql--databases)
+8. [Laravel & Symfony](#8-laravel--symfony)
+9. [Tools & Composer](#9-tools--composer)
+10. [Caching & Redis](#10-caching--redis)
+11. [Infrastructure, Docker & DevOps](#11-infrastructure-docker--devops)
+12. [Testing & Quality](#12-testing--quality)
+13. [Security](#13-security)
+14. [Web & API](#14-web--api)
+15. [Highload & Scalability](#15-highload--scalability)
+16. [Clean Code & Best Practices](#16-clean-code--best-practices)
+17. [Elasticsearch](#17-elasticsearch)
+18. [Tricky Questions](#18-tricky-questions)
+19. [Laravel Plugins](#19-laravel-plugins)
+20. [Long-Running (RoadRunner)](#20-long-running-roadrunner)
+21. [PSR & PER Standards](#21-psr--per-standards)
+22. [Basic Algorithms](#22-basic-algorithms)
 ---
 
 ## 1. PHP Basics & Language Features
@@ -281,8 +282,99 @@ This occurs because floating-point numbers in PHP (and most other languages) fol
 
 ---
 
-## 4. Design Patterns
-Design patterns are strictly related to [Clean Code & Best Practices](#15-clean-code--best-practices).
+## 4. System Design Principles (Middle+)
+
+### Middle
+
+#### What is System Design and why is it important?
+**Answer:** System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements. It is crucial because a well-designed system can scale efficiently, handle failures gracefully, and be maintained cost-effectively. Poor design can lead to massive financial losses and system-wide outages.
+
+#### What is the difference between Functional and Non-Functional requirements?
+**Answer:** 
+- **Functional Requirements:** Define *what* the system should do. These are specific features like "a user can book a scooter" or "a user can see their ride history."
+- **Non-Functional Requirements:** Define *how* the system should perform. These include qualities like scalability (handling 100k requests), availability (99.9% uptime), reliability, and security.
+
+#### Explain Vertical vs. Horizontal Scaling.
+**Answer:** 
+- **Vertical Scaling (Scaling Up):** Increasing the capacity of a single server (e.g., adding more CPU, RAM, or faster SSDs). It is simple but limited by the physical capacity of a single machine and becomes very expensive at the high end.
+- **Horizontal Scaling (Scaling Out):** Adding more servers to the pool and distributing the load across them using a Load Balancer. It allows for virtually unlimited growth and provides better fault tolerance, as the system can continue to work if one node fails.
+
+#### What are the main strategies for scaling a database?
+**Answer:** 
+- **Replication:** Creating copies of the database (Master/Slave). Usually, the Master handles writes, while Slaves handle read queries to distribute the load.
+- **Sharding:** Distributing data across multiple independent database servers (shards) based on a specific key (e.g., User ID, Geolocation). Each shard holds a subset of the total data.
+- **Partitioning:** Splitting a large table into smaller, more manageable logical pieces within a single database instance to improve query performance.
+
+#### What is a Sharding Key and how do you choose a good one?
+**Answer:** A sharding key is the attribute used to determine which shard a specific piece of data belongs to. A good sharding key ensures:
+- **Even Distribution:** Data is spread uniformly across shards, avoiding "hot spots."
+- **Query Efficiency:** It minimizes the need for "cross-shard" queries by keeping related data together.
+Common keys include User ID, Tenant ID, or a Hash of a unique attribute.
+
+#### What are the best practices for designing a REST API?
+**Answer:** Use plural nouns for resources (e.g., /users), standard HTTP methods (GET, POST, PUT, DELETE), versioning (e.g., /v1/...), and proper HTTP status codes to indicate the outcome of the request.
+
+#### What is the relationship between Latency, Throughput, and Concurrency?
+**Answer:** They are related by **Little's Law**: `Concurrency = Throughput × Latency`.
+- **Latency:** The time it takes to process a single request.
+- **Throughput:** The number of requests the system can handle per unit of time.
+- **Concurrency:** The number of requests being processed simultaneously.
+If you increase the number of parallel requests (concurrency) without increasing the system's throughput, the latency will automatically increase, leading to a bottleneck.
+
+#### What is a Load Balancer and what are the common balancing algorithms?
+**Answer:** A Load Balancer (e.g., Nginx, HAProxy, AWS ELB) is a component that distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed.
+Common algorithms include:
+- **Round Robin:** Requests are distributed sequentially.
+- **Least Connections:** Sends traffic to the server with the fewest active connections.
+- **IP Hash:** The client's IP address determines which server receives the request (useful for session persistence).
+- **Latency-Aware:** The balancer tracks historical response times and avoids "slow" nodes.
+
+#### What are Circuit Breaker and Back Pressure patterns?
+**Answer:** 
+- **Circuit Breaker:** Monitors calls to a failing service. If the error rate exceeds a threshold, the "circuit opens," and the system stops calling the service, returning a fast fallback error instead of waiting for timeouts. This prevents cascading failures.
+- **Back Pressure:** A mechanism where a system "pushes back" against a high rate of incoming requests that it cannot process. Instead of letting queues grow indefinitely (which increases latency), it rejects new requests (e.g., HTTP 429) or asks the client to slow down.
+
+#### What is Idempotency in API design and why is it important?
+**Answer:** An idempotent operation is one that has the same effect regardless of how many times it is executed. For example, `PUT` and `DELETE` should be idempotent, while `POST` is typically not.
+In distributed systems, idempotency is critical for handling network failures. If a client doesn't receive a confirmation due to a timeout, it might retry the request. If the API is idempotent, the retry won't cause unintended side effects (like charging a customer twice).
+
+### Senior
+
+#### How can you reduce Tail Latency in a distributed system?
+**Answer:** Tail latency (P99+) can be reduced using several techniques:
+- **Hedged Requests (Tied Requests):** Sending the same request to multiple replicas and using the result from the first one that responds.
+- **Request Coalescing:** Combining identical concurrent requests into a single backend call.
+- **Background Jittering:** Adding random delays to scheduled tasks to prevent "thundering herd" problems.
+- **Deadline Propagation:** Passing the maximum allowed time for a request to all sub-services so they can abort early if the deadline is already passed.
+- **Latency-Aware Balancing:** Avoiding nodes that are currently performing poorly.
+
+#### Compare different Sharding routing strategies: Application-level, Proxy, and Coordinator.
+**Answer:** 
+- **Application-Level Routing:** The application code contains the logic to determine which shard to use. It's fast (no extra network hop) but hard to maintain as the sharding logic is duplicated across services.
+- **Proxy-Based Routing:** A separate layer (e.g., Vitess, ProxySQL) sits between the app and the database. It handles routing, making sharding transparent to the app. It adds a small network hop but centralizes management.
+- **Coordinator-Based:** A separate service (like Zookeeper or a custom metadata service) keeps track of shard locations. Clients query the coordinator to find the correct shard. It's robust but complex to implement.
+
+#### Compare 2PC, 3PC, TCC, and the Saga Pattern.
+**Answer:** 
+- **2PC (Two-Phase Commit):** A synchronous protocol for distributed transactions. It ensures strict consistency but is blocking and can be a performance bottleneck.
+- **3PC (Three-Phase Commit):** An extension of 2PC that adds a "Pre-commit" phase to reduce blocking in case of coordinator failure. It is rarely used in production.
+- **TCC (Try-Confirm-Cancel):** An application-level pattern. You reserve resources (Try), and then either finalize (Confirm) or release (Cancel). It is flexible but complex to implement.
+- **Saga Pattern:** A sequence of local transactions where each step has a corresponding "compensating transaction" to undo changes if a failure occurs. It is highly scalable and common in microservices but offers only eventual consistency.
+
+#### Explain the difference between Eventual and Strong Consistency.
+**Answer:** 
+- **Eventual Consistency:** Replicas will eventually converge to the same value, but there might be a delay where different users see different data. It provides high availability and low latency. Suitable for comments, likes, or product catalogs.
+- **Strong Consistency:** Guarantees that once a write is successful, any subsequent read will return the new value. It is essential for financial transactions, inventory management, or booking systems.
+- **Linearizability:** A stronger form of consistency where operations appear to happen instantaneously and in the order they were issued.
+
+#### What is Tail Latency and why does it matter in distributed systems?
+**Answer:** Tail latency refers to the high latency experienced by a small percentage of requests (e.g., the 99.9th percentile). In a large-scale system where one user request might trigger hundreds of sub-requests to various microservices, a high tail latency in even one service can slow down the entire response for the user, making it a critical metric for system reliability.
+[System Design Principles Deep Dive](answers/system_design_principles.md)
+
+---
+
+## 5. Design Patterns
+Design patterns are strictly related to [Clean Code & Best Practices](#16-clean-code--best-practices).
 
 ### Junior
 #### What are the main categories of Design Patterns?
@@ -459,7 +551,7 @@ Design patterns are strictly related to [Clean Code & Best Practices](#15-clean-
 
 ---
 
-## 5. PHP 7/8+ New Features
+## 6. PHP 7/8+ New Features
 
 ### Junior
 #### What are Union Types (introduced in PHP 8.0)?
@@ -636,7 +728,7 @@ $result = "  hello  " |> 'trim' |> 'strtoupper';
 
 ---
 
-## 6. MySQL & Databases
+## 7. MySQL & Databases
 
 ### Junior
 #### How to connect to a MySQL database using PHP?
@@ -823,7 +915,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 7. Laravel & Symfony
+## 8. Laravel & Symfony
 
 ### Junior
 #### What is the MVC architecture and how does Laravel implement it?
@@ -894,7 +986,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 8. Tools & Composer
+## 9. Tools & Composer
 
 ### Junior
 #### What is Composer?
@@ -911,7 +1003,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 9. Caching & Redis
+## 10. Caching & Redis
 
 ### Junior
 #### What is Caching?
@@ -926,7 +1018,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 10. Infrastructure, Docker & DevOps
+## 11. Infrastructure, Docker & DevOps
 
 ### Junior
 #### What is Docker?
@@ -959,7 +1051,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 11. Testing & Quality
+## 12. Testing & Quality
 
 ### Junior
 #### Why is it important to write tests?
@@ -1007,7 +1099,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 12. Security
+## 13. Security
 
 ### Junior
 #### What is the difference between Hashing and Encryption?
@@ -1037,7 +1129,7 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 ---
 
-## 13. Web & API
+## 14. Web & API
 
 ### Junior
 #### What is REST API?
@@ -1088,7 +1180,7 @@ However, it would **not** be fully in compliance with the **Uniform Interface** 
 
 ---
 
-## 14. Highload & Scalability
+## 15. Highload & Scalability
 
 ### Middle
 #### What is Load Balancing?
@@ -1110,7 +1202,7 @@ However, it would **not** be fully in compliance with the **Uniform Interface** 
 
 ---
 
-## 15. Clean Code & Best Practices
+## 16. Clean Code & Best Practices
 
 ### Junior
 #### What are DRY and KISS?
@@ -1140,7 +1232,7 @@ However, it would **not** be fully in compliance with the **Uniform Interface** 
 
 ---
 
-## 16. Elasticsearch
+## 17. Elasticsearch
 
 ### Middle
 #### What is Elasticsearch and its main features?
@@ -1155,7 +1247,7 @@ However, it would **not** be fully in compliance with the **Uniform Interface** 
 
 ---
 
-## 17. Tricky Questions
+## 18. Tricky Questions
 
 ### Junior
 #### What is the difference between `==` and `===`?
@@ -1192,7 +1284,7 @@ echo $a;
 
 ---
 
-## 18. Laravel Plugins
+## 19. Laravel Plugins
 
 ### Junior
 #### What are some of the most popular official Laravel plugins?
@@ -1251,7 +1343,7 @@ Below is a list of prominent Laravel packages and plugins, their short descripti
 
 ---
 
-## 19. Long-Running (RoadRunner)
+## 20. Long-Running (RoadRunner)
 
 ### Middle
 #### What is RoadRunner and how does it work?
@@ -1319,7 +1411,7 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 
 ---
 
-## 20. PSR & PER Standards
+## 21. PSR & PER Standards
 
 ### Junior
 #### What PSR documentation is covering Basic Coding Standards?
@@ -1335,7 +1427,7 @@ PSR-1 aims to ensure a high degree of technical interoperability between shared 
 
 #### What PSR documentation is covering Extended Coding Standards?
 **Answer: PSR-12**
-PSR-12 is an extension of PSR-2 (which it superseded) and provides a more comprehensive set of coding style rules. **Note:** It has been superseded by the living [PER Coding Style](#20-psr--per-standards) standard.
+PSR-12 is an extension of PSR-2 (which it superseded) and provides a more comprehensive set of coding style rules. **Note:** It has been superseded by the living [PER Coding Style](#21-psr--per-standards) standard.
 - Indentation must be 4 spaces, no tabs.
 - Line length soft limit is 80 characters, hard limit 120.
 - Braces for classes and methods must go on a new line.
@@ -1409,7 +1501,7 @@ The **PHP Evolved Recommendation (PER)** for Coding Style is the modern successo
 
 ---
 
-## 21. Basic Algorithms
+## 22. Basic Algorithms
 
 ### Junior
 
