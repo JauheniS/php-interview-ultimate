@@ -320,4 +320,22 @@ _Note: In PHP 7+, the `zval` structure was significantly optimized to reduce mem
 
 ---
 
+### Why does `var_dump(0.1 + 0.2 == 0.3)` return `bool(false)`?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Answer:**
+This occurs because floating-point numbers in PHP (and most other languages) follow the **IEEE 754** standard, which represents them in binary. Many decimal fractions, such as `0.1` and `0.2`, cannot be represented exactly as finite binary fractions.
+
+- When you add `0.1 + 0.2`, the internal result is slightly different from exactly `0.3` (it's approximately `0.30000000000000004`).
+- **Comparison:** Never use `==` to compare floats. Instead, use a small epsilon: `abs(($a + $b) - $c) < 0.00001`.
+
+**Database and Financial precision:**
+
+- In databases, you must store these values as **`DECIMAL`** (or `NUMERIC`) instead of `float` or `double`.
+- **Reason:** `DECIMAL` stores numbers as fixed-point values (or strings internally), ensuring that calculations remain exact, which is critical for monetary values. Floating-point types are for approximate scientific values where speed is more important than absolute precision.
+  [Detailed Data Types Guide](../answers/data_types.md)
+
+---
+
 ---
