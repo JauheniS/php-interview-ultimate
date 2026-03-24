@@ -4,13 +4,13 @@ This file contains a curated list of PHP interview questions and answers, merged
 
 ## Table of Contents
 1. [PHP Basics & Language Features](#1-php-basics--language-features)
-2. [Design Patterns](#2-design-patterns)
-3. [Object-Oriented Programming (OOP)](#3-object-oriented-programming-oop)
-4. [PHP 7/8+ New Features](#4-php-78-new-features)
-5. [MySQL & Databases](#5-mysql--databases)
-6. [Laravel & Symfony](#6-laravel--symfony)
-7. [Tools & Composer](#7-tools--composer)
-8. [Software Architecture & Principles](#8-software-architecture--principles)
+2. [Object-Oriented Programming (OOP)](#2-object-oriented-programming-oop)
+3. [Software Architecture & Principles](#3-software-architecture--principles)
+4. [Design Patterns](#4-design-patterns)
+5. [PHP 7/8+ New Features](#5-php-78-new-features)
+6. [MySQL & Databases](#6-mysql--databases)
+7. [Laravel & Symfony](#7-laravel--symfony)
+8. [Tools & Composer](#8-tools--composer)
 9. [Caching & Redis](#9-caching--redis)
 10. [Infrastructure, Docker & DevOps](#10-infrastructure-docker--devops)
 11. [Testing & Quality](#11-testing--quality)
@@ -152,7 +152,113 @@ PHP uses a reference counting mechanism and a cyclic garbage collector to automa
 
 ---
 
-## 2. Design Patterns
+## 2. Object-Oriented Programming (OOP)
+
+### Junior
+#### What is a Class and an Object?
+**Answer:** 
+- **Class:** A blueprint or template for creating objects. It defines properties (attributes) and methods (behaviors).
+- **Object:** An instance of a class. It is a concrete realization of the blueprint with its own state.
+
+#### What are the main characteristics of OOP?
+**Answer:** 
+- **Encapsulation:** Bundling data and methods that operate on that data within a single unit (class) and restricting direct access.
+- **Inheritance:** A mechanism where a subclass inherits properties and behaviors from a superclass.
+- **Polymorphism:** The ability of different classes to be treated as instances of the same interface or parent class.
+- **Abstraction:** Hiding complex implementation details and showing only the essential features of the object.
+
+#### What are access modifiers in PHP?
+**Answer:** 
+- `public`: Accessible from anywhere.
+- `protected`: Accessible within the class itself and by inheriting classes.
+- `private`: Accessible only within the class that defines it.
+
+#### What are constructors and destructors?
+**Answer:** 
+- `__construct()`: A special method called automatically when an object is instantiated.
+- `__destruct()`: A special method called when an object is destroyed or the script ends.
+
+### Middle
+#### What is the difference between `this`, `self`, and `static`?
+**Answer:** 
+- `$this`: Refers to the current object instance.
+- `self`: Refers to the current class. Used for static properties/methods.
+- `static`: Refers to the called class (Late Static Binding).
+[this vs self vs static](answers/this_self_static.md)
+
+#### What is the difference between an Interface and an Abstract Class?
+**Answer:** 
+- **Interface:** Defines a contract. Can only have public methods and no implementation. A class can implement multiple interfaces.
+- **Abstract Class:** Can have both abstract methods and concrete methods with implementation. A class can only extend one abstract class.
+[Interface vs Abstract Class Comparison](answers/interface_vs_abstract.md)
+
+#### What are Traits?
+**Answer:** Traits are a mechanism for code reuse in single inheritance languages like PHP. They allow you to include sets of methods in several independent classes.
+
+#### What is Method Overriding?
+**Answer:** Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its parent class.
+
+#### What are the different types of inheritance?
+**Answer:** 
+- **Single:** A class inherits from one parent class.
+- **Multilevel:** A class inherits from a parent that is itself a subclass.
+- **Hierarchical:** Multiple subclasses inherit from a single parent class.
+- **Hybrid:** A combination of two or more of the above (using traits/interfaces).
+*Note: PHP does not support Multiple Inheritance directly.*
+
+#### What are Namespaces in PHP?
+**Answer:** Namespaces provide a way in which to group related classes, functions and constants to avoid naming collisions.
+
+#### What is the difference between Abstraction and Encapsulation?
+**Answer:** 
+- **Abstraction:** Hiding complex implementation details and showing only the essential features of the object (Focus on "What").
+- **Encapsulation:** Bundling data and methods together and restricting direct access to some of the object's components (Focus on "How").
+
+#### What are Magic Methods?
+**Answer:** Special methods that start with `__` and are triggered by specific events (e.g., `__get`, `__set`, `__call`, `__toString`, `__sleep`, `__wakeup`).
+
+
+### Senior
+#### What is Method Overloading in PHP?
+**Answer:** PHP does not support traditional method overloading (same name, different arguments). Instead, it uses magic methods like `__call()` to simulate it.
+[Method Overloading in PHP](answers/method_overloading.md)
+
+---
+
+## 3. Software Architecture & Principles
+
+### Middle
+#### What are SOLID Principles?
+**Answer:** 
+- **S:** Single Responsibility
+- **O:** Open/Closed
+- **L:** Liskov Substitution
+- **I:** Interface Segregation
+- **D:** Dependency Inversion
+[SOLID Principles Guide](answers/solid_principles.md)
+
+
+#### What are Anemic and Rich models?
+**Answer:** 
+- **Anemic Model:** Models that only contain data (getters/setters) but no business logic.
+- **Rich Model:** Models that encapsulate both data and business logic (Domain-Driven Design).
+[Anemic vs Rich Model Deep Dive](answers/architecture_advanced.md)
+
+#### What is GRASP?
+**Answer:** General Responsibility Assignment Software Patterns. A set of principles for assigning responsibilities to classes and objects.
+
+#### What is CQRS?
+**Answer:** Command Query Responsibility Segregation. A pattern that separates reading data (Query) from writing/updating data (Command).
+
+#### What are the pros and cons of Microservices?
+**Answer:** 
+- **Pros:** Independent scaling, speed and agility, technology independence, and fault isolation.
+- **Cons:** Management complexity, data consistency issues (distributed transactions), network latency, and complex monitoring.
+[Microservices Architecture](answers/architecture_highload.md)
+
+---
+
+## 4. Design Patterns
 Design patterns are strictly related to [Clean Code & Best Practices](#15-clean-code--best-practices).
 
 ### Junior
@@ -330,80 +436,7 @@ Design patterns are strictly related to [Clean Code & Best Practices](#15-clean-
 
 ---
 
-## 3. Object-Oriented Programming (OOP)
-
-### Junior
-#### What is a Class and an Object?
-**Answer:** 
-- **Class:** A blueprint or template for creating objects. It defines properties (attributes) and methods (behaviors).
-- **Object:** An instance of a class. It is a concrete realization of the blueprint with its own state.
-
-#### What are the main characteristics of OOP?
-**Answer:** 
-- **Encapsulation:** Bundling data and methods that operate on that data within a single unit (class) and restricting direct access.
-- **Inheritance:** A mechanism where a subclass inherits properties and behaviors from a superclass.
-- **Polymorphism:** The ability of different classes to be treated as instances of the same interface or parent class.
-- **Abstraction:** Hiding complex implementation details and showing only the essential features of the object.
-
-#### What are access modifiers in PHP?
-**Answer:** 
-- `public`: Accessible from anywhere.
-- `protected`: Accessible within the class itself and by inheriting classes.
-- `private`: Accessible only within the class that defines it.
-
-#### What are constructors and destructors?
-**Answer:** 
-- `__construct()`: A special method called automatically when an object is instantiated.
-- `__destruct()`: A special method called when an object is destroyed or the script ends.
-
-### Middle
-#### What is the difference between `this`, `self`, and `static`?
-**Answer:** 
-- `$this`: Refers to the current object instance.
-- `self`: Refers to the current class. Used for static properties/methods.
-- `static`: Refers to the called class (Late Static Binding).
-[this vs self vs static](answers/this_self_static.md)
-
-#### What is the difference between an Interface and an Abstract Class?
-**Answer:** 
-- **Interface:** Defines a contract. Can only have public methods and no implementation. A class can implement multiple interfaces.
-- **Abstract Class:** Can have both abstract methods and concrete methods with implementation. A class can only extend one abstract class.
-[Interface vs Abstract Class Comparison](answers/interface_vs_abstract.md)
-
-#### What are Traits?
-**Answer:** Traits are a mechanism for code reuse in single inheritance languages like PHP. They allow you to include sets of methods in several independent classes.
-
-#### What is Method Overriding?
-**Answer:** Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its parent class.
-
-#### What are the different types of inheritance?
-**Answer:** 
-- **Single:** A class inherits from one parent class.
-- **Multilevel:** A class inherits from a parent that is itself a subclass.
-- **Hierarchical:** Multiple subclasses inherit from a single parent class.
-- **Hybrid:** A combination of two or more of the above (using traits/interfaces).
-*Note: PHP does not support Multiple Inheritance directly.*
-
-#### What are Namespaces in PHP?
-**Answer:** Namespaces provide a way in which to group related classes, functions and constants to avoid naming collisions.
-
-#### What is the difference between Abstraction and Encapsulation?
-**Answer:** 
-- **Abstraction:** Hiding complex implementation details and showing only the essential features of the object (Focus on "What").
-- **Encapsulation:** Bundling data and methods together and restricting direct access to some of the object's components (Focus on "How").
-
-#### What are Magic Methods?
-**Answer:** Special methods that start with `__` and are triggered by specific events (e.g., `__get`, `__set`, `__call`, `__toString`, `__sleep`, `__wakeup`).
-
-
-### Senior
-#### What is Method Overloading in PHP?
-**Answer:** PHP does not support traditional method overloading (same name, different arguments). Instead, it uses magic methods like `__call()` to simulate it.
-[Method Overloading in PHP](answers/method_overloading.md)
-
----
-
-## 4. PHP 7/8+ New Features
+## 5. PHP 7/8+ New Features
 
 ### Junior
 #### What are Union Types (introduced in PHP 8.0)?
@@ -580,7 +613,7 @@ $result = "  hello  " |> 'trim' |> 'strtoupper';
 
 ---
 
-## 5. MySQL & Databases
+## 6. MySQL & Databases
 
 ### Junior
 #### How to connect to a MySQL database using PHP?
@@ -705,7 +738,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 6. Laravel & Symfony
+## 7. Laravel & Symfony
 
 ### Junior
 #### What is the MVC architecture and how does Laravel implement it?
@@ -776,7 +809,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 ---
 
-## 7. Tools & Composer
+## 8. Tools & Composer
 
 ### Junior
 #### What is Composer?
@@ -790,39 +823,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 ### Middle
 #### What is Autoloading and how does Composer handle it?
 **Answer:** Autoloading automatically loads class files when they are needed. Composer uses PSR-4 (and others) to map namespaces to directories.
-
----
-
-## 8. Software Architecture & Principles
-
-### Middle
-#### What are SOLID Principles?
-**Answer:** 
-- **S:** Single Responsibility
-- **O:** Open/Closed
-- **L:** Liskov Substitution
-- **I:** Interface Segregation
-- **D:** Dependency Inversion
-[SOLID Principles Guide](answers/solid_principles.md)
-
-
-#### What are Anemic and Rich models?
-**Answer:** 
-- **Anemic Model:** Models that only contain data (getters/setters) but no business logic.
-- **Rich Model:** Models that encapsulate both data and business logic (Domain-Driven Design).
-[Anemic vs Rich Model Deep Dive](answers/architecture_advanced.md)
-
-#### What is GRASP?
-**Answer:** General Responsibility Assignment Software Patterns. A set of principles for assigning responsibilities to classes and objects.
-
-#### What is CQRS?
-**Answer:** Command Query Responsibility Segregation. A pattern that separates reading data (Query) from writing/updating data (Command).
-
-#### What are the pros and cons of Microservices?
-**Answer:** 
-- **Pros:** Independent scaling, speed and agility, technology independence, and fault isolation.
-- **Cons:** Management complexity, data consistency issues (distributed transactions), network latency, and complex monitoring.
-[Microservices Architecture](answers/architecture_highload.md)
 
 ---
 
