@@ -1,0 +1,37 @@
+# Project Rules
+
+This project follows a structured way to handle PHP interview questions and answers.
+
+## Key Files & Directories
+- **Main Source:** `QUESTIONS.md`
+- **Topical Answers:** `answers/` folder
+- **Documentation:** `docs/docs/` (for Docusaurus)
+
+## Synchronization Rules
+- `QUESTIONS.md` is the primary source for questions and concise answers.
+- Detailed topics MUST be covered in separate markdown files within the `answers/` folder.
+- **Bi-directional synchronization:**
+  - Changes in `QUESTIONS.md` must be mirrored in `docs/docs/questions/` and `docs/docs/answers/`.
+  - Changes in `docs/docs/...` must be mirrored back to `QUESTIONS.md` and the `answers/` folder.
+
+## Structure & Formatting
+- **Topic Categories:** Keep the current division of topics (e.g., PHP Basics, OOP, Design Patterns, etc.).
+- **Level Highlighting:** Strictly follow the level structure: **Junior**, **Middle**, **Senior**.
+- **Linking:** Questions in `QUESTIONS.md` with detailed answers must link to the corresponding file in `answers/`.
+- **Docusaurus Sync:** Ensure markdown files in `docs/docs/` use the appropriate format for Docusaurus (e.g., frontmatter if needed, though most files seem to be standard markdown).
+
+## Directory Layout
+- `QUESTIONS.md`: Summary of all questions/answers.
+- `answers/`: Deep-dive markdown files for complex topics.
+- `docs/docs/questions/`: Docusaurus-formatted questions (one file per topic, e.g., `01-php-basics-language-features.mdx`).
+- `docs/docs/answers/`: Docusaurus-formatted deep-dive answers (synced with root `answers/`).
+
+## Specific Formatting for Docs
+- In `docs/docs/questions/*.mdx`, use:
+  - `### Question Title`
+  - `<span className="badge badge--success margin-bottom--md">Junior</span>`
+  - `<span className="badge badge--primary margin-bottom--md">Middle</span>`
+  - `<span className="badge badge--warning margin-bottom--md">Senior</span>`
+  - `**Answer:** ...`
+  - `---` as a separator between questions.
+  - Links to detailed answers should use relative paths: `[Detailed Guide](../answers/topic.md)`.
