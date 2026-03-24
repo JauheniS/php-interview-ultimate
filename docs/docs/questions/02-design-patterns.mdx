@@ -2628,6 +2628,88 @@ $app = new Application();
 $app->config();
 ```
 
+SplObserver and SplSubject in SPL (Standard PHP Library), and a link https://www.php.net/manual/en/class.splobserver.php
+
+```php
+<?php
+
+/**
+ * SplObserver and SplSubject in SPL (Standard PHP Library)
+ * Real-world example: A User model that notifies a Newsletter system and a Logger when a user registers.
+ */
+
+class User implements SplSubject
+{
+    private string $email;
+    private SplObjectStorage $observers;
+
+    public function __construct(string $email)
+    {
+        $this->email = $email;
+        $this->observers = new SplObjectStorage();
+    }
+
+    public function attach(SplObserver $observer): void
+    {
+        $this->observers->attach($observer);
+    }
+
+    public function detach(SplObserver $observer): void
+    {
+        $this->observers->detach($observer);
+    }
+
+    public function notify(): void
+    {
+        foreach ($this->observers as $observer) {
+            $observer->update($this);
+        }
+    }
+
+    public function register(): void
+    {
+        echo "User: I am registering {$this->email}.\n";
+        $this->notify();
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+}
+
+class NewsletterSystem implements SplObserver
+{
+    public function update(SplSubject $subject): void
+    {
+        if ($subject instanceof User) {
+            echo "NewsletterSystem: Adding {$subject->getEmail()} to the mailing list.\n";
+        }
+    }
+}
+
+class Logger implements SplObserver
+{
+    public function update(SplSubject $subject): void
+    {
+        if ($subject instanceof User) {
+            echo "Logger: User registration event for {$subject->getEmail()} logged.\n";
+        }
+    }
+}
+
+// Client code
+$user = new User('user@example.com');
+
+$newsletter = new NewsletterSystem();
+$logger = new Logger();
+
+$user->attach($newsletter);
+$user->attach($logger);
+
+$user->register();
+```
+
 ---
 
 ### What is the State Pattern?

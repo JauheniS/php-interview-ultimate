@@ -285,6 +285,8 @@ Design patterns are strictly related to [Clean Code & Best Practices](#15-clean-
 - **Pros:** Open/Closed Principle. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface)., You can establish relations between objects at runtime.
 - **Cons:** Subscribers are notified in random order.
 
+**SplObserver and SplSubject in SPL (Standard PHP Library), and a link https://www.php.net/manual/en/class.splobserver.php**
+
 #### What is the State Pattern?
 **Answer:** State is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
 
