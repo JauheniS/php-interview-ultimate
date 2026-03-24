@@ -656,7 +656,10 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 **Answer:** A storage engine for MySQL that supports transactions, foreign keys, and row-level locking. It is the default engine.
 
 #### What is an Index and why is it used?
-**Answer:** An index is a data structure (like a B-tree) used to quickly locate records in a table. It improves query speed but can slow down inserts/updates.
+**Answer:** An index is a data structure used to quickly locate records in a table. It improves query speed but can slow down inserts/updates.
+
+#### How are indexes stored?
+**Answer:** Most database indexes (including MySQL's InnoDB) are stored as **B-trees** (specifically B+Trees). They are "horizontally large" (high fan-out) and shallow, which minimizes the number of disk I/O operations needed to find a value. This structure allows for fast filtering (O(log n)) and efficient range scans. Proper ordering in composite indexes is crucial: generally, equality conditions and high-selectivity columns should come first, followed by range conditions.
 
 #### What is the difference between `UNION` and `UNION ALL`?
 **Answer:** `UNION` removes duplicate rows from the result set, while `UNION ALL` includes all rows, including duplicates.
@@ -697,7 +700,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 [MySQL vs PostgreSQL Comparison](answers/mysql_advanced.md#10-mysql-vs-postgresql)
 
 #### We have a filter with 3 columns from one table: `sku` (unique), `creation_date`, and an `integer_field` (values 1, 2, or 3). How would you index this for maximum performance?
-**Answer:** Create a **composite index** including all three fields. This is more performant than separate indexes because it allows MySQL to filter all three conditions in a single index scan. With separate indexes, the database would typically use only one and then perform a slower check for the remaining conditions.
+**Answer:** Create a **composite index** including all three fields. For maximum performance, the order should be: **sku** (highest selectivity), then **integer_field** (exact matches), and finally **creation_date** (range filters). This order ensures that the most selective filter narrows down the results immediately, while the range filter comes last to allow the preceding parts of the index to be fully utilized.
 [Composite Index Strategy](answers/mysql_advanced.md#11-composite-index-strategy)
 
 ---
