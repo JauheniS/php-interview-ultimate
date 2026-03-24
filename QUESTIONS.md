@@ -429,10 +429,39 @@ class Child extends ParentClass {
 }
 ```
 
+#### What is the `json_validate()` function (introduced in PHP 8.3)?
+**Answer:** Checks if a string is a valid JSON without decoding it, which uses less memory.
+```php
+if (json_validate($jsonString)) {
+    // string is valid JSON
+}
+```
+
+#### What is dynamic class constant fetch (introduced in PHP 8.3)?
+**Answer:** A simplified syntax to fetch class constants using a variable.
+```php
+$name = 'STATUS_ACTIVE';
+echo MyClass::{$name};
+```
+
+#### What are the `null`, `false`, and `true` standalone types (introduced in PHP 8.2)?
+**Answer:** These can now be used as standalone types for return values, parameters, and properties.
+```php
+public function alwaysFalse(): false { return false; }
+```
+
 #### What are the new `array_*()` functions (introduced in PHP 8.4)?
 **Answer:** PHP 8.4 introduced several useful array functions: `array_find()`, `array_find_key()`, `array_any()`, and `array_all()`.
 ```php
 $firstEven = array_find([1, 2, 3, 4], fn($v) => $v % 2 === 0); // 2
+```
+
+#### What are the `array_first()` and `array_last()` functions (introduced in PHP 8.5)?
+**Answer:** PHP 8.5 added native functions to get the first and last elements of an array without moving the internal array pointer.
+```php
+$arr = ['a' => 1, 'b' => 2, 'c' => 3];
+$first = array_first($arr); // 1
+$last = array_last($arr);   // 3
 ```
 
 ### Middle
@@ -442,6 +471,33 @@ $firstEven = array_find([1, 2, 3, 4], fn($v) => $v % 2 === 0); // 2
 enum Status: string {
     case Pending = 'pending';
     case Active = 'active';
+}
+```
+
+#### What are Readonly Properties (introduced in PHP 8.1)?
+**Answer:** Properties that cannot be modified after they are initialized.
+```php
+class BlogData {
+    public readonly string $title;
+    public function __construct(string $title) {
+        $this->title = $title;
+    }
+}
+```
+
+#### What is the First-class callable syntax (introduced in PHP 8.1)?
+**Answer:** A simplified syntax to get a reference to any function or method.
+```php
+$fn = strlen(...);
+echo $fn('hello'); // 5
+```
+
+#### What is the `never` return type (introduced in PHP 8.1)?
+**Answer:** Indicates that a function will never return normally (it either throws an exception or calls `exit()`).
+```php
+function redirect(string $url): never {
+    header("Location: $url");
+    exit;
 }
 ```
 
@@ -487,6 +543,21 @@ readonly class Post {
     public function __construct(public string $title) {}
 }
 ```
+
+#### What are Disjunctive Normal Form (DNF) Types (introduced in PHP 8.2)?
+**Answer:** Allows combining union and intersection types. Intersection types must be grouped with parentheses.
+```php
+public function process((A&B)|null $entity) { ... }
+```
+
+#### What are Intersection Types (introduced in PHP 8.1)?
+**Answer:** Allow declaring that a parameter or return value must implement multiple interfaces or classes simultaneously.
+```php
+public function count(Countable&Iterator $it) { ... }
+```
+
+#### What are Fibers (introduced in PHP 8.1)?
+**Answer:** A way to create lightweight coroutines for non-blocking I/O and asynchronous tasks. They allow pausing and resuming execution within a single thread.
 
 #### What is "Clone With" (introduced in PHP 8.5)?
 **Answer:** Allows modifying properties of a cloned object during the cloning process using object initializer syntax.
