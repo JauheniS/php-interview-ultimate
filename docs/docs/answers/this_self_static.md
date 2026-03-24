@@ -1,11 +1,12 @@
 ---
-title: "`$this` vs `self` vs `static` vs `parent`"
-slug: "/answers/this_self_static"
+title: '`$this` vs `self` vs `static` vs `parent`'
+slug: '/answers/this_self_static'
 ---
 
 # `$this` vs `self` vs `static` vs `parent`
 
 ## `$this`
+
 Refers to the **current object instance** within a class context. It is used to access non-static properties and methods. You cannot use it outside object context (e.g., in a static method).
 
 ```php
@@ -18,6 +19,7 @@ class User {
 ```
 
 ## `self`
+
 Refers to the **current class** (the class where it is written). It is used for static properties, static methods, and class constants.
 
 ```php
@@ -30,6 +32,7 @@ class User {
 ```
 
 ## `static` (Late Static Binding)
+
 Refers to the **called class** at runtime. It is used to access static properties or methods while considering class inheritance. Unlike `self`, `static` will resolve to the child class if the method was inherited and called from a child class.
 
 ```php
@@ -53,6 +56,7 @@ ChildClass::test(); // output: ChildClass ParentClass
 ```
 
 ## `parent`
+
 Used to access methods, constants, or static properties of the **parent class** from within a child class.
 
 ```php

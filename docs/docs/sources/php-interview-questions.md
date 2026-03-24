@@ -30,7 +30,7 @@
 - **HTML Embedding Compatibility**: Its syntax within web documents is reminiscent of HTML, interleaving with the content for seamless integration.
 - **Not Purely Object-Oriented**: While it now supports object-oriented programming paradigms, it continues to offer primarily procedural constructs.
 - **Text Pre-Processor and Interpreter**: PHP initially parses embedded code within text via the pre-processor, swiftly executing it to yield HTML or other output.
-<br />
+  <br />
 
 ## 2. How do you execute a _PHP_ script from the _command line_?
 
@@ -53,19 +53,20 @@ php your_script.php
 
 #### Examples
 
-- Running a File: 
-    ```bash
-    php -f script.php
-    ```
+- Running a File:
 
-- Displaying PHP Info: 
-    ```bash
-    php -i
-    ```
+  ```bash
+  php -f script.php
+  ```
+
+- Displaying PHP Info:
+  ```bash
+  php -i
+  ```
 - Running a Single Command:
-    ```bash
-    php -r 'echo "Hello, PHP!";'
-    ```
+  ```bash
+  php -r 'echo "Hello, PHP!";'
+  ```
 
 ### Setting Up Environment Variables
 
@@ -76,7 +77,7 @@ You can configure PHP-specific environment variables, allowing for script custom
 
 ### Managing the Standard Input/Output Channels
 
-By default, PHP's CLI environment allows input from the terminal or using pipes. It prints output to the terminal. 
+By default, PHP's CLI environment allows input from the terminal or using pipes. It prints output to the terminal.
 
 **Redirections** and **Pipelines**, such as `>` or `|`, can be leveraged for customizing how input and output are handled.
 
@@ -112,73 +113,73 @@ Migrating from **PHP 5** to **PHP 7/8** provides significant improvements in per
 
 #### 01. **Scalar Type Declarations**
 
-   - **PHP 5**: Lacked strict scalar typing.
-   - **PHP 7/8**: Supports both `declare(strict_types=1);` for individual files and scalar type hints (int, float, bool, string) in function/method signatures.
+- **PHP 5**: Lacked strict scalar typing.
+- **PHP 7/8**: Supports both `declare(strict_types=1);` for individual files and scalar type hints (int, float, bool, string) in function/method signatures.
 
 #### 02. **Return Type Declarations**
 
-   - **PHP 5**: Couldn't specify return types.
-   - **PHP 7/8**: Enables declaring specific return types using inline notations.
+- **PHP 5**: Couldn't specify return types.
+- **PHP 7/8**: Enables declaring specific return types using inline notations.
 
-#### 03. **Null Coalescing Operator**: 
+#### 03. **Null Coalescing Operator**:
 
-   - **PHP 5**: Absent.
-   - **PHP 7/8**: Introduced the `??` operator, streamlining null checks.
+- **PHP 5**: Absent.
+- **PHP 7/8**: Introduced the `??` operator, streamlining null checks.
 
 #### 04. **Spaceship Operator**
 
-   - **PHP 5**: Lacked support.
-   - **PHP 7/8**: Introduced the `<=>` operator for clearer comparisons.
+- **PHP 5**: Lacked support.
+- **PHP 7/8**: Introduced the `<=>` operator for clearer comparisons.
 
 #### 05. **Constant Array/Object Definitions**
 
-   - **PHP 5**: Limited to defined constants.
-   - **PHP 7/8**: Allows defining arrays and objects with the `define` keyword.
+- **PHP 5**: Limited to defined constants.
+- **PHP 7/8**: Allows defining arrays and objects with the `define` keyword.
 
 #### 06. **Anonymous Classes**
 
-   - **PHP 5**: Lacked support for on-the-fly class definition.
-   - **PHP 7/8**: Introduced classes without explicit declarations.
+- **PHP 5**: Lacked support for on-the-fly class definition.
+- **PHP 7/8**: Introduced classes without explicit declarations.
 
 #### 07. **Iterable Type Hint**
 
-   - **PHP 5**: No specific hint for iterable types.
-   - **PHP 7/8**: Offers the `iterable` type hint, providing a generic type for traversable data structures.
+- **PHP 5**: No specific hint for iterable types.
+- **PHP 7/8**: Offers the `iterable` type hint, providing a generic type for traversable data structures.
 
 #### 08. **CSPRNG Functions**
 
-   - **PHP 5**: Weaker random number generation.
-   - **PHP 7/8**: Provides stronger cryptographic random number functions like `random_bytes` and `random_int`.
+- **PHP 5**: Weaker random number generation.
+- **PHP 7/8**: Provides stronger cryptographic random number functions like `random_bytes` and `random_int`.
 
 #### 09. **Anonymous Functions**
 
-   - **PHP 5**: Required the `use` keyword for accessing outer scope.
-   - **PHP 7/8**: They are now able to automatically capture variables from the outer scope, which eases the syntax.
+- **PHP 5**: Required the `use` keyword for accessing outer scope.
+- **PHP 7/8**: They are now able to automatically capture variables from the outer scope, which eases the syntax.
 
 ### Changes in PHP 7 and 8
 
 #### Nullable Return Types
 
-   - **PHP 7.1**: Introduced the `?Type` notation to indicate that a function can return either the specified type or `null`.
+- **PHP 7.1**: Introduced the `?Type` notation to indicate that a function can return either the specified type or `null`.
 
 #### Type Declaration Tweaks in PHP 7.4 and PHP 8
 
-   - **PHP 7.4**: The `typed_properties=1` directive for strict typing at the class level.
-   - **PHP 8**: Introduced `::class` constant that returns the class name.
+- **PHP 7.4**: The `typed_properties=1` directive for strict typing at the class level.
+- **PHP 8**: Introduced `::class` constant that returns the class name.
 
 #### Union Types
 
-   - **PHP 8**: Ability to specify **union types** in method/function signatures, defining multiple possible return types separated by vertical bars. Example: `function foo(): int|bool`.
-   - **Initial PHP 7.1 Support**: The `iterable` type hint was introduced in PHP 7.1.  
+- **PHP 8**: Ability to specify **union types** in method/function signatures, defining multiple possible return types separated by vertical bars. Example: `function foo(): int|bool`.
+- **Initial PHP 7.1 Support**: The `iterable` type hint was introduced in PHP 7.1.
 
 #### Match Expressions
 
-   - **PHP 8**: Offers the `match`/`case` expression as a more precise and powerful variant of `switch` statements.
+- **PHP 8**: Offers the `match`/`case` expression as a more precise and powerful variant of `switch` statements.
 
 #### Named Arguments
 
-   - **PHP 8**: Allows passing arguments to functions based on their parameter names rather than positions, enhancing clarity.
-<br />
+- **PHP 8**: Allows passing arguments to functions based on their parameter names rather than positions, enhancing clarity.
+  <br />
 
 ## 4. What are the common ways to embed _PHP_ into _HTML_?
 
@@ -217,6 +218,7 @@ These tags are **always** a safe choice and offer the highest compatibility acro
     // Your PHP code here
 ?>
 ```
+
 It's worth noting that **`<?=`** is a shortcut equivalent to **`<?php echo`**, available in all versions beyond PHP v5.4.
 
 #### Practical Use-Cases & Benefits
@@ -243,11 +245,12 @@ Here is the PHP code:
 </body>
 </html>
 ```
+
 <br />
 
 ## 5. How would you create a _PHP variable_ and how are they scoped (_global_, _local_, _static_)?
 
-**PHP variables** have diverse scopes, from being accessible globally by all scripts to being confined to defined functions or methods.  They can be local, global, and static.
+**PHP variables** have diverse scopes, from being accessible globally by all scripts to being confined to defined functions or methods. They can be local, global, and static.
 
 ### Local Scope
 
@@ -257,32 +260,32 @@ Variables defined within a function are **locally** scoped and inaccessible outs
 
 Here is the PHP code:
 
- ```php
- function myFunc() {
-    $localVar = "I am local";
-    echo $localVar; // Outputs: I am local
- }
- myFunc();
- echo $localVar; // Throws an error
- ```
+```php
+function myFunc() {
+   $localVar = "I am local";
+   echo $localVar; // Outputs: I am local
+}
+myFunc();
+echo $localVar; // Throws an error
+```
 
 ### Global Scope
 
-**Global** variables can be accessed across the entire PHP script, including from within functions. 
+**Global** variables can be accessed across the entire PHP script, including from within functions.
 
 #### Example: Global Scope
 
 Here is the PHP code:
 
- ```php
- $globalVar = "I am global";
- function myFunc() {
-    echo $globalVar; // Outputs: I am global
- }
- myFunc();
- echo $globalVar; // Outputs: I am global
- ```
- 
+```php
+$globalVar = "I am global";
+function myFunc() {
+   echo $globalVar; // Outputs: I am global
+}
+myFunc();
+echo $globalVar; // Outputs: I am global
+```
+
 ### Function / Method Scope
 
 Variables declared within a **function** or **method** are limited in scope to that block.
@@ -291,15 +294,15 @@ Variables declared within a **function** or **method** are limited in scope to t
 
 Here is the PHP code:
 
- ```php
- function myFunc() {
-    $functionVar = "I am function-scoped";
-    echo $functionVar; // Outputs: I am function-scoped
- }
- myFunc();
- echo $functionVar; // Throws an error
- ```
- 
+```php
+function myFunc() {
+   $functionVar = "I am function-scoped";
+   echo $functionVar; // Outputs: I am function-scoped
+}
+myFunc();
+echo $functionVar; // Throws an error
+```
+
 ### Static Scope
 
 **Static** variables retain their values between function calls. They are still function-scoped.
@@ -308,16 +311,16 @@ Here is the PHP code:
 
 Here is the PHP code:
 
- ```php
- function counter() {
-    static $count = 0;
-    $count++;
-    echo $count;
- }
- counter(); // Outputs: 1
- counter(); // Outputs: 2
- counter(); // Outputs: 3
- ```
+```php
+function counter() {
+   static $count = 0;
+   $count++;
+   echo $count;
+}
+counter(); // Outputs: 1
+counter(); // Outputs: 2
+counter(); // Outputs: 3
+```
 
 ### Superglobals
 
@@ -330,26 +333,26 @@ In PHP, some special predefined arrays, such as `$_POST` and `$_GET`, are **supe
 
 ### Core Data Types
 
-1. **Integer** (`int` in PHP 7, `integer` in earlier versions): Represents whole numbers, both positive and negative. 
-    - Example: `$age = 30;`
+1. **Integer** (`int` in PHP 7, `integer` in earlier versions): Represents whole numbers, both positive and negative.
+   - Example: `$age = 30;`
 
 2. **Floating-Point Number** (`float`): Represents decimal numbers, also known as floats or doubles.
-    - Example: `$price = 9.99;`
+   - Example: `$price = 9.99;`
 
 3. **String** (`string`): Signifies sequences of characters, enclosed within single or double quotes.
-    - Example: `$name = "John";`
+   - Example: `$name = "John";`
 
 4. **Boolean** (`bool`): Represents logical states - `true` or `false`.
-    - Example: `$isStudent = true;`
+   - Example: `$isStudent = true;`
 
-5. **Resource**: Placeholder for external resources, such as database connections. 
+5. **Resource**: Placeholder for external resources, such as database connections.
 
 6. **Null**: Denotes the absence of a value.
 
 ### Compound Data Types
 
 1.  **Array**: A flexible and indexed data structure that can hold multiple values of different data types.
-   
+
 2.  **Object**: Instances of defined classes that encapsulate data and behavior.
 
 3.  **Callable**: Ensures that a variable is a valid function or method.
@@ -381,7 +384,7 @@ $person = [
 class Car {
     public $make;
     public $model;
-    
+
     public function __construct($make, $model) {
         $this->make = $make;
         $this->model = $model;
@@ -401,6 +404,7 @@ testFunction(function() {
     echo "Callback executed!";
 });
 ```
+
 <br />
 
 ## 7. How does _PHP_ handle _error reporting_?
@@ -408,6 +412,7 @@ testFunction(function() {
 In PHP, **Error Handling** can be configured using either `.ini` settings, programmatic functions, or a combination of both, offering developers great flexibility.
 
 ### Configuration Modes
+
 - **Local** (File-Specific): Adjusts settings for a specific PHP file using `ini_set()`.
 - **Global**: Modifies global PHP settings via `php.ini` or `ini_set()`.
 
@@ -466,6 +471,7 @@ require 'non_existent_file.php';
 // Will not reach this point due to the fatal error above
 echo "This will never be displayed.";
 ```
+
 <br />
 
 ## 8. What is the purpose of _php.ini_ file?
@@ -482,7 +488,7 @@ The **php.ini** file is the configuration center for PHP settings, governing a r
 
 ### PHP Versions and Editions
 
-- It's important to note that \foo` variable. 
+- It's important to note that \foo` variable.
 
 - The file can have different variations across PHP versions, and its absence can pose a problem when troubleshooting.
 
@@ -498,7 +504,7 @@ The **php.ini** file is the configuration center for PHP settings, governing a r
 - **Centralized Management**: Utilize Version Control Systems (VCS) or configuration management tools to maintain and track changes in the php.ini file.
 
 - **Regular Audits**: Review the php.ini file periodically to ensure it aligns with security best practices and application requirements.
-<br />
+  <br />
 
 ## 9. How do you define a _constant_ in _PHP_?
 
@@ -539,7 +545,7 @@ echo SITE_NAME;  // Output: "MySite" or "MYSITE"
 3. **Initialization**: Ideally, constants should be defined within the script's beginning to ensure consistent values across the application.
 4. **Code Clarity**: Employ uppercase letters and underscores to boost constant visibility and readability.
 5. **Constants Beyond Strings**: While strings are frequently used, note that constants can store various data types like integers, floats, and arrays.
-<br />
+   <br />
 
 ## 10. Can you describe the lifecycle of a _PHP request_?
 
@@ -551,17 +557,17 @@ Understanding the detailed **lifecycle of a PHP request** will help you optimize
    - Code in your `index.php` file initializes the PHP environment.
 
 2. **Pre-Processing**
-    - PHP compiles the requested file into opcode, if necessary.
-    - The Zend Engine, which powers PHP, loads necessary extensions and sets up internal structures.
+   - PHP compiles the requested file into opcode, if necessary.
+   - The Zend Engine, which powers PHP, loads necessary extensions and sets up internal structures.
 
 3. **Request Processing**
    - PHP scripts execute from top to bottom, unless there's a redirect, error, or exit.
 
 4. **Output Buffering**
-   - The `ob_` family of functions handles application output buffering. 
+   - The `ob_` family of functions handles application output buffering.
 
 5. **Response**
-    - When execution completes, the built-up output is sent back to the webserver for final delivery to the client.
+   - When execution completes, the built-up output is sent back to the webserver for final delivery to the client.
 
 ### The Engine Behind the Scenes
 
@@ -625,7 +631,7 @@ Sessions are highly valuable but require vigilance for security. Here are some b
 - **SSL/TLS Encryption**: Secure the entire session with a proper SSL/TLS certificate.
 - **Session Fixation Prevention**: Generate a fresh session ID upon user authentication to deter session fixation attacks.
 - **Session Hijacking Prevention**: Regularly switch session IDs and restrict sessions to the user's IP address or user agent if feasible.
-<br />
+  <br />
 
 ## 12. How does _PHP_ support _cookies_?
 
@@ -635,8 +641,8 @@ Sessions are highly valuable but require vigilance for security. Here are some b
 
 - **setcookie**: Creates a new cookie or modifies an existing one.
 
-- **\$_COOKIE**: A global associative array that holds all set cookies, accessible from any script.
-- **\$_COOKIE[ 'cookieName' ]**: Particularly useful for reading cookie values.
+- **\$\_COOKIE**: A global associative array that holds all set cookies, accessible from any script.
+- **\$\_COOKIE[ 'cookieName' ]**: Particularly useful for reading cookie values.
 - **Example of Setcookie**: Take a look!
 
 ```php
@@ -653,20 +659,20 @@ Sessions are highly valuable but require vigilance for security. Here are some b
 - **Domain**: The domain for which the cookie is valid.
 - **Secure**: Specifies if the cookie should be sent only over secure (HTTPS) connections.
 - **HttpOnly**: When set to `true`, the cookie is accessible only through HTTP protocols.
-<br />
+  <br />
 
-## 13. Describe the _$_GET, _$_POST_, and _$_REQUEST_ _superglobal arrays_.
+## 13. Describe the _$\_GET, _$_POST_, and _$_REQUEST_ _superglobal arrays_.
 
 Each of these **superglobal arrays** in PHP helps manage input data, but they have distinct characteristics and use-cases.
 
 ### Key Features
 
-- **\$_GET** is URL-based. It extracts data from the query string. In other words, data is visible in the URL.
+- **\$\_GET** is URL-based. It extracts data from the query string. In other words, data is visible in the URL.
 
-- **\$_POST** is form-based. It's suitable for handling sensitive or large data as it's not visible in the URL.
+- **\$\_POST** is form-based. It's suitable for handling sensitive or large data as it's not visible in the URL.
 
-- **\$_REQUEST** is a combination of \$_GET, \$_POST, and \$_COOKIE. If a parameter is accessible in multiple arrays, \$_REQUEST uses the one with the **highest precedence**. However, its use is largely depreciated because it makes debugging and code maintenance more difficult. It's better to be specific by using \$_GET or \$_POST where applicable.
-<br />
+- **\$\_REQUEST** is a combination of \$\_GET, \$\_POST, and \$\_COOKIE. If a parameter is accessible in multiple arrays, \$\_REQUEST uses the one with the **highest precedence**. However, its use is largely depreciated because it makes debugging and code maintenance more difficult. It's better to be specific by using \$\_GET or \$\_POST where applicable.
+  <br />
 
 ## 14. How can you prevent form submission data from being injected with _malicious code_?
 
@@ -687,6 +693,7 @@ echo htmlspecialchars($_POST['input']);
 To prevent execution of JavaScript code, you can use:
 
 - **JavaScript replace method:** Replace the less-than and greater-than characters with their HTML entities.
+
   ```php
   $sanitized = str_replace(['<', '>'], ['&lt;', '&gt;'], $_POST['input']);
   ```
@@ -696,7 +703,7 @@ To prevent execution of JavaScript code, you can use:
   $jsonEncoded = json_encode($_POST['data']);
   ```
 
-#### Safe Back-End Handling 
+#### Safe Back-End Handling
 
 Always perform thorough server-side validation and ensure only intended actions are executed in response to form submissions:
 
@@ -732,9 +739,10 @@ $filterOptions = [
 ];
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL, $filterOptions);
 ```
+
 <br />
 
-## 15. What is the significance of "htmlspecialchars" and "strip_tags" in _PHP_?
+## 15. What is the significance of "htmlspecialchars" and "strip*tags" in \_PHP*?
 
 Both **htmlspecialchars** and **strip_tags** are crucial PHP functions that enhance security by mitigating **Cross-Site Scripting (XSS)** risks. They play specialized roles, catering to different requirements within web applications.
 
@@ -768,9 +776,8 @@ $clean_text = strip_tags($input);
 echo "Clean HTML: $clean_html\n";  // Outputs: &lt;a href='#'&gt;Malicious Link&lt;/a&gt;&lt;script&gt;alert('You have been hacked!')&lt;/script&gt;
 echo "Clean Text: $clean_text\n";  // Outputs: Malicious Linkalert('You have been hacked!')
 ```
+
 <br />
-
-
 
 #### Explore all 100 answers here 👉 [Devinterview.io - PHP](https://devinterview.io/questions/web-and-mobile-development/php-interview-questions)
 
@@ -781,4 +788,3 @@ echo "Clean Text: $clean_text\n";  // Outputs: Malicious Linkalert('You have bee
 <img src="https://firebasestorage.googleapis.com/v0/b/dev-stack-app.appspot.com/o/github-blog-img%2Fweb-and-mobile-development-github-img.jpg?alt=media&token=1b5eeecc-c9fb-49f5-9e03-50cf2e309555" alt="web-and-mobile-development" width="100%" />
 </a>
 </p>
-

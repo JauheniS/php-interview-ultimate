@@ -1,6 +1,6 @@
 ---
-title: "6. MySQL & Databases"
-sidebar_label: "6. MySQL & Databases"
+title: '6. MySQL & Databases'
+sidebar_label: '6. MySQL & Databases'
 ---
 
 # 5. MySQL & Databases
@@ -9,7 +9,8 @@ sidebar_label: "6. MySQL & Databases"
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** You can use the `mysqli` extension or `PDO` (PHP Data Objects). 
+**Answer:** You can use the `mysqli` extension or `PDO` (PHP Data Objects).
+
 ```php
 // PDO Example
 $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
@@ -21,7 +22,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `mysqli` is specific to MySQL, while `PDO` supports multiple database systems (PostgreSQL, SQLite, etc.).
 - `PDO` supports named placeholders in prepared statements.
 
@@ -31,7 +33,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** `WHERE` filters rows *before* aggregation, while `HAVING` filters *after* aggregation (usually with `GROUP BY`).
+**Answer:** `WHERE` filters rows _before_ aggregation, while `HAVING` filters _after_ aggregation (usually with `GROUP BY`).
 
 ---
 
@@ -71,7 +73,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
-**Answer:** 
+**Answer:**
+
 - `%` matches any sequence of characters (zero or more).
 - `_` matches exactly one character.
 
@@ -89,7 +92,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** 
+**Answer:**
+
 - **InnoDB:** Supports transactions, row-level locking, and foreign keys (Default).
 - **MyISAM:** Does not support transactions, uses table-level locking, faster for read-heavy operations.
 - **MEMORY:** Stores data in RAM for very fast access, but data is lost if the server restarts.
@@ -157,7 +161,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
-**Answer:** 
+**Answer:**
+
 - **Partitioning:** Splitting a large table into smaller, more manageable pieces within the same database server.
 - **Sharding:** Distributing data across multiple independent database servers (horizontal scaling).
 
@@ -167,7 +172,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
-**Answer:** 
+**Answer:**
+
 - **Atomicity:** All-or-nothing (everything succeeds or fails).
 - **Consistency:** Transactions must transition the database from one valid state to another.
 - **Isolation:** Transactions occur independently of each other.
@@ -179,7 +185,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
-**Answer:** 
+**Answer:**
+
 - **Clustered Index:** Determines the physical order of data in the table. There can only be one per table (usually the primary key).
 - **Non-Clustered Index:** A separate structure that contains the indexed values and pointers to the data rows.
 
@@ -208,11 +215,12 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:**
+
 - **Read Uncommitted:** Reading a bank balance being updated but not yet committed (Dirty Read).
 - **Read Committed:** A report reading the same data twice and getting different results because another transaction committed an update in between (Non-Repeatable Read).
 - **Repeatable Read:** Ensuring a consistent snapshot of data throughout a long-running transaction, even if other transactions commit changes.
 - **Serializable:** Financial systems where absolute correctness is required, preventing all concurrency issues like Phantom Reads at the cost of performance.
-[In-depth Database Isolation Levels Guide](/answers/mysql_advanced#51-practical-examples-of-isolation-levels)
+  [In-depth Database Isolation Levels Guide](/answers/mysql_advanced#51-practical-examples-of-isolation-levels)
 
 ---
 
@@ -235,4 +243,3 @@ $pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');
 ---
 
 ---
-

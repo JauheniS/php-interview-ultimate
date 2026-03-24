@@ -22,6 +22,7 @@ This file contains a curated list of PHP interview questions and answers, merged
 17. [Tricky Questions](#17-tricky-questions)
 18. [Laravel Plugins](#18-laravel-plugins)
 19. [Long-Running (RoadRunner)](#19-long-running-roadrunner)
+20. [PSR Standards](#20-psr-standards)
 ---
 
 ## 1. PHP Basics & Language Features
@@ -1229,6 +1230,87 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 **Answer:**
 - **Response Streaming:** Allows PHP to stream data to the client incrementally, reducing memory usage for large file downloads or real-time data feeds.
 - **Health Checks:** The `status` plugin provides `/health` (is the server alive?) and `/ready` (is there at least one free worker?) endpoints. These are essential for Kubernetes liveness/readiness probes or load balancer health checks.
-
 #### How does RoadRunner integrate with Temporal?
 **Answer:** RoadRunner can serve as a worker for Temporal, an orchestration engine for complex, stateful, and long-running workflows. PHP developers can write workflow and activity logic in PHP, while RoadRunner handles the communication with the Temporal server via the Goridge protocol.
+
+---
+
+## 20. PSR Standards
+
+### Junior
+#### What PSR documentation is covering Basic Coding Standards?
+**Answer: PSR-1**
+PSR-1 aims to ensure a high degree of technical interoperability between shared PHP code. It covers basic coding elements such as files, namespaces, classes, and methods.
+- Use only `<?php` and `<?=` tags.
+- Use only UTF-8 without BOM for PHP code.
+- Files should either declare symbols (classes, functions, constants, etc.) or cause side effects (generate output, change .ini settings, etc.) but should not do both.
+- Namespaces and classes must follow PSR-4.
+- Class names must be declared in `StudlyCaps`.
+- Class constants must be declared in all upper case with underscore separators.
+- Method names must be declared in `camelCase`.
+
+#### What PSR documentation is covering Extended Coding Standards?
+**Answer: PSR-12**
+PSR-12 is an extension of PSR-2 (which it superseded) and provides a more comprehensive set of coding style rules.
+- Indentation must be 4 spaces, no tabs.
+- Line length soft limit is 80 characters, hard limit 120.
+- Braces for classes and methods must go on a new line.
+- Visibility must be declared on all properties and methods.
+- Type hints are required for parameters and return values where possible.
+
+#### What PSR documentation is covering Autoloading?
+**Answer: PSR-4**
+PSR-4 describes a specification for autoloading classes from file paths. It is the modern replacement for PSR-0.
+- It maps namespaces to directory structures.
+- It allows for a "prefix" (base directory) for a namespace.
+- **Note on PSR-0:** PSR-0 was the previous standard but was deprecated because it was less flexible (e.g., it required the full namespace to be reflected in the directory structure, and underscores in class names were treated as directory separators).
+
+### Middle
+#### What PSR documentation is covering Logging Interface?
+**Answer: PSR-3**
+PSR-3 provides a common interface for logging libraries. It defines a `LoggerInterface` with methods for 8 log levels (debug, info, notice, warning, error, critical, alert, emergency). This allows applications to be independent of the specific logging implementation (like Monolog).
+
+#### What PSR documentation is covering HTTP Message Interface?
+**Answer: PSR-7**
+PSR-7 describes common interfaces for representing HTTP messages (Requests and Responses).
+- HTTP messages are treated as immutable objects.
+- Covers requests, responses, uploaded files, URIs, and streams.
+- Facilitates interoperability between different HTTP-related libraries and frameworks.
+
+#### What PSR documentation is covering HTTP Handlers?
+**Answer: PSR-15**
+PSR-15 defines interfaces for HTTP server-side components: Request Handlers and Middleware.
+- Middleware allows processing incoming requests and outgoing responses in layers.
+- Works in conjunction with PSR-7 HTTP messages to provide a standard way of handling web requests.
+
+### Senior
+#### What PSR documentation is covering Container interface?
+**Answer: PSR-11**
+PSR-11 provides a common interface for dependency injection containers.
+- Defines `get($id)` and `has($id)` methods.
+- Allows libraries to retrieve entries from a container in a standardized way, making them container-agnostic.
+
+#### What PSR documentation is covering Event Dispatcher?
+**Answer: PSR-14**
+PSR-14 defines a common interface for dispatching events and listening for them.
+- Consists of an Event Dispatcher, a Listener Provider, and the Event object.
+- Provides a standard way to implement extension points in PHP applications and libraries.
+
+#### What PSR documentation is covering HTTP Factory?
+**Answer: PSR-17**
+PSR-17 defines interfaces for factories that create PSR-7 compatible HTTP objects.
+- Since PSR-7 objects are immutable, factories provide a standard way to create new instances (Requests, Responses, Streams, etc.) without depending on a specific implementation.
+
+#### Summary of other PSR Standards
+**What PSR documentation covers [Standard]?**
+- **PSR-0: Autoloading Standard** - Deprecated in favor of PSR-4.
+- **PSR-2: Coding Style Guide** - Deprecated in favor of PSR-12.
+- **PSR-5: PHPDoc Standard (Draft)** - Standard for docblocks.
+- **PSR-6: Caching Interface** - Common interface for caching libraries.
+- **PSR-13: Hypermedia Links** - Interface for hypermedia links.
+- **PSR-16: Simple Cache** - A simplified caching interface.
+- **PSR-18: HTTP Client** - Interface for sending HTTP requests.
+- **PSR-19: PHPDoc tags (Draft)** - Specific PHPDoc tags.
+- **PSR-20: Clock** - Interface for reading the time.
+- **PSR-21: Internationalization (Draft)** - i18n standards.
+- **PSR-22: Application Tracing (Draft)** - Tracing standards.

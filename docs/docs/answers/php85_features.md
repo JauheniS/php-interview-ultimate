@@ -1,6 +1,6 @@
 ---
-title: "PHP 8.5 New Features"
-slug: "/answers/php85_features"
+title: 'PHP 8.5 New Features'
+slug: '/answers/php85_features'
 ---
 
 # PHP 8.5 New Features

@@ -1,6 +1,6 @@
 ---
-title: "5. PHP 7/8+ New Features"
-sidebar_label: "5. PHP 7/8+ New Features"
+title: '5. PHP 7/8+ New Features'
+sidebar_label: '5. PHP 7/8+ New Features'
 ---
 
 # 4. PHP 7/8+ New Features
@@ -9,10 +9,11 @@ sidebar_label: "5. PHP 7/8+ New Features"
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** 
+**Answer:**
 The transition from **PHP 5** to **PHP 7/8** brought significant improvements in performance, security, and developer experience.
 
 **Key Improvements in PHP 7/8:**
+
 - **Performance:** PHP 7 is up to twice as fast as PHP 5.6, and PHP 8 introduced JIT (Just-In-Time) compilation for further speed gains in certain workloads.
 - **Scalar Type Declarations:** PHP 7/8 supports strict typing for `int`, `float`, `bool`, and `string`.
 - **Return Type Declarations:** You can now specify the return type of a function.
@@ -55,6 +56,7 @@ The transition from **PHP 5** to **PHP 7/8** brought significant improvements in
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** Union types allow you to specify multiple types for a parameter, property, or return value, instead of just one.
+
 ```php
 function sum(int|float $a, int|float $b): int|float {
     return $a + $b;
@@ -68,6 +70,7 @@ function sum(int|float $a, int|float $b): int|float {
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** The `#[Override]` attribute ensures that a method with the same name exists in a parent class or interface. This helps catch errors during refactoring.
+
 ```php
 class Child extends ParentClass {
     #[Override]
@@ -82,6 +85,7 @@ class Child extends ParentClass {
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** Checks if a string is a valid JSON without decoding it, which uses less memory.
+
 ```php
 if (json_validate($jsonString)) {
     // string is valid JSON
@@ -95,6 +99,7 @@ if (json_validate($jsonString)) {
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** A simplified syntax to fetch class constants using a variable.
+
 ```php
 $name = 'STATUS_ACTIVE';
 echo MyClass::{$name};
@@ -107,6 +112,7 @@ echo MyClass::{$name};
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** These can now be used as standalone types for return values, parameters, and properties.
+
 ```php
 public function alwaysFalse(): false { return false; }
 ```
@@ -118,6 +124,7 @@ public function alwaysFalse(): false { return false; }
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** The `?->` operator allows you to safely access properties or methods on a potentially null value without throwing an error.
+
 ```php
 $country = $session?->user?->getAddress()?->country;
 ```
@@ -129,6 +136,7 @@ $country = $session?->user?->getAddress()?->country;
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** Enumerations allow you to define a set of named constants, providing type safety for fixed sets of values.
+
 ```php
 enum Status: string {
     case Pending = 'pending';
@@ -143,6 +151,7 @@ enum Status: string {
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** Properties that cannot be modified after they are initialized.
+
 ```php
 class BlogData {
     public readonly string $title;
@@ -159,6 +168,7 @@ class BlogData {
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** A simplified syntax to get a reference to any function or method.
+
 ```php
 $fn = strlen(...);
 echo $fn('hello'); // 5
@@ -171,6 +181,7 @@ echo $fn('hello'); // 5
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** Indicates that a function will never return normally (it either throws an exception or calls `exit()`).
+
 ```php
 function redirect(string $url): never {
     header("Location: $url");
@@ -185,6 +196,7 @@ function redirect(string $url): never {
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** Class constants can now have type declarations, similar to properties and parameters.
+
 ```php
 class User {
     const string ROLE = 'admin';
@@ -198,6 +210,7 @@ class User {
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** A shorthand syntax to define and initialize class properties directly in the constructor.
+
 ```php
 class User {
     public function __construct(public string $name, public int $age) {}
@@ -211,6 +224,7 @@ class User {
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** Marking a class as `readonly` makes all its properties readonly and prevents dynamic properties.
+
 ```php
 readonly class Post {
     public function __construct(public string $title) {}
@@ -224,6 +238,7 @@ readonly class Post {
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** Allows combining union and intersection types. Intersection types must be grouped with parentheses.
+
 ```php
 public function process((A&B)|null $entity) { ... }
 ```
@@ -235,6 +250,7 @@ public function process((A&B)|null $entity) { ... }
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** Allow declaring that a parameter or return value must implement multiple interfaces or classes simultaneously.
+
 ```php
 public function count(Countable&Iterator $it) { ... }
 ```
@@ -254,6 +270,7 @@ public function count(Countable&Iterator $it) { ... }
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** Property hooks allow defining custom logic for getting and setting class properties directly on the property declaration, reducing the need for explicit getter and setter methods.
+
 ```php
 class User {
     public string $name {
@@ -270,6 +287,7 @@ class User {
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** It allows setting different visibility levels for reading and writing a property. This is typically used to have a property that is publicly readable but can only be modified from within the class (private set).
+
 ```php
 class User {
     public private(set) string $id;
@@ -283,6 +301,7 @@ class User {
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** PHP 8.4 introduced four new functions for searching and validating array elements using a callback: `array_find()`, `array_find_key()`, `array_any()`, and `array_all()`.
+
 ```php
 $firstEven = array_find([1, 2, 3, 4], fn($v) => $v % 2 === 0); // 2
 $anyEven = array_any([1, 3, 5], fn($v) => $v % 2 === 0); // false
@@ -295,6 +314,7 @@ $anyEven = array_any([1, 3, 5], fn($v) => $v % 2 === 0); // false
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** PHP 8.5 added native functions to get the first and last elements of an array without moving the internal array pointer.
+
 ```php
 $arr = ['a' => 1, 'b' => 2, 'c' => 3];
 $first = array_first($arr); // 1
@@ -308,6 +328,7 @@ $last = array_last($arr);   // 3
 <span className="badge badge--success margin-bottom--md">Junior</span>
 
 **Answer:** PHP 8.4 allows accessing properties and methods of a newly instantiated class without needing to wrap the `new` expression in parentheses.
+
 ```php
 // Before PHP 8.4
 $name = (new User())->getName();
@@ -323,6 +344,7 @@ $name = new User()->getName();
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** The pipe operator (`|>`) allows passing the result of an expression as the first argument to a function or method, making it easier to chain multiple transformations.
+
 ```php
 $result = "  hello world  "
     |> 'trim'
@@ -337,6 +359,7 @@ $result = "  hello world  "
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** It allows modifying properties of a cloned object during the cloning process using a syntax similar to object initializers.
+
 ```php
 $user2 = clone $user1 with {
     name: "New Name",
@@ -351,6 +374,7 @@ $user2 = clone $user1 with {
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** It's a new built-in attribute that indicates the return value of a function or method must be used. Static analysis tools and some IDEs will warn if the result of such a function is ignored.
+
 ```php
 #[\NoDiscard]
 function calculateImportantValue(): int {
@@ -367,10 +391,10 @@ calculateImportantValue(); // Static analysis warning: Return value ignored.
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:** **PIE (PHP Installer for Extensions)** is the modern, official tool for installing PHP extensions, designed to replace the legacy **PECL** (which is now deprecated). It's distributed as a PHAR (like Composer) and works similarly, using PHP Foundation's repository.
+
 ```bash
 # Example usage
 pie install redis
 ```
 
 ---
-

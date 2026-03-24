@@ -1,6 +1,6 @@
 ---
-title: "19. Long-Running (RoadRunner)"
-sidebar_label: "19. Long-Running (RoadRunner)"
+title: '19. Long-Running (RoadRunner)'
+sidebar_label: '19. Long-Running (RoadRunner)'
 ---
 
 # 19. Long-Running (RoadRunner)
@@ -28,11 +28,12 @@ sidebar_label: "19. Long-Running (RoadRunner)"
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** RoadRunner maintains a pool of PHP workers and can dynamically scale them. It uses a supervision strategy to restart workers based on various limits defined in `.rr.yaml`:
+
 - `max_jobs`: Number of requests a worker can handle before being retired.
 - `max_memory`: Memory limit per worker.
 - `ttl`: Maximum lifetime for a worker.
 - `idle_ttl`: Maximum duration a worker can spend in idle mode.
-For local development, `pool.debug = true` can be used to allocate a worker only when a request arrives, simplifying debugging.
+  For local development, `pool.debug = true` can be used to allocate a worker only when a request arrives, simplifying debugging.
 
 ---
 
@@ -40,7 +41,8 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
-**Answer:** 
+**Answer:**
+
 - **Memory Leaks:** Any leaked memory will accumulate over time; use `supervisor.max_worker_memory` as a safeguard.
 - **State Persistence:** Static variables and global state persist between requests, which can lead to data leaks or unexpected behavior if not reset.
 - **Resource Management:** Database connections and file handles should be re-validated or properly closed, as they might time out or stay open across many requests.
@@ -53,6 +55,7 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** The KV plugin provides a unified interface to interact with various storage backends for simple key-value storage. It offloads caching or state management from PHP to the Go server. Supported drivers include:
+
 - `redis` (distributed)
 - `memcached` (distributed)
 - `boltdb` (file-based)
@@ -65,8 +68,9 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 <span className="badge badge--primary margin-bottom--md">Middle</span>
 
 **Answer:** RoadRunner acts as a job consumer and manager, receiving jobs from various brokers and pushing them to PHP workers. This centralizes job management without needing separate CLI processes. Supported drivers/brokers include:
+
 - `amqp`, `beanstalk`, `redis`, `sqs`, `nats`, `boltdb`, and `memory`.
-![Queues](https://docs.roadrunner.dev/images/jobs-scheme.png)
+  ![Queues](https://docs.roadrunner.dev/images/jobs-scheme.png)
 
 ---
 
@@ -107,6 +111,7 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:**
+
 - **Process Supervision:** Use `systemd` or `supervisord` to keep the main RoadRunner process running.
 - **Worker Limits:** Always set `max_jobs` or `max_memory` to prevent memory bloat.
 - **Health Monitoring:** Use the `status` plugin for health and readiness checks.
@@ -120,6 +125,7 @@ For local development, `pool.debug = true` can be used to allocate a worker only
 <span className="badge badge--warning margin-bottom--md">Senior</span>
 
 **Answer:**
+
 - **Response Streaming:** Allows PHP to stream data to the client incrementally, reducing memory usage for large file downloads or real-time data feeds.
 - **Health Checks:** The `status` plugin provides `/health` (is the server alive?) and `/ready` (is there at least one free worker?) endpoints. These are essential for Kubernetes liveness/readiness probes or load balancer health checks.
 
