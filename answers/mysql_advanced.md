@@ -15,8 +15,11 @@
     - Supports Full-text searching (InnoDB also supports it since 5.6).
 
 ## 2. Indices Types
-- **B-Tree Index**: The most common type. Good for range searches and exact matches.
-- **Hash Index**: Very fast for exact matches, but can't be used for range searches.
+- **B-Tree Index**: The most common type (specifically B+Trees in InnoDB).
+    - **Structure**: They are "horizontally large" (high fan-out) and shallow. Each node can contain hundreds of child pointers, which minimizes disk I/O by keeping the tree depth low.
+    - **Performance**: Fast to filter (O(log n)) because the search space is halved (or more) at each level.
+    - **Usage**: Good for exact matches (`=`), range searches (`>`, `<`, `BETWEEN`), and sorting (`ORDER BY`).
+- **Hash Index**: Very fast for exact matches, but can't be used for range searches or sorting.
 - **Full-text Index**: Used for searching text within large columns.
 - **Spatial Index**: Used for geographical data (R-trees).
 
@@ -121,7 +124,8 @@ When filtering by multiple columns (e.g., `sku`, `creation_date`, and a low-card
 3.  **Left-to-Right Prefix Rule**: A composite index on `(sku, creation_date, status)` can also be used for queries that filter only by `sku` or by `sku` and `creation_date`. It cannot, however, be used for queries filtering only by `status`.
 4.  **Selectivity and Order**:
     *   **High Selectivity First**: Usually, you put the most selective column (like `sku`) first. If a column is unique, the index becomes extremely fast for point lookups.
-    *   **Range Queries Last**: Columns used for range filters (like `creation_date` with `>` or `BETWEEN`) should generally come after columns used for exact matches (`=`).
+    *   **Equality before Range**: Columns used for exact matches (`=`) should come before columns used for range filters (`>`, `BETWEEN`, `LIKE 'abc%'`).
+    *   **Example**: For a filter with `sku` (unique), `integer_field` (values 1, 2, 3), and `creation_date` (range), the ideal order is `(sku, integer_field, creation_date)`. This narrows down the search space as quickly as possible.
 5.  **Covering Index**: If your `SELECT` statement only asks for these three columns (or a subset of them), MySQL can return the data directly from the index B-tree without ever touching the actual table rows (data pages). This is called a "Covering Index" and it's extremely fast.
 
 ### Why it's performant even if only `creation_date` is used:
