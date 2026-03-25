@@ -5,7 +5,7 @@ PHP supports ten primitive types.
 ## Scalar Types
 - **bool**: Boolean (true or false).
 - **int**: Integer (whole numbers).
-- **float**: Floating-point number (decimal numbers). **Important:** Floats have limited precision and are stored in binary (IEEE 754). Comparing them for equality is unreliable (e.g., `0.1 + 0.2 != 0.3`). For precise math (like money), use `BCMath` in PHP and `DECIMAL` in databases.
+- **float**: Floating-point number (decimal numbers). **Important:** Floats have limited precision and are stored in binary (IEEE 754). Comparing them for equality is unreliable (e.g., `0.1 + 0.2 != 0.3`). For precise math (like money), use `BCMath` in PHP and `DECIMAL` in databases. [Detailed Floating Point Explained](floating_point_numbers.md)
 - **string**: A sequence of characters.
 
 ## Compound Types
