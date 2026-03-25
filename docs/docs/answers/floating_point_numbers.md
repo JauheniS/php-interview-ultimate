@@ -19,6 +19,35 @@ echo 0.1 + 0.2; // 0.30000000000000004
 ```
 This is because `0.1` and `0.2` cannot be represented exactly in binary.
 
+### Why does this happen? (Basic Explanation)
+Floating-point numbers are usually implemented as a **binary fraction** (base 2) rather than a decimal fraction (base 10).
+- In base 10, a fraction like `1/3` cannot be represented exactly (it's `0.33333...`).
+- Similarly, in base 2, fractions like `1/10` (`0.1`) or `1/5` (`0.2`) become **repeating fractions**.
+
+**The 0.5 Exception:**
+A number like `0.5` *can* be represented exactly in binary because it is a power of 2 ($2^{-1}$ or $1/2$).
+```php
+var_dump(0.5 + 0.5 == 1.0); // true (0.5 is exact)
+```
+
+**Wait, what?**
+When you add `0.1 + 0.2`, you are actually adding:
+- `0.1` (internally: `0.1000000000000000055511151231257827021181583404541015625`)
+- `0.2` (internally: `0.200000000000000011102230246251565404236316680908203125`)
+
+The result is `0.3000000000000000444089209850062616169452667236328125`, which is why `0.1 + 0.2 == 0.3` returns `false`.
+
+### What can I do?
+1. **Never use `==` for floats.** Use a small "epsilon" (precision) value for comparison:
+   ```php
+   $epsilon = 0.00001;
+   if (abs(($a + $b) - $c) < $epsilon) {
+       // Values are "equal enough"
+   }
+   ```
+2. **Use arbitrary precision libraries** like BCMath or GMP (see below).
+3. **Use integers for money.** Store `$1.23` as `123` cents to avoid floating point issues entirely.
+
 ## How it's avoided: BC Math (Arbitrary Precision Mathematics)
 For arbitrary precision mathematics PHP offers the BC Math Binary Calculator which supports numbers of any size and precision, represented as strings.
 
