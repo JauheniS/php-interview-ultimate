@@ -29,6 +29,13 @@ This file contains a curated list of PHP interview questions and answers, merged
 
 ## 1. PHP Basics & Language Features
 
+## Floating point numbers (float)
+- https://www.php.net/manual/en/language.types.float.php
+
+### Why are floating-point numbers often inaccurate in PHP?
+**Answer:** Floating-point numbers have limited precision and are stored in binary format (IEEE 754). This means that some decimal fractions (like 0.1 or 0.2) cannot be represented exactly.
+[Detailed Floating Point Explained](answers/floating_point_numbers.md)
+
 ### Junior
 #### What does PHP stand for and what is its main purpose?
 **Answer:** PHP originally stood for "Personal Home Page," but it now stands for "PHP: Hypertext Preprocessor." It is a server-side scripting language designed for web development. Its main purpose is to generate dynamic web content, handle form data, interact with databases, manage sessions, and more.
