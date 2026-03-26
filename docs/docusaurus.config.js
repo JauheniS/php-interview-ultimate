@@ -9,7 +9,7 @@ const config = {
   tagline: 'Ultimate Answer Repository',
   favicon: 'img/favicon.ico',
 
-  url: 'https://jauhenis.com',
+  url: 'http://jauhenis.com',
   baseUrl: '/',
 
   onBrokenLinks: 'throw',
