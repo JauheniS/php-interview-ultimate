@@ -1,9 +1,9 @@
 ---
-title: 'Сборка мусора в PHP'
-sidebar_label: 'Сборка мусора'
+title: 'Garabage Collector в PHP'
+sidebar_label: 'Carbage Collector'
 ---
 
-# Сборка мусора в PHP
+# Garabage Collector в PHP
 
 PHP использует автоматическую систему управления памятью. Она основана на **подсчёте ссылок** (Reference Counting) для немедленного освобождения памяти и **сборщике циклов** (Cycle Collector) для обработки циклических ссылок.
 
