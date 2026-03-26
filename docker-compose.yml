@@ -33,7 +33,7 @@ services:
       - typesense
 
   typesense-scraper:
-    image: typesense/docsearch-scraper:0.11.0
+    image: typesense/docsearch-scraper:0.12.0
     profiles:
       - scraper
     environment:
@@ -42,6 +42,7 @@ services:
       - TYPESENSE_PORT=8108
       - TYPESENSE_PROTOCOL=http
       - CONFIG=/tmp/scraper-config.json
+      - SYNONYMS=false
     volumes:
       - ./typesense-scraper-config.json:/tmp/scraper-config.json
     links:
