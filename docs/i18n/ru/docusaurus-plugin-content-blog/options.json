@@ -1,14 +1,14 @@
 {
   "title": {
     "message": "PHP Ultimate Interview QnA",
-    "description": "PHP Ultimate Interview Questions"
+    "description": "The title for the blog used in SEO"
   },
   "description": {
     "message": "PHP Ultimate Interview QnA",
-    "description": "PHP Ultimate Interview Questions and answers base to get ready for your next interviews, search easily and look up, what suits you best"
+    "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "Sections",
-    "description": "Sections"
+    "message": "Разделы",
+    "description": "The label for the left sidebar"
   }
 }

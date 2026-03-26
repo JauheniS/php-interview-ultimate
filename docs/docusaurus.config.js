@@ -22,14 +22,21 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ru'],
+    path: 'i18n',
     localeConfigs: {
       en: {
         label: 'English',
         direction: 'ltr',
+        htmlLang: 'en-GB',
+        calendar: 'gregory',
+        path: 'en',
       },
       ru: {
         label: 'Русский',
         direction: 'ltr',
+        htmlLang: 'ru-RU',
+        calendar: 'gregory',
+        path: 'ru',
       },
     },
   },
