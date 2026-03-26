@@ -7,6 +7,18 @@ services:
     volumes:
       - ./docs:/app
 
+  typesense:
+    image: typesense/typesense:0.25.1
+    restart: always
+    environment:
+      - TYPESENSE_DATA_DIR=/data
+      - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
+      - TYPESENSE_ENABLE_CORS=true
+    volumes:
+      - typesense_data:/data
+    ports:
+      - "8108:8108"
+
   nginx:
     image: nginx:1.21.6-alpine
     user: root
@@ -14,7 +26,29 @@ services:
       - "8888:80"
     volumes:
       - ./docs/build:/usr/share/nginx/html
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx:/etc/nginx/conf.d
     restart: always
     depends_on:
       - node
+      - typesense
+
+  typesense-scraper:
+    image: typesense/docsearch-scraper:0.11.0
+    profiles:
+      - scraper
+    environment:
+      - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
+      - TYPESENSE_HOST=typesense
+      - TYPESENSE_PORT=8108
+      - TYPESENSE_PROTOCOL=http
+      - CONFIG=/tmp/scraper-config.json
+    volumes:
+      - ./typesense-scraper-config.json:/tmp/scraper-config.json
+    links:
+      - nginx:jauhenis.com
+    depends_on:
+      - typesense
+      - nginx
+
+volumes:
+  typesense_data:

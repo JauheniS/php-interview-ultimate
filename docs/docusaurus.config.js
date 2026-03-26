@@ -9,7 +9,7 @@ const config = {
   tagline: 'Ultimate Answer Repository',
   favicon: 'img/favicon.ico',
 
-  url: 'https://php-interview-ultimate.docs',
+  url: 'http://jauhenis.com',
   baseUrl: '/',
 
   onBrokenLinks: 'throw',
@@ -34,13 +34,23 @@ const config = {
           editUrl: 'https://github.com/JauheniS/php-interview-ultimate/edit/main/docs/',
           path: 'docs',
           routeBasePath: '/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        sitemap: {
+          changefreq: 'daily',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
       }),
     ],
   ],
+
+  themes: ['docusaurus-theme-search-typesense'],
 
   plugins: [
     async function tailwindPlugin(context, options) {
@@ -116,6 +126,21 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: ['php'],
+      },
+      typesense: {
+        typesenseCollectionName: 'php-questions',
+        typesenseServerConfig: {
+          nodes: [
+            {
+              host: 'ds.jauhenis.com',
+              port: 80, // User wants ds.jauhenis.com, but I'll use 80 as it's the nginx port in the example
+              protocol: 'http', // We'll use http for now as it's a local setup unless they have certs
+            },
+          ],
+          apiKey: '47e59e527eb314ef6bac5ff888369cc5',
+        },
+        typesenseSearchParameters: {},
+        contextualSearch: true,
       },
       tableOfContents: {
         minHeadingLevel: 2,
