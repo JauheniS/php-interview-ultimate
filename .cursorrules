@@ -2,6 +2,10 @@
 
 This project follows a structured way to handle PHP interview questions and answers.
 
+## Runtimes
+- **Docker:** The project is running in docker containers
+- **Docker Compose:**: use node container from compose
+
 ## Key Files & Directories
 - **Main Source:** `QUESTIONS.md`
 - **Topical Answers:** `answers/` folder

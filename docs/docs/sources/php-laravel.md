@@ -223,7 +223,7 @@ In PHP, both echo and print are used to output text or data to the screen. Howev
 
 - `echo` is a language construct, while `print` is a function. This means that `echo` is slightly faster and more versatile in terms of what it can output.
 - `echo` can output multiple values separated by commas, while `print` can only output one value and always returns 1.
-- `echo` does not have a return value, while` print` returns 1.
+- `echo` does not have a return value, while`print` returns 1.
 - `echo` is often used for simple output, while `print` is less commonly used in modern PHP code.
 
 #### 22: Name some of the functions in PHP.
@@ -250,7 +250,7 @@ Sessions and cookies are used to maintain state information between HTTP request
 
 - `$message` is a variable that holds a single value.
 - `$$message` is a variable variable. It takes the value of $message and treats it as the name of another variable whose value it represents.
-For example, if `$message`contains the value`"varName"`, then `$$message` is equivalent to `$varName`.
+For example, if `$message`contains the value`"varName"`, then`$$message` is equivalent to `$varName`.
 
 #### 26: How can we create a database using PHP and MySQL?
 
@@ -712,7 +712,7 @@ To execute a PHP script from the command line, you can use the php command follo
 php myscript.php
 ```
 
-#### 99: What are **wakeup and **sleep methods in PHP?
+#### 99: What are **wakeup and**sleep methods in PHP?
 
 - `__wakeup()` is called when an object is unserialized. You can use it to perform any necessary cleanup or initialization when an object is recreated from its serialized form.
 - `__sleep()` is called before an object is serialized. You can specify which object properties should be included in the serialization process by returning an array of property names from this method.
