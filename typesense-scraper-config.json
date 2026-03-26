@@ -6,8 +6,12 @@
       "selectors_key": "default"
     }
   ],
-  "sitemap_urls": ["http://jauhenis.com/sitemap.xml"],
-  "stop_urls": ["http://jauhenis.com/search/"],
+  "sitemap_urls": [
+    "http://jauhenis.com/sitemap.xml"
+  ],
+  "stop_urls": [
+    "http://jauhenis.com/search/"
+  ],
   "selectors": {
     "default": {
       "lvl0": {
@@ -21,15 +25,12 @@
       "lvl5": "article h5",
       "lvl6": "article h6",
       "text": "article p, article li, article blockquote, article table, article td, article th, article pre, article code, article em, article strong, article small",
-      "tags": {
-        "selector": ".badge",
-        "type": "array"
-      }
+      "tags": ".badge"
     }
   },
   "strip_chars": " .,;:#",
   "scrape_start_urls": true,
   "min_indexed_level": 0,
-  "nb_hits": 20000,
+  "nb_hits": 7176,
   "use_anchors": true
 }
