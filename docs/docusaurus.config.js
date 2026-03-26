@@ -21,7 +21,17 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ru'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+      },
+      ru: {
+        label: 'Русский',
+        direction: 'ltr',
+      },
+    },
   },
 
   presets: [
@@ -90,6 +100,10 @@ const config = {
             to: '/answers/php85_features',
             position: 'left',
             label: 'PHP 8.5 News',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
           {
             href: 'https://github.com/JauheniS/php-interview-ultimate',
