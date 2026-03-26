@@ -133,11 +133,11 @@ const config = {
           nodes: [
             {
               host: 'ds.jauhenis.com',
-              port: 80, // User wants ds.jauhenis.com, but I'll use 80 as it's the nginx port in the example
-              protocol: 'http', // We'll use http for now as it's a local setup unless they have certs
+              port: 443,
+              protocol: 'https',
             },
           ],
-          apiKey: process.env.TYPESENSE_API_KEY || 'TYPESENSE_API_KEY',
+          apiKey: process.env.TYPESENSE_SEARCH_ONLY_API_KEY || 'SEARCH_ONLY_API_KEY',
         },
         typesenseSearchParameters: {},
         contextualSearch: true,
