@@ -53,7 +53,7 @@ const config = {
   themes: ['docusaurus-theme-search-typesense'],
 
   plugins: [
-    async function tailwindPlugin(context, options) {
+    async function tailwindPlugin(_context, _options) {
       return {
         name: "docusaurus-tailwindcss",
         configurePostCss(postcssOptions) {
@@ -137,7 +137,7 @@ const config = {
               protocol: 'http', // We'll use http for now as it's a local setup unless they have certs
             },
           ],
-          apiKey: '47e59e527eb314ef6bac5ff888369cc5',
+          apiKey: process.env.TYPESENSE_API_KEY || 'TYPESENSE_API_KEY',
         },
         typesenseSearchParameters: {},
         contextualSearch: true,
