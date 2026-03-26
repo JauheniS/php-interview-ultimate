@@ -2,12 +2,12 @@
   "index_name": "php-questions",
   "start_urls": [
     {
-      "url": "http://jauhenis.com/",
+      "url": "https://jauhenis.com/",
       "selectors_key": "default"
     }
   ],
-  "sitemap_urls": ["http://jauhenis.com/sitemap.xml"],
-  "stop_urls": ["http://jauhenis.com/search/"],
+  "sitemap_urls": ["https://jauhenis.com/sitemap.xml"],
+  "stop_urls": ["https://jauhenis.com/search/"],
   "selectors": {
     "default": {
       "lvl0": {
