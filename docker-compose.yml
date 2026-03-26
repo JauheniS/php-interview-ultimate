@@ -1,11 +1,11 @@
 services:
   node:
-    image: node:20-alpine
-    working_dir: /app
+    image: node:20
+    working_dir: /app/docs
     tty: true
     stdin_open: true
     volumes:
-      - ./docs:/app
+      - .:/app
 
   typesense:
     image: typesense/typesense:0.25.1
