@@ -1,0 +1,25 @@
+{
+  "index_name": "php-questions",
+  "start_urls": [
+    {
+      "url": "http://jauhenis.com/",
+      "selectors_key": "default"
+    }
+  ],
+  "sitemap_urls": ["http://jauhenis.com/sitemap.xml"],
+  "selectors": {
+    "default": {
+      "lvl0": ".navbar__title",
+      "lvl1": "header h1, article h1",
+      "lvl2": "article h2",
+      "lvl3": "article h3",
+      "lvl4": "article h4",
+      "lvl5": "article h5",
+      "text": "article p, article li"
+    }
+  },
+  "strip_chars": " .,;:#",
+  "scrape_start_urls": false,
+  "min_indexed_level": 1,
+  "nb_hits": 1000
+}
