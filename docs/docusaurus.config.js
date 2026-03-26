@@ -9,7 +9,7 @@ const config = {
   tagline: 'Ultimate Answer Repository',
   favicon: 'img/favicon.ico',
 
-  url: 'http://jauhenis.com',
+  url: 'https://jauhenis.com',
   baseUrl: '/',
 
   onBrokenLinks: 'throw',
@@ -140,16 +140,15 @@ const config = {
           apiKey: process.env.TYPESENSE_SEARCH_ONLY_API_KEY || 'SEARCH_ONLY_API_KEY',
         },
         typesenseSearchParameters: {
-          query_by: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,tags,anchor',
-          include_fields: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,anchor,url,type,id,tags',
-          highlight_full_fields: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,tags,anchor',
+          query_by: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
+          include_fields: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,anchor,url,type,id',
+          highlight_full_fields: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
           num_typos: 2,
           typo_tokens_threshold: 1,
           drop_tokens_threshold: 1,
-          exhaustive: true,
           limit_hits: 100,
         },
-        contextualSearch: false,
+        contextualSearch: true,
       },
       tableOfContents: {
         minHeadingLevel: 2,

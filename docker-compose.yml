@@ -4,6 +4,9 @@ services:
     working_dir: /app/docs
     tty: true
     stdin_open: true
+    environment:
+      - TYPESENSE_SEARCH_ONLY_API_KEY=${TYPESENSE_SEARCH_ONLY_API_KEY}
+      - TYPESENSE_ADMIN_API_KEY=${TYPESENSE_ADMIN_API_KEY}
     volumes:
       - .:/app
 
