@@ -140,7 +140,7 @@ const config = {
           apiKey: process.env.TYPESENSE_SEARCH_ONLY_API_KEY || 'SEARCH_ONLY_API_KEY',
         },
         typesenseSearchParameters: {
-          query_by: 'lvl0,lvl1,lvl2,lvl3,lvl4,lvl5,text',
+          query_by: 'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,content',
         },
         contextualSearch: false,
       },
