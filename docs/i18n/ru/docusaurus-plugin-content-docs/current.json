@@ -1,0 +1,14 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Detailed Answers": {
+    "message": "Подробные ответы",
+    "description": "The label for category 'Detailed Answers' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Introduction": {
+    "message": "Введение",
+    "description": "The label for the doc item 'Introduction' in sidebar 'tutorialSidebar', linking to the doc intro"
+  }
+}

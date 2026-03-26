@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "Вопросы для собеседования по PHP",
+    "description": "The title in the navbar"
+  },
+  "item.label.Questions": {
+    "message": "Вопросы",
+    "description": "Navbar item with label Questions"
+  },
+  "item.label.Answers": {
+    "message": "Ответы",
+    "description": "Navbar item with label Answers"
+  },
+  "item.label.PHP 8.4 News": {
+    "message": "Новое в PHP 8.4",
+    "description": "Navbar item with label PHP 8.4 News"
+  },
+  "item.label.PHP 8.5 News": {
+    "message": "Новое в PHP 8.5",
+    "description": "Navbar item with label PHP 8.5 News"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

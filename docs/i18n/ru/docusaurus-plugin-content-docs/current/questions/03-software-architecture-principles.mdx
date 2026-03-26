@@ -1,0 +1,63 @@
+---
+title: '3. Архитектура ПО и принципы проектирования'
+sidebar_label: '3. Архитектура ПО и принципы проектирования'
+---
+
+# 3. Архитектура ПО и принципы проектирования
+
+### Что такое принципы SOLID?
+
+<span className="badge badge--primary margin-bottom--md">Middle</span>
+
+**Ответ:**
+
+- **S:** Single Responsibility (Принцип единственной ответственности)
+- **O:** Open/Closed (Принцип открытости/закрытости)
+- **L:** Liskov Substitution (Принцип подстановки Барбары Лисков)
+- **I:** Interface Segregation (Принцип разделения интерфейса)
+- **D:** Dependency Inversion (Принцип инверсии зависимостей)
+  [Руководство по принципам SOLID](../answers/solid_principles.md)
+
+---
+
+### Что такое анемичная и богатая модели?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Ответ:**
+
+- **Анемичная модель:** Модели, которые содержат только данные (геттеры/сеттеры), но не содержат бизнес-логики.
+- **Богатая модель:** Модели, инкапсулирующие как данные, так и бизнес-логику (предметно-ориентированное проектирование — Domain-Driven Design).
+  [Подробное сравнение анемичной и богатой моделей](../answers/architecture_advanced.md)
+
+---
+
+### Что такое GRASP?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Ответ:** General Responsibility Assignment Software Patterns — набор принципов для распределения ответственностей между классами и объектами.
+
+---
+
+### Что такое CQRS?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Ответ:** Command Query Responsibility Segregation — паттерн, разделяющий чтение данных (Query) и запись/обновление данных (Command).
+
+---
+
+### Каковы преимущества и недостатки микросервисов?
+
+<span className="badge badge--warning margin-bottom--md">Senior</span>
+
+**Ответ:**
+
+- **Преимущества:** Независимое масштабирование, скорость и гибкость разработки, технологическая независимость, изоляция отказов.
+- **Недостатки:** Сложность управления, проблемы согласованности данных (распределённые транзакции), сетевые задержки, сложный мониторинг.
+  [Архитектура микросервисов](../answers/architecture_highload.md)
+
+---
+
+---
