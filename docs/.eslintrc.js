@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  ignorePatterns: ['build/', 'node_modules/', '.docusaurus/', '.cache/'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     requireConfigFile: false,

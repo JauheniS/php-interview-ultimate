@@ -661,7 +661,7 @@ Sessions are highly valuable but require vigilance for security. Here are some b
 - **HttpOnly**: When set to `true`, the cookie is accessible only through HTTP protocols.
   <br />
 
-## 13. Describe the _$\_GET, _$_POST_, and _$_REQUEST_ _superglobal arrays_.
+## 13. Describe the _$\_GET, _$_POST_, and_$_REQUEST_ _superglobal arrays_.
 
 Each of these **superglobal arrays** in PHP helps manage input data, but they have distinct characteristics and use-cases.
 

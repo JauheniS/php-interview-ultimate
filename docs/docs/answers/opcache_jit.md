@@ -36,7 +36,7 @@ JIT stands for **Just-In-Time** compilation. It is a technique that compiles par
 - **Two Engines**: PHP 8.0 introduced two JIT modes:
     - **Function JIT**: Compiles whole functions. It's simpler but less effective.
     - **Tracing JIT**: (Default/Recommended) It identifies frequently used execution paths (traces) across functions and compiles them.
-- **Performance Impact**: 
+- **Performance Impact**:
     - For **Web Applications** (I/O bound): JIT often provides negligible gains because the bottleneck is usually the database, network, or filesystem.
     - For **CPU-intensive tasks**: JIT can provide massive performance boosts (e.g., mathematical calculations, image processing, or data analysis).
 - **Control**: Managed via `opcache.jit` and `opcache.jit_buffer_size` in `php.ini`.

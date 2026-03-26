@@ -11,7 +11,7 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && markdownlint-cli2 \"docs/**/*.md\" \"docs/**/*.mdx\"",
+    "lint": "eslint . && markdownlint-cli2 \"docs/**/*.md\" \"docs/**/*.mdx\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,json}\" \"docs/**/*.{md,mdx}\""
   },
   "dependencies": {

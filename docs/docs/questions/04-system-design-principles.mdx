@@ -13,17 +13,17 @@ System design is the process of defining the architecture, components, modules, 
 **Answer:** System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements. It is crucial because a well-designed system can scale efficiently, handle failures gracefully, and be maintained cost-effectively. Poor design can lead to massive financial losses and system-wide outages.
 
 #### What is the difference between Functional and Non-Functional requirements?
-**Answer:** 
+**Answer:**
 - **Functional Requirements:** Define *what* the system should do. These are specific features like "a user can book a scooter" or "a user can see their ride history."
 - **Non-Functional Requirements:** Define *how* the system should perform. These include qualities like scalability (handling 100k requests), availability (99.9% uptime), reliability, and security.
 
 #### Explain Vertical vs. Horizontal Scaling.
-**Answer:** 
+**Answer:**
 - **Vertical Scaling (Scaling Up):** Increasing the capacity of a single server (e.g., adding more CPU, RAM, or faster SSDs). It is simple but limited by the physical capacity of a single machine and becomes very expensive at the high end.
 - **Horizontal Scaling (Scaling Out):** Adding more servers to the pool and distributing the load across them using a Load Balancer. It allows for virtually unlimited growth and provides better fault tolerance, as the system can continue to work if one node fails.
 
 #### What are the main strategies for scaling a database?
-**Answer:** 
+**Answer:**
 - **Replication:** Creating copies of the database (Master/Slave). Usually, the Master handles writes, while Slaves handle read queries to distribute the load.
 - **Sharding:** Distributing data across multiple independent database servers (shards) based on a specific key (e.g., User ID, Geolocation). Each shard holds a subset of the total data.
 - **Partitioning:** Splitting a large table into smaller, more manageable logical pieces within a single database instance to improve query performance.
@@ -53,7 +53,7 @@ Common algorithms include:
 - **Latency-Aware:** The balancer tracks historical response times and avoids "slow" nodes.
 
 #### What are Circuit Breaker and Back Pressure patterns?
-**Answer:** 
+**Answer:**
 - **Circuit Breaker:** Monitors calls to a failing service. If the error rate exceeds a threshold, the "circuit opens," and the system stops calling the service, returning a fast fallback error instead of waiting for timeouts. This prevents cascading failures.
 - **Back Pressure:** A mechanism where a system "pushes back" against a high rate of incoming requests that it cannot process. Instead of letting queues grow indefinitely (which increases latency), it rejects new requests (e.g., HTTP 429) or asks the client to slow down.
 
@@ -64,7 +64,7 @@ In distributed systems, idempotency is critical for handling network failures. I
 ### Senior
 
 #### Compare 2PC, 3PC, TCC, and the Saga Pattern.
-**Answer:** 
+**Answer:**
 - **2PC (Two-Phase Commit):** A synchronous protocol for distributed transactions. It ensures strict consistency but is blocking and can be a performance bottleneck.
 - **3PC (Three-Phase Commit):** An extension of 2PC that adds a "Pre-commit" phase to reduce blocking in case of coordinator failure. It is rarely used in production.
 - **TCC (Try-Confirm-Cancel):** An application-level pattern. You reserve resources (Try), and then either finalize (Confirm) or release (Cancel). It is flexible but complex to implement.
@@ -79,13 +79,13 @@ In distributed systems, idempotency is critical for handling network failures. I
 - **Latency-Aware Balancing:** Avoiding nodes that are currently performing poorly.
 
 #### Compare different Sharding routing strategies: Application-level, Proxy, and Coordinator.
-**Answer:** 
+**Answer:**
 - **Application-Level Routing:** The application code contains the logic to determine which shard to use. It's fast (no extra network hop) but hard to maintain as the sharding logic is duplicated across services.
 - **Proxy-Based Routing:** A separate layer (e.g., Vitess, ProxySQL) sits between the app and the database. It handles routing, making sharding transparent to the app. It adds a small network hop but centralizes management.
 - **Coordinator-Based:** A separate service (like Zookeeper or a custom metadata service) keeps track of shard locations. Clients query the coordinator to find the correct shard. It's robust but complex to implement.
 
 #### Explain the difference between Eventual and Strong Consistency.
-**Answer:** 
+**Answer:**
 - **Eventual Consistency:** Replicas will eventually converge to the same value, but there might be a delay where different users see different data. It provides high availability and low latency. Suitable for comments, likes, or product catalogs.
 - **Strong Consistency:** Guarantees that once a write is successful, any subsequent read will return the new value. It is essential for financial transactions, inventory management, or booking systems.
 - **Linearizability:** A stronger form of consistency where operations appear to happen instantaneously and in the order they were issued.
