@@ -139,8 +139,10 @@ const config = {
           ],
           apiKey: process.env.TYPESENSE_SEARCH_ONLY_API_KEY || 'SEARCH_ONLY_API_KEY',
         },
-        typesenseSearchParameters: {},
-        contextualSearch: true,
+        typesenseSearchParameters: {
+          query_by: 'lvl0,lvl1,lvl2,lvl3,lvl4,lvl5,text',
+        },
+        contextualSearch: false,
       },
       tableOfContents: {
         minHeadingLevel: 2,
