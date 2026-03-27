@@ -24,8 +24,7 @@
       "lvl4": "article h4",
       "lvl5": "article h5",
       "lvl6": "article h6",
-      "text": "article p, article li, article blockquote, article table, article td, article th, article pre, article code, article em, article strong, article small",
-      "tags": ".badge"
+      "text": "article p, article li, article blockquote, article table, article td, article th, article pre, article code, article em, article strong, article small"
     }
   },
   "strip_chars": " .,;:#",
