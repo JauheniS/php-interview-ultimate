@@ -1512,6 +1512,24 @@ The **PHP Evolved Recommendation (PER)** for Coding Style is the modern successo
 
 ### Junior
 
+#### How would you reverse a string in PHP?
+**Answer:** There are several ways to reverse a string in PHP, ranging from using built-in functions to manual implementations that handle multi-byte characters. [Detailed Guide](answers/reverse_string.md)
+
+- **Junior:** Use the built-in `strrev()` function.
+- **Middle:** Use a manual `for` loop, which demonstrates understanding of string byte structure but is not multi-byte safe.
+- **Senior:** Use a multi-byte safe approach (e.g., `mb_str_split()`) to handle UTF-8 characters correctly.
+
+```php
+// Junior
+echo strrev("hello"); // "olleh"
+
+// Senior (UTF-8 safe)
+function mb_strrev(string $string, string $encoding = null): string {
+    $chars = mb_str_split($string, 1, $encoding ?: mb_internal_encoding());
+    return implode('', array_reverse($chars));
+}
+```
+
 #### What is Linear Search and how is it implemented in PHP?
 **Answer:** Linear Search is the simplest search algorithm. It checks every element in a list sequentially until it finds the target value or reaches the end of the list.
 - **Complexity:** O(n).
