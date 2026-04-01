@@ -8,14 +8,14 @@ title: 'HaPHPiness - Лучшее в PHP'
 
 ## Современные возможности языка
 
-### Named Arguments / Именованные аргументы (PHP 8.0)
+### 1. Named Arguments / Именованные аргументы (PHP 8.0) {#named-arguments}
 Именованные аргументы позволяют передавать значения в функцию, указывая имя параметра. Это избавляет от необходимости следить за порядком аргументов.
 ```php
 // После: именованные аргументы
 htmlspecialchars($string, double_encode: false);
 ```
 
-### Union Types (PHP 8.0) и Intersection Types (PHP 8.1)
+### 2. Union Types (PHP 8.0) и Intersection Types (PHP 8.1)
 Union Types (объединения) позволяют переменным иметь несколько типов. Intersection Types (пересечения) требуют, чтобы значение удовлетворяло сразу нескольким типам.
 ```php
 // Union types
@@ -25,7 +25,7 @@ function process(int|string $input): void {}
 function save(Countable&Iterator $collection): void {}
 ```
 
-### Enums / Перечисления (PHP 8.1)
+### 3. Enums / Перечисления (PHP 8.1) {#enums}
 Полноценная поддержка перечислений, обеспечивающая типобезопасность для фиксированных наборов значений.
 ```php
 enum Status: string {
@@ -34,7 +34,7 @@ enum Status: string {
 }
 ```
 
-### str_contains(), str_starts_with(), str_ends_with() (PHP 8.0)
+### 4. str_contains(), str_starts_with(), str_ends_with() (PHP 8.0) {#string-functions}
 Удобные и читаемые функции для стандартных операций со строками.
 ```php
 if (str_contains($url, 'https')) { ... }
@@ -42,13 +42,13 @@ if (str_starts_with($file, '/var/www')) { ... }
 if (str_ends_with($file, '.php')) { ... }
 ```
 
-### Array Unpacking with String Keys / Распаковка массивов со строковыми ключами (PHP 8.1)
+### 5. Array Unpacking with String Keys / Распаковка массивов со строковыми ключами (PHP 8.1) {#array-unpacking}
 Оператор расширения (`...`) теперь работает со строковыми ключами, что делает слияние массивов лаконичным.
 ```php
 $config = [...$defaults, ...$custom];
 ```
 
-### Fibers / Файберы (PHP 8.1)
+### 6. Fibers / Файберы (PHP 8.1)
 Легковесные корутины для реализации асинхронных примитивов без "callback hell".
 ```php
 $fiber = new Fiber(function (): void {
@@ -57,19 +57,19 @@ $fiber = new Fiber(function (): void {
 });
 ```
 
-### Встроенный сервер разработки (php -S)
+### 8. Встроенный сервер разработки (php -S) {#dev-server}
 Для локальной разработки не требуется настройка Apache или Nginx. Просто запустите:
 ```bash
 php -S localhost:8000
 ```
 
-### Arrow Functions / Стрелочные функции (PHP 7.4)
+### 10. Arrow Functions / Стрелочные функции (PHP 7.4) {#arrow-functions}
 Краткий синтаксис для коротких замыканий с автоматическим захватом переменных из родительской области видимости.
 ```php
 $doubled = array_map(fn($n) => $n * 2, $numbers);
 ```
 
-### Match Expressions / Выражения Match (PHP 8.0)
+### 11. Match Expressions / Выражения Match (PHP 8.0) {#match-expressions}
 Более мощная и безопасная альтернатива `switch`, использующая строгое сравнение и возвращающая значение.
 ```php
 $text = match($statusCode) {
@@ -79,14 +79,14 @@ $text = match($statusCode) {
 };
 ```
 
-### Null Coalescing Operator ?? и ??= / Оператор объединения с null (PHP 7.0+)
+### 12. Null Coalescing Operator ?? и ??= / Оператор объединения с null (PHP 7.0+) {#null-coalescing}
 Удобный способ обработки значений по умолчанию и ленивой инициализации.
 ```php
 $username = $_GET['user'] ?? 'anonymous';
 $this->logger ??= new NullLogger();
 ```
 
-### Readonly Properties and Classes / Readonly свойства и классы (PHP 8.1+)
+### 15. Readonly Properties and Classes / Readonly свойства и классы (PHP 8.1+) {#readonly}
 Иммутабельность на уровне движка для свойств и целых классов.
 ```php
 readonly class Money {
@@ -94,14 +94,14 @@ readonly class Money {
 }
 ```
 
-### Атрибуты — нативные метаданные
+### 17. Атрибуты — нативные метаданные {#attributes}
 PHP 8.0 заменил аннотации в комментариях (docblocks) реальным синтаксисом, который проверяется инструментами статического анализа.
 ```php
 #[Route('/users', method: 'GET')]
 public function index(): Response { ... }
 ```
 
-### Property Hooks / Хуки свойств (PHP 8.4)
+### 34. Property Hooks / Хуки свойств (PHP 8.4) {#property-hooks}
 Определение логики `get` и `set` прямо при объявлении свойства, что избавляет от шаблонного кода геттеров и сеттеров.
 ```php
 class User {
@@ -111,7 +111,7 @@ class User {
 }
 ```
 
-### Pipe Operator `|>` / Конвейерный оператор (PHP 8.5)
+### 39. Pipe Operator `|>` / Конвейерный оператор (PHP 8.5) {#pipe-operator}
 Поток данных слева направо для цепочек вызовов функций.
 ```php
 $slug = $title
@@ -119,72 +119,72 @@ $slug = $title
     |> strtolower(...);
 ```
 
-### #[\NoDiscard] (PHP 8.5)
+### 43. #[\NoDiscard] (PHP 8.5) {#nodiscard}
 Предупреждает, если возвращаемое значение функции игнорируется. Важно для результатов валидации или иммутабельных операций.
 ```php
 #[\NoDiscard]
 function validate(array $data): bool { ... }
 ```
 
-### Fatal error backtraces / Трассировка стека при фатальных ошибках
+### 44. Fatal error backtraces / Трассировка стека при фатальных ошибках {#fatal-error-backtraces}
 В PHP 8.5 фатальные ошибки (например, превышение времени выполнения) включают трассировку стека, что значительно упрощает отладку на проде.
 
-### URI Extension / Расширение URI
+### 45. URI Extension / Расширение URI {#uri-extension}
 PHP 8.5 вводит встроенное расширение для работы с URI, соответствующее стандартам, с иммутабельными объектами URL.
 ```php
 use Uri\Rfc3986\Uri;
 $uri = new Uri('https://example.com/path');
 ```
 
-### array_is_list() — окончательный ответ на вопрос "является ли массив списком?"
+### 49. array_is_list() — окончательный ответ на вопрос "является ли массив списком?" {#array-is-list}
 Определяет, является ли массив списком (индексированным от 0 без пропусков).
 ```php
 array_is_list(['a', 'b', 'c']); // true
 ```
 
-### FFI (Foreign Function Interface) — прямой вызов C-библиотек
+### 50. FFI (Foreign Function Interface) — прямой вызов C-библиотек {#ffi}
 Интерфейс внешних функций (PHP 7.4) позволяет вызывать функции C без написания расширений на C.
 ```php
 $ffi = FFI::cdef("double cos(double x);", "libm.so.6");
 echo $ffi->cos(M_PI);
 ```
 
-### WeakMap (PHP 8.0)
+### 52. WeakMap (PHP 8.0) {#weakmap}
 Карты, где ключами являются объекты, которые не препятствуют сборке мусора. Идеально для кэширования данных об объектах.
 ```php
 $cache = new WeakMap();
 $cache[$obj] = $computedData;
 ```
 
-### Named capture groups / Именованные группы захвата в preg_match
+### 53. Named capture groups / Именованные группы захвата в preg_match {#named-capture-groups}
 Результаты регулярных выражений теперь можно получать по имени, а не только по числовому индексу.
 ```php
 preg_match('/(?P<year>\d{4})/', '2024', $matches);
 echo $matches['year'];
 ```
 
-### Spaceship operator `<=>` / Оператор «космический корабль»
+### 54. Spaceship operator `<=>` / Оператор «космический корабль» {#spaceship-operator}
 Оператор PHP 7.0, который возвращает -1, 0 или 1, идеально подходит для сортировки.
 ```php
 usort($users, fn($a, $b) => $a->age <=> $b->age);
 ```
 
-### Array destructuring with keys / Распаковка массива с ключами
+### 55. Array destructuring with keys / Распаковка массива с ключами {#array-destructuring}
 Удобное извлечение конкретных значений из ассоциативных массивов.
 ```php
 ['name' => $name, 'age' => $age] = $person;
 ```
 
-### PHPStan и Psalm — статический анализ как стандарт
+### 58. PHPStan и Psalm — статический анализ как стандарт {#static-analysis}
 Инструменты, обеспечивающие типобезопасность уровня TypeScript без накладных расходов во время выполнения.
 
-### 59. Numeric Literal Separators / Разделители в числах (PHP 7.4)
+### 59. Numeric Literal Separators / Разделители в числах (PHP 7.4) {#numeric-separators}
 Использование нижнего подчеркивания для улучшения читаемости больших чисел.
 ```php
 $population = 8_000_000_000;
 ```
 
-### 69. NativePHP — десктопные и мобильные приложения на PHP
+### 69. NativePHP — десктопные и мобильные приложения на PHP {#nativephp}
 Создавайте нативные кроссплатформенные приложения, используя уже знакомый PHP.
 
 ## Экосистема и производительность

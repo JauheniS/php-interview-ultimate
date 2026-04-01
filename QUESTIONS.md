@@ -282,6 +282,17 @@ This occurs because floating-point numbers in PHP (and most other languages) fol
 #### What is CQRS?
 **Answer:** Command Query Responsibility Segregation. A pattern that separates reading data (Query) from writing/updating data (Command).
 
+#### What is the difference between an Entity and a Value Object in DDD?
+**Answer:** 
+- **Entity:** An object with a unique identity (ID) that remains constant even if its properties change (e.g., a User).
+- **Value Object:** An object defined solely by its attributes; two instances with the same values are identical. They are typically immutable (e.g., Money, Color, Address).
+
+#### What is the main difference between Hexagonal and Onion architecture?
+**Answer:** 
+- **Hexagonal (Ports & Adapters):** Focuses on separating the application from external concerns using Ports (interfaces) and Adapters (implementations). It doesn't prescribe internal layering.
+- **Onion Architecture:** Uses concentric layers where dependencies always point inward. The Domain Model is at the core, surrounded by Domain Services, Application Services, and finally Infrastructure/UI.
+[Architecture Deep Dive](answers/architecture_advanced.md) | [Practical Examples](answers/architecture_examples.md)
+
 #### What are the pros and cons of Microservices?
 **Answer:** 
 - **Pros:** Independent scaling, speed and agility, technology independence, and fault isolation.
@@ -547,6 +558,18 @@ Design patterns are strictly related to [Clean Code & Best Practices](#16-clean-
 ### Senior
 #### What is Dependency Injection?
 **Answer:** A design pattern where an object receives its dependencies from the outside rather than creating them itself. This promotes loose coupling and easier testing.
+
+#### What is the difference between Dependency Injection and Dependency Inversion?
+**Answer:** 
+- **Dependency Injection (DI):** A *pattern* for passing dependencies to an object from the outside (e.g., via constructor or setter).
+- **Dependency Inversion (DIP):** A *principle* (SOLID) stating that high-level modules should depend on abstractions (interfaces), not concrete implementations (low-level modules). DI is one of the ways to implement DIP.
+
+#### How does the Liskov Substitution Principle (LSP) apply to PHP's type hinting and return types?
+**Answer:** 
+- **Covariance:** Allows a child class to return a *more specific* type than the parent (supported in PHP 7.4+).
+- **Contravariance:** Allows a child class to accept a *less specific* (wider) type than the parent (supported in PHP 7.4+).
+LSP requires that child classes do not strengthen preconditions (contravariance) and do not weaken postconditions (covariance).
+[SOLID Principles Guide](answers/solid_principles.md)
 
 #### What is the difference between the Factory Pattern and Dependency Injection?
 **Answer:** Factory pattern is about *creating* objects, while Dependency Injection is about *providing* already created dependencies to an object.
@@ -1702,31 +1725,31 @@ This section highlights modern PHP features and the overall "happiness" of the e
 
 #### What are str_contains(), str_starts_with(), and str_ends_with()?
 **Answer:** These are consistent, readable functions for common string operations introduced in PHP 8.0.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#4-str_contains-str_starts_with-str_ends_with-php-80)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#string-functions)
 
 #### What is Array Unpacking with String Keys?
 **Answer:** Introduced in PHP 8.1, the spread operator (`...`) now supports string keys for merging arrays.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#5-array-unpacking-with-string-keys-php-81)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#array-unpacking)
 
 #### What is the Built-in Development Server?
 **Answer:** PHP includes a simple web server for development purposes, started with `php -S localhost:8000`.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#8-built-in-development-server-php-s)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#dev-server)
 
 #### What are Arrow Functions?
 **Answer:** Introduced in PHP 7.4, they offer a concise syntax for short closures with automatic variable capture.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#10-arrow-functions-php-74)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#arrow-functions)
 
 #### What are Match Expressions?
 **Answer:** A safer, stricter alternative to `switch` that returns a value (PHP 8.0).
-[Detailed HaPHPiness Guide](answers/haphpiness.md#11-match-expressions-php-80)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#match-expressions)
 
 #### What is the Null Coalescing Operator?
 **Answer:** The `??` operator (and `??=` assignment) provides a clean way to handle null values and defaults.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#12-null-coalescing-operator--and--php-70)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#null-coalescing)
 
 #### What are Numeric Literal Separators?
 **Answer:** Using underscores to improve the readability of large numbers (e.g., `1_000_000`).
-[Detailed HaPHPiness Guide](answers/haphpiness.md#59-numeric-literal-separators-php-74)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#numeric-separators)
 
 ### Middle
 
@@ -1736,7 +1759,7 @@ This section highlights modern PHP features and the overall "happiness" of the e
 
 #### What are Attributes?
 **Answer:** First-class metadata (annotations) natively supported by the PHP engine since 8.0.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#17-attributes-native-metadata)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#attributes)
 
 #### What is the First-class Callable Syntax?
 **Answer:** A clean way to create a `Closure` from a function or method using `(...)`.
@@ -1760,46 +1783,46 @@ This section highlights modern PHP features and the overall "happiness" of the e
 
 #### What is array_is_list()?
 **Answer:** A function to check if an array is a sequential list with keys starting from 0.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#49-array_is_list-finally-answer-is-this-sequential)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#array-is-list)
 
 #### What are WeakMaps?
 **Answer:** Maps where keys are objects that don't prevent those objects from being garbage collected.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#52-weakmap-php-80)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#weakmap)
 
 #### What are Named Capture Groups in preg_match?
 **Answer:** Using `(?P<name>...)` in regex to get named matches instead of just numeric indices.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#53-named-capture-groups-in-preg_match)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#named-capture-groups)
 
 #### What is the Spaceship Operator?
 **Answer:** The `<=>` operator for three-way comparison, returning -1, 0, or 1.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#54-spaceship-operator--three-way-comparison)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#spaceship-operator)
 
 #### What is Array Destructuring with Keys?
 **Answer:** Pulling specific values out of an associative array using the `[...]` syntax.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#55-array-destructuring-with-keys--pattern-matching-for-arrays)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#array-destructuring)
 
 ### Senior
 
 #### What is #[\NoDiscard]?
 **Answer:** An attribute that warns if a function's return value is ignored (PHP 8.5).
-[Detailed HaPHPiness Guide](answers/haphpiness.md#43-nodiscard-php-85)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#nodiscard)
 
 #### What are Fatal Error Backtraces?
 **Answer:** Since PHP 8.5, fatal errors (like timeouts) include a full stack trace for easier debugging.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#44-fatal-error-backtraces)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#fatal-error-backtraces)
 
 #### What is the URI Extension?
 **Answer:** A built-in, immutable, and standards-compliant URL parsing extension (PHP 8.5).
-[Detailed HaPHPiness Guide](answers/haphpiness.md#45-uri-extension--proper-url-parsing-at-last)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#uri-extension)
 
 #### What is FFI (Foreign Function Interface)?
 **Answer:** Allows calling C functions and using C data structures directly from PHP (7.4+).
-[Detailed HaPHPiness Guide](answers/haphpiness.md#50-ffi--call-c-libraries-directly-from-php)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#ffi)
 
 #### What are PHPStan and Psalm?
 **Answer:** Static analysis tools that provide TypeScript-grade type safety for PHP codebases.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#58-phpstan--psalm--static-analysis-as-a-first-class-citizen)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#static-analysis)
 
 #### What is NativePHP?
 **Answer:** A framework for building native desktop and mobile applications using PHP and Laravel.
-[Detailed HaPHPiness Guide](answers/haphpiness.md#69-nativephp--desktop-and-mobile-apps-all-in-php)
+[Detailed HaPHPiness Guide](answers/haphpiness.md#nativephp)
