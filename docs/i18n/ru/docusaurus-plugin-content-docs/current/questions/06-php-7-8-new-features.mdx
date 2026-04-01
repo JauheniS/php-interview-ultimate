@@ -51,6 +51,18 @@ sidebar_label: '6. Новые возможности PHP 7/8+'
 
 ---
 
+### Что такое именованные аргументы (Named Arguments) (появились в PHP 8.0)?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Ответ:** Именованные аргументы позволяют передавать значения по имени параметра, а не по позиции, что делает код более читаемым и позволяет пропускать необязательные параметры.
+
+```php
+htmlspecialchars($string, double_encode: false);
+```
+
+---
+
 ### Что такое Union Types (появились в PHP 8.0)?
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
@@ -61,6 +73,22 @@ sidebar_label: '6. Новые возможности PHP 7/8+'
 function sum(int|float $a, int|float $b): int|float {
     return $a + $b;
 }
+```
+
+---
+
+### Что такое выражения match (появились в PHP 8.0)?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Ответ:** Более безопасная и строгая версия `switch`, которая возвращает значение и использует строгое сравнение.
+
+```php
+$text = match($statusCode) {
+    200, 201 => 'Success',
+    404      => 'Not Found',
+    default  => 'Unknown',
+};
 ```
 
 ---

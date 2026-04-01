@@ -25,6 +25,7 @@ This file contains a curated list of PHP interview questions and answers, merged
 20. [Long-Running (RoadRunner)](#20-long-running-roadrunner)
 21. [PSR & PER Standards](#21-psr--per-standards)
 22. [Basic Algorithms](#22-basic-algorithms)
+23. [HaPHPiness - Best things in PHP](#23-haphpiness---best-things-in-php)
 ---
 
 ## 1. PHP Basics & Language Features
@@ -561,12 +562,27 @@ Design patterns are strictly related to [Clean Code & Best Practices](#16-clean-
 ## 6. PHP 7/8+ New Features
 
 ### Junior
+#### What are Named Arguments (introduced in PHP 8.0)?
+**Answer:** Named arguments allow you to pass values by parameter name instead of position, making the code more readable and allowing you to skip optional parameters.
+```php
+htmlspecialchars($string, double_encode: false);
+```
+
 #### What are Union Types (introduced in PHP 8.0)?
 **Answer:** Union types allow you to specify multiple types for a parameter, property, or return value, instead of just one.
 ```php
 function sum(int|float $a, int|float $b): int|float {
     return $a + $b;
 }
+```
+
+#### What are Match Expressions (introduced in PHP 8.0)?
+**Answer:** A safer and more concise alternative to `switch` that uses strict comparison and returns a value.
+```php
+$status = match($code) {
+    200, 201 => 'success',
+    default => 'unknown',
+};
 ```
 
 #### What is the Nullsafe Operator (introduced in PHP 8.0)?
@@ -1663,3 +1679,127 @@ function merge(array $left, array $right): array
 2. **Resource Management:** **Queues** (FIFO) are used for background job processing (e.g., Laravel Queues, RabbitMQ) to handle tasks like sending emails without blocking the main request.
 3. **Parsing:** **Stacks** (LIFO) or recursive algorithms are used for parsing structured data like HTML, XML, or custom template engines to ensure tags/brackets are correctly nested.
 4. **Data Presentation:** **Sorting** algorithms are essential for displaying data in a specific order (alphabetical, by price, by date).
+
+---
+
+## 23. HaPHPiness - Best things in PHP
+
+This section highlights modern PHP features and the overall "happiness" of the ecosystem, as inspired by [haphpiness.com](https://haphpiness.com/).
+
+### Junior
+
+#### What are Named Arguments?
+**Answer:** Named arguments (introduced in PHP 8.0) allow you to pass values by parameter name instead of position.
+[See PHP 8.0 Features](#what-are-named-arguments-introduced-in-php-80)
+
+#### What are Union Types and Intersection Types?
+**Answer:** Union types (8.0) allow multiple types for a parameter; Intersection types (8.1) require a value to satisfy multiple type constraints.
+[See PHP 8.0 Features](#what-are-union-types-introduced-in-php-80)
+
+#### What are Enums?
+**Answer:** Enumerations (8.1) provide type safety for a fixed set of named constants.
+[See PHP 8.1 Features](#what-are-enums-introduced-in-php-81)
+
+#### What are str_contains(), str_starts_with(), and str_ends_with()?
+**Answer:** These are consistent, readable functions for common string operations introduced in PHP 8.0.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#4-str_contains-str_starts_with-str_ends_with-php-80)
+
+#### What is Array Unpacking with String Keys?
+**Answer:** Introduced in PHP 8.1, the spread operator (`...`) now supports string keys for merging arrays.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#5-array-unpacking-with-string-keys-php-81)
+
+#### What is the Built-in Development Server?
+**Answer:** PHP includes a simple web server for development purposes, started with `php -S localhost:8000`.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#8-built-in-development-server-php-s)
+
+#### What are Arrow Functions?
+**Answer:** Introduced in PHP 7.4, they offer a concise syntax for short closures with automatic variable capture.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#10-arrow-functions-php-74)
+
+#### What are Match Expressions?
+**Answer:** A safer, stricter alternative to `switch` that returns a value (PHP 8.0).
+[Detailed HaPHPiness Guide](answers/haphpiness.md#11-match-expressions-php-80)
+
+#### What is the Null Coalescing Operator?
+**Answer:** The `??` operator (and `??=` assignment) provides a clean way to handle null values and defaults.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#12-null-coalescing-operator--and--php-70)
+
+#### What are Numeric Literal Separators?
+**Answer:** Using underscores to improve the readability of large numbers (e.g., `1_000_000`).
+[Detailed HaPHPiness Guide](answers/haphpiness.md#59-numeric-literal-separators-php-74)
+
+### Middle
+
+#### What are Fibers?
+**Answer:** Lightweight coroutines for non-blocking I/O (PHP 8.1).
+[See PHP 8.1 Features](#what-are-fibers-introduced-in-php-81)
+
+#### What are Attributes?
+**Answer:** First-class metadata (annotations) natively supported by the PHP engine since 8.0.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#17-attributes-native-metadata)
+
+#### What is the First-class Callable Syntax?
+**Answer:** A clean way to create a `Closure` from a function or method using `(...)`.
+[See PHP 8.1 Features](#what-is-the-first-class-callable-syntax-introduced-in-php-81)
+
+#### What is the Nullsafe Operator?
+**Answer:** The `?->` operator allows safe method/property access on potentially null values.
+[See PHP 8.0 Features](#what-is-the-nullsafe-operator-introduced-in-php-80)
+
+#### What are Property Hooks?
+**Answer:** Logic for `get` and `set` defined directly on property declarations (PHP 8.4).
+[See PHP 8.4 Features](#what-are-property-hooks-introduced-in-php-84)
+
+#### What is Asymmetric Visibility?
+**Answer:** Different visibility for reading and writing a property (e.g., `public private(set)`).
+[See PHP 8.4 Features](#what-is-asymmetric-visibility-introduced-in-php-84)
+
+#### What is the Pipe Operator?
+**Answer:** A way to chain function calls from left to right using `|>` (PHP 8.5).
+[See PHP 8.5 Features](#what-is-the-pipe-operator-introduced-in-php-85)
+
+#### What is array_is_list()?
+**Answer:** A function to check if an array is a sequential list with keys starting from 0.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#49-array_is_list-finally-answer-is-this-sequential)
+
+#### What are WeakMaps?
+**Answer:** Maps where keys are objects that don't prevent those objects from being garbage collected.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#52-weakmap-php-80)
+
+#### What are Named Capture Groups in preg_match?
+**Answer:** Using `(?P<name>...)` in regex to get named matches instead of just numeric indices.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#53-named-capture-groups-in-preg_match)
+
+#### What is the Spaceship Operator?
+**Answer:** The `<=>` operator for three-way comparison, returning -1, 0, or 1.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#54-spaceship-operator--three-way-comparison)
+
+#### What is Array Destructuring with Keys?
+**Answer:** Pulling specific values out of an associative array using the `[...]` syntax.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#55-array-destructuring-with-keys--pattern-matching-for-arrays)
+
+### Senior
+
+#### What is #[\NoDiscard]?
+**Answer:** An attribute that warns if a function's return value is ignored (PHP 8.5).
+[Detailed HaPHPiness Guide](answers/haphpiness.md#43-nodiscard-php-85)
+
+#### What are Fatal Error Backtraces?
+**Answer:** Since PHP 8.5, fatal errors (like timeouts) include a full stack trace for easier debugging.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#44-fatal-error-backtraces)
+
+#### What is the URI Extension?
+**Answer:** A built-in, immutable, and standards-compliant URL parsing extension (PHP 8.5).
+[Detailed HaPHPiness Guide](answers/haphpiness.md#45-uri-extension--proper-url-parsing-at-last)
+
+#### What is FFI (Foreign Function Interface)?
+**Answer:** Allows calling C functions and using C data structures directly from PHP (7.4+).
+[Detailed HaPHPiness Guide](answers/haphpiness.md#50-ffi--call-c-libraries-directly-from-php)
+
+#### What are PHPStan and Psalm?
+**Answer:** Static analysis tools that provide TypeScript-grade type safety for PHP codebases.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#58-phpstan--psalm--static-analysis-as-a-first-class-citizen)
+
+#### What is NativePHP?
+**Answer:** A framework for building native desktop and mobile applications using PHP and Laravel.
+[Detailed HaPHPiness Guide](answers/haphpiness.md#69-nativephp--desktop-and-mobile-apps-all-in-php)

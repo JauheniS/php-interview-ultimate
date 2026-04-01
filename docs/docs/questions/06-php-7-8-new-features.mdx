@@ -51,6 +51,18 @@ The transition from **PHP 5** to **PHP 7/8** brought significant improvements in
 
 ---
 
+### What are Named Arguments (introduced in PHP 8.0)?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** Named arguments allow you to pass values by parameter name instead of position, making the code more readable and allowing you to skip optional parameters.
+
+```php
+htmlspecialchars($string, double_encode: false);
+```
+
+---
+
 ### What are Union Types (introduced in PHP 8.0)?
 
 <span className="badge badge--success margin-bottom--md">Junior</span>
@@ -61,6 +73,21 @@ The transition from **PHP 5** to **PHP 7/8** brought significant improvements in
 function sum(int|float $a, int|float $b): int|float {
     return $a + $b;
 }
+```
+
+---
+
+### What are Match Expressions (introduced in PHP 8.0)?
+
+<span className="badge badge--success margin-bottom--md">Junior</span>
+
+**Answer:** A safer and more concise alternative to `switch` that uses strict comparison and returns a value.
+
+```php
+$status = match($code) {
+    200, 201 => 'success',
+    default => 'unknown',
+};
 ```
 
 ---
