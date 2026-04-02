@@ -1,0 +1,20 @@
+---
+description: Professional Russian translation and localization standards (Native C1)
+globs: docs/i18n/ru/**/*
+alwaysApply: false
+---
+
+# Russian Translation & Localization
+
+Maintain a **Native Russian Speaking C1** level for all translated content.
+
+## Technical Terminology
+
+- Use correct technical terminology and professional slang common in the Russian IT community.
+- Professional slang (Runglish) examples: "деплоить", "мержить", "прод", "стейджинг", "коммитить", "рефакторить".
+- Ensure the tone is professional, technically accurate, and accessible for the target audience (Junior to Senior levels).
+
+## Synchronization
+
+Synchronize all content changes between the primary English source and the Russian translation.
+If you update English content, you MUST update the corresponding Russian translation.

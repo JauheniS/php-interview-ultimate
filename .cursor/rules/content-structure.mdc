@@ -1,0 +1,34 @@
+---
+description: Formatting and structure rules for interview questions and answers
+globs: QUESTIONS.md, answers/**/*.md
+alwaysApply: false
+---
+
+# Interview Content Structure
+
+Maintain a professional, consistent format for all interview questions.
+
+## Topic Categories
+
+Keep the current division of topics (e.g., PHP Basics, OOP, Design Patterns, etc.).
+
+## Level Highlighting
+
+Strictly follow the level structure:
+- **Junior**
+- **Middle**
+- **Senior**
+
+## Linking
+
+Questions in `QUESTIONS.md` that have detailed answers must link to the corresponding file in `answers/`:
+- Example: `[Detailed Guide](answers/topic.md)`
+
+## Example Formatting
+
+```markdown
+### What are the main features of PHP 8.x?
+**Junior**
+**Answer:** PHP 8 introduces attributes, named arguments, match expression, constructor property promotion, union types, and more.
+---
+```

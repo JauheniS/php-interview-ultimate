@@ -1,0 +1,23 @@
+---
+description: Core project overview and synchronization rules
+globs: **/*
+alwaysApply: true
+---
+
+# PHP Interview Questions & Answers - Core Rules
+
+This project is a curated collection of PHP interview questions and answers, synchronized between a main `QUESTIONS.md` file, detailed topical files in `answers/`, and a Docusaurus documentation site in `docs/docs/`.
+
+## Key Files & Directories
+
+- **Main Source:** `QUESTIONS.md` (primary source for questions and concise answers)
+- **Topical Answers:** `answers/` folder (deep-dive markdown files for complex topics)
+- **Documentation:** `docs/docs/` (Docusaurus-formatted content)
+
+## Bi-directional Synchronization
+
+Changes must be synchronized between the root files and the Docusaurus content:
+- `QUESTIONS.md` ↔ `docs/docs/questions/`
+- `answers/*.md` ↔ `docs/docs/answers/*.md`
+
+Ensure consistency in content, hierarchy, and level categorization across all synchronized files.

@@ -1,0 +1,33 @@
+---
+description: Specific formatting for Docusaurus documentation
+globs: docs/docs/**/*.md, docs/docs/**/*.mdx
+alwaysApply: false
+---
+
+# Docusaurus Formatting
+
+Markdown files in `docs/docs/` must use the appropriate format for Docusaurus.
+
+## Component Badges for Levels
+
+In `docs/docs/questions/*.mdx`, use these specific components for levels:
+
+- **Junior**: `<span className="badge badge--success margin-bottom--md">Junior</span>`
+- **Middle**: `<span className="badge badge--primary margin-bottom--md">Middle</span>`
+- **Senior**: `<span className="badge badge--warning margin-bottom--md">Senior</span>`
+
+## Formatting Rules
+
+- Use `### Question Title` for each question.
+- Use `**Answer:** ...` for the response.
+- Use `---` as a separator between questions.
+- Links to detailed answers should use relative paths: `[Detailed Guide](../answers/topic.md)`.
+
+## Example Question in Docusaurus
+
+```markdown
+### Question Title
+<span className="badge badge--success margin-bottom--md">Junior</span>
+**Answer:** The response goes here.
+---
+```

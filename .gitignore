@@ -1,7 +1,7 @@
 .idea
 .vscode
-.cursor
 .DS_Store
+.cursor/plans
 
 # Node.js
 node_modules

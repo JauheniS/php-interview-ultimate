@@ -1,0 +1,30 @@
+---
+description: Project runtimes, Docker commands, and Node.js scripts
+globs: docker-compose.yml, package.json
+alwaysApply: true
+---
+
+# Project Runtimes & Commands
+
+This project uses Docker and Node.js for management and documentation.
+
+## Docker & Docker Compose
+
+- Use the `node` container for documentation tasks.
+- The project is running in Docker containers.
+
+## Common NPM Commands
+
+- `npm run install:docs`: Install Docusaurus dependencies.
+- `npm run dev`: Start Docusaurus development server.
+- `npm run build`: Build the documentation for production.
+- `npm run start`: Start the built site.
+- `npm run format`: Format the code.
+
+## Running Commands in Docker
+
+When performing documentation tasks, prefer executing inside the Node container if needed:
+
+```bash
+docker-compose exec node npm run build
+```
