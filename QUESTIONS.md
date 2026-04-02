@@ -269,16 +269,6 @@ This occurs because floating-point numbers in PHP (and most other languages) fol
 - **D:** Dependency Inversion
 [SOLID Principles Guide](answers/solid_principles.md)
 
-
-#### What are Anemic and Rich models?
-**Answer:** 
-- **Anemic Model:** Models that only contain data (getters/setters) but no business logic.
-- **Rich Model:** Models that encapsulate both data and business logic (Domain-Driven Design).
-[Anemic vs Rich Model Deep Dive](answers/architecture_advanced.md)
-
-#### What is GRASP?
-**Answer:** General Responsibility Assignment Software Patterns. A set of principles for assigning responsibilities to classes and objects.
-
 #### What is CQRS?
 **Answer:** Command Query Responsibility Segregation. A pattern that separates reading data (Query) from writing/updating data (Command).
 
@@ -292,6 +282,17 @@ This occurs because floating-point numbers in PHP (and most other languages) fol
 - **Hexagonal (Ports & Adapters):** Focuses on separating the application from external concerns using Ports (interfaces) and Adapters (implementations). It doesn't prescribe internal layering.
 - **Onion Architecture:** Uses concentric layers where dependencies always point inward. The Domain Model is at the core, surrounded by Domain Services, Application Services, and finally Infrastructure/UI.
 [Architecture Deep Dive](answers/architecture_advanced.md) | [Practical Examples](answers/architecture_examples.md)
+
+### Senior
+#### What are Anemic and Rich models?
+**Answer:** 
+- **Anemic Model:** Models that only contain data (getters/setters) but no business logic.
+- **Rich Model:** Models that encapsulate both data and business logic (Domain-Driven Design).
+[Anemic vs Rich Model Deep Dive](answers/architecture_advanced.md)
+
+#### What is GRASP?
+**Answer:** General Responsibility Assignment Software Patterns. A set of principles for assigning responsibilities to classes and objects.
+[GRASP Patterns Guide](answers/architecture_advanced.md)
 
 #### What are the pros and cons of Microservices?
 **Answer:** 
