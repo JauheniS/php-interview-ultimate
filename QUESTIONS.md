@@ -960,6 +960,24 @@ $this->db->transaction(function() use ($sum, $user) {
 Understanding the exact behavior of isolation levels and locks is crucial for debugging race conditions. Detailed step-by-step scenarios (including T1/T2 timelines) for Dirty Reads, Non-Repeatable Reads, and Phantoms, as well as concrete examples of Exclusive (`FOR UPDATE`) vs. Shared (`LOCK IN SHARE MODE`) locks and Deadlocks, are provided in the guide.
 [Detailed MySQL Isolation and Locking Scenarios](answers/mysql_advanced.md#52-detailed-isolation-level-scenarios)
 
+#### How to ensure idempotency when inserting records (e.g., in a message broker consumer)?
+**Answer:** Use **Unique Constraints** on relevant business keys (e.g., `(order_id, user_id)`). When a message is retried (at-least-once delivery), the database will block the second insert. Your application should catch the "Duplicate Key" error and treat it as a success or a known state to ensure consistent results.
+
+#### How to manage capacity limits (e.g., maximum attendees) in a high-concurrency environment?
+**Answer:**
+1.  **Pessimistic Locking**: `SELECT * FROM meetups WHERE id = 1 FOR UPDATE;` to serialize all registrations for that meetup.
+2.  **Denormalization + CHECK Constraint**: Add a `booked_seats` column and `CHECK (booked_seats <= total_seats)`. Update the counter in the same transaction as the registration. This lets the DB enforce the limit.
+[Detailed Guide on SQL Concurrency and Limits](answers/sql_concurrency.md)
+
+#### What are `xmin` and `xmax` in the context of database rows (e.g., PostgreSQL)?
+**Answer:** These are hidden system columns used for **MVCC (Multi-Version Concurrency Control)**.
+- `xmin`: Stores the ID of the transaction that inserted the row.
+- `xmax`: Stores the ID of the transaction that deleted or updated the row.
+Understanding these is key to explaining how different transactions "see" different versions of data simultaneously without blocking each other.
+
+#### When should you use Redis for locking instead of native SQL features?
+**Answer:** Use Redis for **Rate Limiting**, **Circuit Breakers**, or **Cross-Node Task Synchronization** (e.g., ensuring a cron job runs once). Avoid using Redis for data consistency *inside* the database. SQL features (Unique Indexes, Constraints, Row Locks) are more robust, handle failure scenarios better (no TTL issues), and don't add extra points of failure or overhead to the data layer.
+
 ---
 
 ## 8. Laravel & Symfony
