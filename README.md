@@ -90,4 +90,4 @@ The documentation will be available at `http://localhost:3333`.
 - **Testing**: Unit, functional, and integration testing.
 - **Clean Code**: Robert C. Martin's Clean Code principles.
 - **Algorithms**: Basic and sorting algorithms in PHP.
-- **SQL Mastery**: Advanced concurrency, locking strategies, and idempotency (based on workshop materials).
+- **SQL Literacy**: Advanced concurrency, locking strategies, and idempotency.

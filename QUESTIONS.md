@@ -971,8 +971,13 @@ Understanding the exact behavior of isolation levels and locks is crucial for de
 
 #### What are `xmin` and `xmax` in the context of database rows (e.g., PostgreSQL)?
 **Answer:** These are hidden system columns used for **MVCC (Multi-Version Concurrency Control)**.
-- `xmin`: Stores the ID of the transaction that inserted the row.
-- `xmax`: Stores the ID of the transaction that deleted or updated the row.
+- **PostgreSQL**:
+  - `xmin`: Stores the ID of the transaction that inserted the row.
+  - `xmax`: Stores the ID of the transaction that deleted or updated the row.
+- **MySQL (InnoDB)**:
+  - `DB_TRX_ID`: Similar to `xmin`, stores the ID of the transaction that created the row version.
+  - `DB_ROLL_PTR`: Pointer to the previous version in the **Undo Log** (used to reconstruct older versions).
+  - `DB_ROW_ID`: Hidden row ID if no primary key exists.
 Understanding these is key to explaining how different transactions "see" different versions of data simultaneously without blocking each other.
 
 #### When should you use Redis for locking instead of native SQL features?
